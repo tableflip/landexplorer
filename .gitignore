@@ -44,4 +44,4 @@ jspm_packages
 *.tgz
 
 bin/index.js
-bin/style.css
+bin/tachyons.min.css
