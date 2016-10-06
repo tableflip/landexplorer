@@ -8,7 +8,8 @@
     "build": "browserify src/index.js -o bin/index.js",
     "watch": "npm-run-all --parallel watch:*",
     "watch:css": "nodemon --exec 'node-sass src/main.scss bin/style.css' -e scss",
-    "watch:js": "nodemon --exec 'npm run build' --watch node_modules --watch src"
+    "watch:js": "nodemon --exec 'npm run build' --watch node_modules --watch src",
+    "postinstall": "rsync -r node_modules/leaflet/dist/* ./bin/leaflet"
   },
   "keywords": [],
   "author": "TABLEFLIP",
