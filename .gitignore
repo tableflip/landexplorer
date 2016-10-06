@@ -45,3 +45,5 @@ jspm_packages
 
 bin/index.js
 bin/tachyons.min.css
+bin/mapbox-gl
+bin/mapbox-gl-geocoder
