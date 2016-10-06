@@ -40,7 +40,7 @@ export default class extends React.Component {
     return () => {
       const currentLayers = this.state.selectedLayers
       let newLayers
-      if (currentLayers.indexOf(layer) > -1) {
+      if (currentLayers.indexOf(layer) === -1) {
         newLayers = currentLayers.concat(layer)
       } else {
         newLayers = currentLayers.filter((thisLayer) => thisLayer !== layer)
@@ -51,7 +51,7 @@ export default class extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='dark-gray'>
         <div className='fl w-50'>
           <LayerPicker layers={this.state.layers} selectedLayers={this.state.selectedLayers} toggleLayer={this.toggleLayer} />
         </div>

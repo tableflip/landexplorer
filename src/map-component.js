@@ -1,5 +1,6 @@
 import React from 'react'
 import MapGL from 'react-map-gl'
+import Geocoder from 'mapbox-gl-geocoder'
 
 const mapboxApiAccessToken = 'pk.eyJ1IjoicmljaHNpbHYiLCJhIjoiY2loNTBwajFyMTAwNXdjbTVhcHNyZTJwZCJ9.OCDntaRvm2ZZGz56V8mAMQ'
 
@@ -12,6 +13,14 @@ export default class extends React.Component {
     }
   }
 
+  injectGeocoder = (c) => {
+    const map = c._getMap()
+    map.addControl(new Geocoder({
+      accessToken: mapboxApiAccessToken,
+      country: 'gb'
+    }))
+  }
+
   render () {
     return (
       <MapGL
@@ -21,6 +30,7 @@ export default class extends React.Component {
         width='100%'
         onChangeViewport={(viewport) => this.setState({ viewport })}
         mapboxApiAccessToken={mapboxApiAccessToken}
+        ref={this.injectGeocoder}
       />
     )
   }

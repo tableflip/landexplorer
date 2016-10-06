@@ -8,7 +8,10 @@
     "build": "browserify src/index.js -o bin/index.js",
     "watch": "npm-run-all --parallel watch:*",
     "watch:js": "nodemon --exec 'npm run build' --watch node_modules --watch src",
-    "postinstall": "rsync node_modules/tachyons/css/tachyons.min.css ./bin"
+    "postinstall": "npm-run-all --parallel copy:*",
+    "copy:tachyons": "rsync node_modules/tachyons/css/tachyons.min.css ./bin",
+    "copy:mapbox-gl": "rsync -r node_modules/mapbox-gl/dist/* ./bin/mapbox-gl",
+    "copy:mapbox-gl-geocoder": "rsync -r node_modules/mapbox-gl-geocoder/dist/* ./bin/mapbox-gl-geocoder"
   },
   "keywords": [],
   "author": "TABLEFLIP",
@@ -32,12 +35,14 @@
   },
   "dependencies": {
     "leaflet": "^1.0.1",
+    "mapbox-gl-geocoder": "git://github.com/tableflip/mapbox-gl-geocoder.git#fix-import",
     "raster-tile-style": "^1.0.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-geocoder": "^2.5.0",
     "react-leaflet": "^0.12.3",
     "react-map-gl": "^1.6.1",
-    "tachyons": "^4.5.3"    
+    "tachyons": "^4.5.3"
   },
   "devDependencies": {
     "babel": "^6.5.2",

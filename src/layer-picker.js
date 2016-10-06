@@ -2,13 +2,12 @@ import React from 'react'
 
 export default class extends React.Component {
   renderLayerTile = (layer) => {
-    console.log(this.props.selectedLayers)
-    const selected = this.props.selectedLayers.indexOf(layer.id) > -1
+    const borderStyle = this.props.selectedLayers.indexOf(layer.id) > -1 ? 'b--black-80' : 'b--black-30'
     return (
-      <div key={layer.id} className='w-40 mw6 mr1 ba b--black-30' onClick={this.props.toggleLayer(layer.id)}>
+      <div key={layer.id} className={`w-40 mw6 mr3 ba grow pointer bg-light-gray ${borderStyle}`} onClick={this.props.toggleLayer(layer.id)}>
         <div className={`h3 bg-${layer.backgroundColor}`}></div>
-        <div className='flex-auto pa2'>
-          <div className='f3 mb2'>{layer.name}</div>
+        <div className='flex-auto pa3'>
+          <div className='f3 mb3'>{layer.name}</div>
           <div className='f5 ttu tracked light-silver mb2'>{layer.provider}</div>
           <p className='f6'>{layer.description}</p>
         </div>
