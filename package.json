@@ -7,9 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "browserify src/index.js -o bin/index.js",
     "watch": "npm-run-all --parallel watch:*",
-    "watch:css": "nodemon --exec 'node-sass src/main.scss bin/style.css' -e scss",
     "watch:js": "nodemon --exec 'npm run build' --watch node_modules --watch src",
-    "postinstall": "rsync -r node_modules/leaflet/dist/* ./bin/leaflet"
+    "postinstall": "rsync node_modules/tachyons/css/tachyons.min.css ./bin"
   },
   "keywords": [],
   "author": "TABLEFLIP",
@@ -32,11 +31,13 @@
     "parser": "babel-eslint"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.4",
     "leaflet": "^1.0.1",
+    "raster-tile-style": "^1.0.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-leaflet": "^0.12.3"
+    "react-leaflet": "^0.12.3",
+    "react-map-gl": "^1.6.1",
+    "tachyons": "^4.5.3"    
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -46,7 +47,7 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.17.0",
     "babelify": "^7.3.0",
-    "node-sass": "^3.10.1",
-    "npm-run-all": "^3.1.0"
+    "npm-run-all": "^3.1.0",
+    "tachyons-cli": "^1.0.8"
   }
 }

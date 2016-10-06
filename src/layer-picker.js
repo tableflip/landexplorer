@@ -5,30 +5,28 @@ export default class extends React.Component {
     console.log(this.props.selectedLayers)
     const selected = this.props.selectedLayers.indexOf(layer.id) > -1
     return (
-      <div key={layer.id} className={`card ${selected ? 'selected' : ''}`} onClick={this.props.toggleLayer(layer.id)}>
-        <div className='card-img-top' style={{ backgroundColor: layer.backgroundColor, height: '50px' }}></div>
-        <div className='card-block'>
-          <div className='h4 card-title'>{layer.name}</div>
-          <div className='h5 card-title'>{layer.provider}</div>
-          <p className='card-text'>{layer.description}</p>
+      <div key={layer.id} className='w-40 mw6 mr1 ba b--black-30' onClick={this.props.toggleLayer(layer.id)}>
+        <div className={`h3 bg-${layer.backgroundColor}`}></div>
+        <div className='flex-auto pa2'>
+          <div className='f3 mb2'>{layer.name}</div>
+          <div className='f5 ttu tracked light-silver mb2'>{layer.provider}</div>
+          <p className='f6'>{layer.description}</p>
         </div>
       </div>
     )
   }
 
   renderCategory = (category) => {
-    return (<div key={category} className='row p-a-2'>
-      <div className='col-xs-12'>
-        <h1 className='h3 p-b-2'>{category}</h1>
-        <div className='card-group'>
-          {this.props.layers[category].map(this.renderLayerTile)}
-        </div>
+    return (<div key={category} className='pb3'>
+      <h1 className='f2 mb3'>{category}</h1>
+      <div className='flex items-stretch justify-start'>
+        {this.props.layers[category].map(this.renderLayerTile)}
       </div>
     </div>)
   }
 
   render () {
-    return (<div>
+    return (<div className='pa3'>
       {Object.keys(this.props.layers).map(this.renderCategory)}
     </div>)
   }
