@@ -34,15 +34,18 @@
     "parser": "babel-eslint"
   },
   "dependencies": {
+    "es6-promise": "^4.0.5",
     "leaflet": "^1.0.1",
     "mapbox-gl-geocoder": "git://github.com/tableflip/mapbox-gl-geocoder.git#fix-import",
+    "query-string": "^4.2.3",
     "raster-tile-style": "^1.0.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-geocoder": "^2.5.0",
     "react-leaflet": "^0.12.3",
     "react-map-gl": "^1.6.1",
-    "tachyons": "^4.5.3"
+    "tachyons": "^4.5.3",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",

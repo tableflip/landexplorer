@@ -1,0 +1,249 @@
+[{
+  "category": "Soil quality",
+  "description": "Soil quality (e.g. compaction, chemical analysis, agricultural grade). Possible uses include:\n- identifying suitable land for food growing, forestry, horticulture etc.\n- understanding how to make the most out of a site",
+  "datasets": [
+    {
+      "name": "Agricultural Land Classification detailed post 1988 ALC survey",
+      "provider": "Natural England",
+      "id": 0,
+      "description": "This is scanned maps and survey reports, at varying scales and detail. Also some sample point soils data.",
+      "url": "http://publications.naturalengland.org.uk/category/6249382855835648"
+    },
+    {
+	    "name": "Provisional Agricultural Land Classification (ALC)",
+      "provider": "Natural England",
+      "id": 1,
+      "description": "Provisional Agricultural Land Classification Grade. Agricultural land classified into five grades. Grade one is best quality and grade five is poorest quality. A number of consistent criteria used for assessment which include climate (temperature, rainfall, aspect, exposure, frost risk), site (gradient, micro-relief, flood risk) and soil (depth, structure, texture, chemicals, stoniness).",
+      "url": "https://data.gov.uk/dataset/provisional-agricultural-land-classification-alc"
+    },
+    {
+      "name": "Long term monitoring data",
+      "provider": "Natural England",
+      "id": 2,
+      "description": "This is vegetation and soil surveys over time. Coverage is limited (37 sites - primarily nature reserves)",
+      "url": "https://data.gov.uk/data/search?publisher=natural-england&q=long+term+monitoring+network"
+    },
+    {
+      "name": "National Forest Estate soils",
+      "provider": "Forestry Commission",
+      "id": 3,
+      "description": "This vector dataset provides detailed (1:10,000) soil information for approximately half the Public Forest Estate.",
+      "url": "http://www.forestry.gov.uk/forestry/infd-8g5bya"
+    },
+    {
+      "name": "Advanced soil geochemical atlas of England and Wales",
+      "provider": "British Geological Survey",
+      "id": 4,
+      "description": "5700 surface soil samples, collected across England and Wales, analysed for 52 major and trace elements. Downloadable as interpolated concentrations.",
+      "url": "http://www.bgs.ac.uk/downloads/start.cfm?id=2898"
+    },
+    {
+      "name": "Web Map Service for model estimates of topsoil properties [Countryside Survey]",
+      "provider": "Centre for Ecology and Hydrology",
+      "id": 5,
+      "description": "This web map service (WMS) depicts estimates of mean values of soil bacteria, invertebrates, carbon, nutrients and pH within selected habitats and parent material characteristics across GB.",
+      "url": "https://data.gov.uk/dataset/web-map-service-for-model-estimates-of-topsoil-properties-countryside-survey"
+    },
+    {
+      "name": "Soils Map Viewer (platform)",
+      "provider": "UKSO/ various others",
+      "id": 6,
+      "description": "The UKSO soils map viewer/ resource combines loads of different soil quality datasets, some of which are downloadable.",
+      "url": "http://mapapps2.bgs.ac.uk/ukso/home.html?"
+    },
+    {
+      "name": "Soilscapes (platform)",
+      "provider": "Cranfield Uni",
+      "id": 7,
+      "description": "Soilscapes is a 1:250,000 scale, simplified soils dataset covering England and Wales. It was created from the more detailed National Soil Map (NATMAPvector) with the purpose of effectively communicating a general understanding of the variations which occur between soil types, and how soils affect the environment.",
+      "url": "http://www.landis.org.uk/soilscapes/"
+    }
+  ]
+},
+{
+  "category": "Ownership info",
+  "description": "Ownership info (owner contact details, type of owner, owners ambition for site). Possible uses include:\n- Contacting owners about land purchase or sharing.\n- Identifying owners who might be open to collaboration (e.g. local authorities, utilities, national trust, RSPB, Wildlife Trust, Woodland Trust)\n- Identifying boundaries",
+  "datasets": [
+    {
+      "name": "INSPIRE Index Polygons",
+      "provider": "Land Registry",
+      "id": 8,
+      "description": "This dataset enables you to see the boundaries of land ownership. There is a great guide on using this data in a blog by Anna Powell-Smith (see notes).",
+      "notes": "http://anna.ps/blog/how-to-use-land-registry-data-to-explore-land-ownership-near-you",
+      "url": "https://www.gov.uk/guidance/inspire-index-polygons-spatial-data"
+    },
+    {
+      "name": "Rural Land Register",
+      "provider": "Rural Payments Agency",
+      "id": 9,
+      "description": "This contains information on ownership and boundaries of land for which CAP subsidies are being claimed. Still no confirmation on whether this will be released",
+      "url": "https://data.gov.uk/dataset/rural-land-register"
+    },
+    {
+      "name": "Boundary-Line",
+      "provider": "OS",
+      "id": 10,
+      "description": "Boundary-Line is a specialist 1:10 000 scale boundaries dataset. It contains all levels of electoral and administrative boundaries, from district, wards and civil parishes (or communities) up to parliamentary, assembly and European constituencies. The information is represented as vector digital data.",
+      "url": "https://data.gov.uk/dataset/boundary-line"
+    },
+    {
+      "name": "Register of Public Sector Land",
+      "provider": "Cabinet Office",
+      "id": 11,
+      "description": "Data files from e-PIMS, Government's Property and Land asset database containing details of location, tenure and other key attributes for each asset. It includes details about the buildings, any vacant space and occupiers.",
+      "url": "https://data.gov.uk/dataset/epims"
+    },
+    {
+      "name": "Local Authority Land/Asset Register",
+      "provider": "Local Authorities",
+      "id": 12,
+      "description": "Each local authority should maintain a register of its land and building assets.",
+      "url": "https://data.gov.uk/data/search?q=asset+register"
+    }
+  ]
+},
+{
+  "category": "Drainage",
+  "description": "Drainage (in relation to impacts on soil, ability to build, access etc.). Possible uses include:\n- Evaluating a site's potential for various activities (e.g. growing, recreation)\n- Potential need for investment to improve drainage",
+  "datasets": [
+    {
+      "name": "Sustainable drainage systems",
+      "provider": "British Geological Survey",
+      "id": 13,
+      "description": "This national dataset brings together sixteen national datasets to create a GIS product that provides the information necessary to determine the extent to which the ground is suitable for infiltration sustainable drainage systems (SuDS).",
+      "url": "https://data.gov.uk/dataset/infiltration-suds-map-sustainable-drainage-systems"
+    },
+    {
+      "name": "OS Open Rivers",
+      "provider": "Ordnance Survey",
+      "id": 14,
+      "description": "High-level view of watercourses in Great Britain",
+      "url": "https://www.ordnancesurvey.co.uk/business-and-government/products/os-open-rivers.html"
+    },
+    {
+      "name": "Detailed River Network - Line feature class (AfA036) (Unpublished)",
+      "provider": "Environment Agency",
+      "id": 15,
+      "description": "Detailed River Network (DRN) - Line feature class dataset representing the online drainage network of England and Wales. It is a river centreline dataset, based on OS MasterMap for surface features and Environment Agency culvert surveys for underground features (where available). There are many attributes associated with this dataset to enable it to be used for many different business purposes. It is topologically correct to allow it's use in network tracing tasks. This is a spatial dataset.",
+      "notes": "Awaiting response on plans for publication",
+      "url": "https://data.gov.uk/dataset/detailed-river-network--line-feature-class-afa036"
+    },
+    {
+      "name": "List of Internal Drainage Boards",
+      "provider": "Defra",
+      "id": 16,
+      "description": "Internal Drainage Boards (IDBs) are independent locally funded and operated statutory public bodies. There are currently around 100 IDBs in England and the Boards consist of elected members who represent agricultural rate payers and local authority appointed members representing special levy payers in the local community. IDBs are responsible for water level management in areas of special drainage need.",
+      "url": 	"https://data.gov.uk/dataset/list-of-internal-drainage-boards"
+    }
+  ]
+},
+{
+  "category": "Contamination",
+  "description": "Contamination (e.g. history of use, proximity to waste disposal or other pollutants). Possible uses include:\n- Ruling out sites (e.g. for Organic production)\n- Identifying available subsidies",
+  "datasets": [
+    {
+      "name": "Air quality framework",
+      "provider": "JNCC",
+      "id": 17,
+      "description": "This will provide guidelines on how to access data on air quality.",
+      "notes": "Due to be released soon"
+    },
+    {
+      "name": "UK-Air",
+      "provider": "Defra",
+      "id": 18,
+      "description": "The best source of location-based open data on air quality and air pollution is Defra's UK-AIR site.",
+      "url": "https://uk-air.defra.gov.uk/"
+    },
+    {
+      "name": "Contaminated Land",
+      "provider": "Environment Agency",
+      "id": 19,
+      "description": "No description for this dataset, currently awaiting feedback from EA.",
+      "notes": "Not yet released but they are looking into it (awaiting response)."
+    },
+    {
+      "name": "Nitrate Vulnerable Zones data",
+      "provider": "Environment Agency",
+      "id": 20,
+      "description": "Data on groundwater, surfacewater, and eutrophic water monitoring. Zoning boundaries on Nitrate Vulnerable Zones.",
+      "notes": "Currently not released"
+    },
+    {
+      "name": "Contaminated Land",
+      "provider": "British Geological Survey",
+      "id": 21,
+      "description": "All data related to contaminated land projects formerly in the Pollution and Waste Management & Extraction Industry Impacts Programme, now part of Chemical and Biological Hazards Programme. These data include borehole, geological (solid, drift, made ground), geochemical, land use, abstraction, aerial photographic, hydrological and hydrogeological information for a variety of UK landfill sites and sites of surface contamination.",
+      "url": "https://data.gov.uk/dataset/contaminated-land"
+    },
+    {
+      "name": "Lots of local datasets on Contaminated Land",
+      "provider": "Various",
+      "id": 22,
+      "description": "Many local authorities have published registers of sites determined as being contaminated. Seem to be in different formats. LAs have a responsibility to publish a contaminated land register",
+      "url": "https://data.gov.uk/data/search?q=contamination"
+    },
+    {
+      "name": "Strategic noise mapping: Noise from road and rail",
+      "provider": "Defra",
+      "id": 23,
+      "description": "Defra has published strategic noise map data that give a snapshot of the estimated noise from major road and rail sources across England in 2012",
+      "url": "https://www.gov.uk/government/publications/open-data-strategic-noise-mapping"
+    }
+  ]
+},
+{
+  "category": "Current use",
+  "description": "Current use (e.g. activities used for or identifying unused land). Possible uses include:\n- Identifying likelihood of being able to access land, and likely existing infrastructure",
+  "datasets": [
+    {
+      "name": "National Forest Inventory",
+      "provider": "Forestry Commission",
+      "id": 24,
+      "description": "Annual inventories of UK forests, with spatial data and associated metadata. Includes interpreted forest types for all woodland over 0.5ha and Interpreted Open Area info for areas over 0.5ha that are completely surrounded by woodland.",
+      "url": "http://www.forestry.gov.uk/forestry/infd-8g5bya"
+    },
+    { 
+      "name": "Land Cover Map 2007",
+      "provider": "Centre for Ecology and Hydrology",
+      "id": 25,
+      "description": "Land cover describes the physical material on the surface of the country. For example: grassland, woodland, rivers & lakes and artificial materials such as roads and buildings. Land cover maps have many uses; they are used for the management of natural resources, urban planning, carbon accounting and flood risk modelling, to name but a few.",
+      "url": "https://eip.ceh.ac.uk/lcm"
+    },
+    {
+      "name": "ITE land classification of Great Britain 2007",
+      "provider": "Centre for Ecology and Hydrology",
+      "id": 26,
+      "description": "The Land Classification 2007 is a classification of Great Britain into a set of 45 environmental strata, termed land classes, to be used as a basis for ecological survey. The strata were created from the multivariate analysis of 75 environmental variables, including climatic data, topographic data, human geographical features and geology data.",
+      "url": "https://catalogue.ceh.ac.uk/documents/5f0605e4-aa2a-48ab-b47c-bf5510823e8f"
+    },
+    {
+      "name": "CRoW Act 2000 data",
+      "provider": "Natural England",
+      "id": 0,
+      "description": "Countryside and Rights of Way Act maps - this shows areas designated for public access to the countryside (rights to roam).",
+      "url": "https://data.gov.uk/data/search?q=crow+act"
+    },
+    {
+      "name": "Land Use Statistics (Generalised Land Use Database)",
+      "provider": "ONS",
+      "id": 0,
+      "description": "A classification has been developed which allocates all identifiable land features on Ordnance Survey MasterMap into nine simplified land categories and an additional 'unclassified' category. These are: domestic buildings, non-domestic buildings, roads, paths, rail, gardens (domestic), green space, water, other land uses.",
+      "url": "https://data.gov.uk/dataset/land_use_statistics_generalised_land_use_database"
+    },
+    { 
+      "name": "Derelict Land",
+      "provider": "data.gov.uk",
+      "id": 0,
+      "description": "Previously developed land that is unused or may be available for redevelopment by land type and Planning Authority.",
+      "url": "https://data.gov.uk/dataset/derelict_land"
+    },
+    {
+      "name": "Environmental Stewardship Scheme Agreement",
+      "provider": "RPA",
+      "id": 0,
+      "description": "This has polygons and details of who gets the money.",
+      "url": "https://data.gov.uk/dataset/environmental-stewardship-scheme-agreements1"
+    }
+  ]
+}]
