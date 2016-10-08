@@ -1,7 +1,6 @@
 import React from 'react'
 import MapComponent from './map-component'
 import LayerPicker from './layer-picker'
-import api from './lib/api'
 import datasets from './datasets'
 
 export default class extends React.Component {
@@ -21,12 +20,6 @@ export default class extends React.Component {
       }
       this.setState({ selectedLayers: newLayers })
     }
-  }
-
-  componentDidMount () {
-    api.get({ typeName: 'topp:tasmania_state_boundaries' })
-      .then((json) => console.log('success', json))
-      .catch((err) => console.error(err))
   }
 
   render () {
