@@ -7,7 +7,7 @@ export default class extends React.Component {
     return (
       <div 
         key={layer.id}
-        className={`w-40 mw6 mr3 ba dim pointer bg-light-gray flex-none ${borderStyle}`}
+        className={`w-70 w-40-ns mw6 mr3 ba dim pointer bg-light-gray flex-none ${borderStyle}`}
         onClick={this.props.toggleLayer(layer.id)}
       >
         <div className='h3' style={{ backgroundColor }}></div>
