@@ -25,10 +25,10 @@ export default class extends React.Component {
   render () {
     return (
       <div className='dark-gray'>
-        <div className='fl w-50'>
+        <div className='fl w-100 w-50-ns'>
           <LayerPicker datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} toggleLayer={this.toggleLayer} />
         </div>
-        <div className='fl w-50'>
+        <div className='fl w-100 w-50-ns'>
           <MapComponent />
         </div>
       </div>

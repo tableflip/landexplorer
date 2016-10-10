@@ -7,24 +7,24 @@ export default class extends React.Component {
     return (
       <div 
         key={layer.id}
-        className={`w-40 mw6 mr3 ba grow shadow-hover pointer bg-light-gray flex-none ${borderStyle}`}
+        className={`w-40 mw6 mr3 ba dim pointer bg-light-gray flex-none ${borderStyle}`}
         onClick={this.props.toggleLayer(layer.id)}
       >
         <div className='h3' style={{ backgroundColor }}></div>
         <div className='flex-auto pa3'>
-          <div className='f3 mb3'>{layer.name}</div>
-          <div className='f5 ttu tracked light-silver mb2'>{layer.provider}</div>
-          <p className='f6 h4 overflow-hidden'>{layer.description}</p>
+          <div className='f4 mb3 lh-title'>{layer.name}</div>
+          <div className='f5 ttu tracked light-silver mb2 lh-title'>{layer.provider}</div>
+          <p className='f6 h4 overflow-hidden lh-copy'>{layer.description}</p>
         </div>
       </div>
     )
   }
 
   renderCategory = (category) => {
-    return (<div key={category.name} className='pb3'>
-      <h1 className='f2 mb2'>{category.category}</h1>
-      <h2 className='f4 mb3 silver'>{category.description}</h2>
-      <div className='flex items-stretch justify-start w-100 overflow-x-auto overflow-y-hidden pa3'>
+    return (<div key={category.name} className='mb5'>
+      <h1 className='f2 mb3'>{category.category}</h1>
+      <h2 className='f5 mb3 ml3 silver lh-copy' style={{ whiteSpace: 'pre-wrap' }}>{category.description}</h2>
+      <div className='flex items-stretch justify-start w-100 overflow-x-auto overflow-y-hidden pv2'>
         {category.datasets.map(this.renderLayerTile)}
       </div>
     </div>)
