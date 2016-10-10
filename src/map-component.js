@@ -2,8 +2,8 @@ import React from 'react'
 import MapGL from 'react-map-gl'
 import mapboxgl from 'mapbox-gl'
 import Geocoder from 'mapbox-gl-geocoder'
+import config from './config'
 
-const mapboxApiAccessToken = 'pk.eyJ1IjoicmljaHNpbHYiLCJhIjoiY2loNTBwajFyMTAwNXdjbTVhcHNyZTJwZCJ9.OCDntaRvm2ZZGz56V8mAMQ'
 const iconSize = 40
 const iconColor = '#62577'
 
@@ -35,21 +35,21 @@ export default class extends React.Component {
 
   injectGeocoder = () => {
     this.map.addControl(new Geocoder({
-      accessToken: mapboxApiAccessToken,
+      accessToken: config.mapboxApiAccessToken,
       country: 'gb'
     }))
   }
 
   addDblClickHandler = () => {
     this.marker = new mapboxgl.Marker(marker(), { offset: [-iconSize / 2, -iconSize] })
+    this.popup = new mapboxgl.Popup({ offset: [0, -iconSize - 5] })
     this.map.on('dblclick', (evt) => {
       const bounds = this.map.getBounds()
-      const width = bounds.getEast() - bounds.getWest()
       const height = bounds.getNorth() - bounds.getSouth()
       const evtLngLat = evt.lngLat.toArray()
-      this.addMarker(evtLngLat)
+      this.addMarker(evtLngLat, this.makeContent(evtLngLat))
       this.setState({ marker: evtLngLat })
-      this.map.flyTo({ center: [ evtLngLat[0] + (width * 0.35), evtLngLat[1] + (height * 0.2) ] })
+      this.map.flyTo({ center: [ evtLngLat[0], evtLngLat[1] + (height * 0.2) ] })
     })
   }
 
@@ -60,14 +60,25 @@ export default class extends React.Component {
     })
   }
 
-  addMarker = (lngLat) => {
+  makeContent = (lngLat) => {
+    return `<div className="pa2">
+      <p className="f5">Marker position</p>
+      <p className="f6">(${lngLat[0]}, ${lngLat[1]})</p>
+    </div>`
+  }
+
+  addMarker = (lngLat, content) => {
     this.removeMarker()
     this.marker.setLngLat(lngLat)
+    this.popup.setLngLat(lngLat)
+    this.popup.setHTML(content)
     this.marker.addTo(this.map)
+    this.popup.addTo(this.map)
   }
 
   removeMarker = () => {
     this.marker.remove()
+    this.popup.remove()
   }
 
   render () {
@@ -79,16 +90,9 @@ export default class extends React.Component {
           height='100vh'
           width='100%'
           onChangeViewport={(viewport) => this.setState({ viewport })}
-          mapboxApiAccessToken={mapboxApiAccessToken}
+          mapboxApiAccessToken={config.mapboxApiAccessToken}
           ref={this.runMapHandlers}
         />
-        {this.state.marker
-          ? (<div className='absolute ba b--black-50 pa2 bg-white' style={{ bottom: '35%', left: '20%', maxWidth: '70%', maxHeight: '40%' }}>
-            <p className='f6'>Marker position:</p>
-            <p className='f5'>{`(${this.state.marker[0]}, ${this.state.marker[1]})`}</p>
-          </div>)
-          : null
-        }
       </div>
     )
   }

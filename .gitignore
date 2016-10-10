@@ -43,7 +43,7 @@ jspm_packages
 # Output of 'npm pack'
 *.tgz
 
-bin/index.js
-bin/tachyons.min.css
-bin/mapbox-gl
-bin/mapbox-gl-geocoder
+dist/index.js
+dist/tachyons.min.css
+dist/mapbox-gl
+dist/mapbox-gl-geocoder
