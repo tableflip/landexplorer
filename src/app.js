@@ -28,7 +28,7 @@ export default class extends React.Component {
         <div className='fl w-100 w-50-ns'>
           <LayerPicker datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} toggleLayer={this.toggleLayer} />
         </div>
-        <div className='fl w-100 w-50-ns'>
+        <div className='fl w-100 w-50-ns relative'>
           <MapComponent />
         </div>
       </div>
