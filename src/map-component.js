@@ -19,18 +19,19 @@ const marker = () => {
 export default class extends React.Component {
   state = {
     viewport: {
-      latitude: 51.4620930,
-      longitude: -0.0673730,
-      zoom: 13.7
+      latitude: 54.53797918714042,
+      longitude: -4.2541837906720446,
+      zoom: 5.2
     },
     marker: null
   }
 
   runMapHandlers = (c) => {
-    this.map = c._getMap()
+    window.map = this.map = c._getMap()
     this.injectGeocoder()
     this.addDblClickHandler()
     this.addClickHandler()
+    this.addSoilLayer()
   }
 
   injectGeocoder = () => {
@@ -38,6 +39,24 @@ export default class extends React.Component {
       accessToken: config.mapboxApiAccessToken,
       country: 'gb'
     }))
+  }
+
+  addSoilLayer = () => {
+    this.map.on('load', () => {
+      this.map.addSource('nfe_soil_gb', {
+        'type': 'geojson',
+        'data': 'http://geoserver.dev.sharedassets.org.uk/geoserver/land_explorer/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=land_explorer:nfe_soil_gb&maxFeatures=9000&outputFormat=application%2Fjson'
+      })
+
+      this.map.addLayer({
+        'id': 'nfe_soil_gb',
+        'source': 'nfe_soil_gb',
+        "type": "fill",
+        "paint": {
+          "fill-color": "#bc99e6"
+        }
+      })
+    })
   }
 
   addDblClickHandler = () => {

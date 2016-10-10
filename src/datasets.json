@@ -3,6 +3,13 @@
   "description": "Soil quality (e.g. compaction, chemical analysis, agricultural grade). Possible uses include:\n- identifying suitable land for food growing, forestry, horticulture etc.\n- understanding how to make the most out of a site",
   "datasets": [
     {
+      "name": "National Forest Estate soils",
+      "provider": "Forestry Commission",
+      "id": 3,
+      "description": "This vector dataset provides detailed (1:10,000) soil information for approximately half the Public Forest Estate.",
+      "url": "http://www.forestry.gov.uk/forestry/infd-8g5bya"
+    },
+    {
       "name": "Agricultural Land Classification detailed post 1988 ALC survey",
       "provider": "Natural England",
       "id": 0,
@@ -22,13 +29,6 @@
       "id": 2,
       "description": "This is vegetation and soil surveys over time. Coverage is limited (37 sites - primarily nature reserves)",
       "url": "https://data.gov.uk/data/search?publisher=natural-england&q=long+term+monitoring+network"
-    },
-    {
-      "name": "National Forest Estate soils",
-      "provider": "Forestry Commission",
-      "id": 3,
-      "description": "This vector dataset provides detailed (1:10,000) soil information for approximately half the Public Forest Estate.",
-      "url": "http://www.forestry.gov.uk/forestry/infd-8g5bya"
     },
     {
       "name": "Advanced soil geochemical atlas of England and Wales",
@@ -203,7 +203,7 @@
       "description": "Annual inventories of UK forests, with spatial data and associated metadata. Includes interpreted forest types for all woodland over 0.5ha and Interpreted Open Area info for areas over 0.5ha that are completely surrounded by woodland.",
       "url": "http://www.forestry.gov.uk/forestry/infd-8g5bya"
     },
-    { 
+    {
       "name": "Land Cover Map 2007",
       "provider": "Centre for Ecology and Hydrology",
       "id": 25,
@@ -231,7 +231,7 @@
       "description": "A classification has been developed which allocates all identifiable land features on Ordnance Survey MasterMap into nine simplified land categories and an additional 'unclassified' category. These are: domestic buildings, non-domestic buildings, roads, paths, rail, gardens (domestic), green space, water, other land uses.",
       "url": "https://data.gov.uk/dataset/land_use_statistics_generalised_land_use_database"
     },
-    { 
+    {
       "name": "Derelict Land",
       "provider": "data.gov.uk",
       "id": 0,
