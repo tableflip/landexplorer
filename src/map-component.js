@@ -1,5 +1,6 @@
 import React from 'react'
 import MapGL from 'react-map-gl'
+import MapboxClient from 'mapbox'
 import mapboxgl from 'mapbox-gl'
 import Geocoder from 'mapbox-gl-geocoder'
 import config from './config'
@@ -15,6 +16,7 @@ const marker = () => {
   </svg>`
   return m.firstChild
 }
+const mapboxClient = new MapboxClient(config.mapboxApiAccessToken)
 
 export default class extends React.Component {
   state = {
@@ -47,7 +49,7 @@ export default class extends React.Component {
       const bounds = this.map.getBounds()
       const height = bounds.getNorth() - bounds.getSouth()
       const evtLngLat = evt.lngLat.toArray()
-      this.addMarker(evtLngLat, this.makeContent(evtLngLat))
+      this.addMarker(evtLngLat)
       this.setState({ marker: evtLngLat })
       this.map.flyTo({ center: [ evtLngLat[0], evtLngLat[1] + (height * 0.2) ] })
     })
@@ -61,19 +63,41 @@ export default class extends React.Component {
   }
 
   makeContent = (lngLat) => {
-    return `<div className="pa2">
-      <p className="f5">Marker position</p>
-      <p className="f6">(${lngLat[0]}, ${lngLat[1]})</p>
-    </div>`
+    return this.reverseGeo(lngLat)
+      .then((geoData) => {
+        return Promise.resolve(`<div className="pa2">
+          <p className="f5">Marker position:</p>
+          <p className="f6">${geoData.features[0].text}</p>
+        </div>`)
+      })
+      .catch((err) => {
+        console.error('Geocoding error', err)
+        return Promise.resolve(`<div className="pa2">
+          <p className="f5">Marker position:</p>
+          <p className="f6">(${lngLat[0]}, ${lngLat[1]})</p>
+        </div>`)
+      })
+  }
+
+  reverseGeo = (lngLat) => {
+    return new Promise((resolve, reject) => {
+      mapboxClient.geocodeReverse({ latitude: lngLat[1], longitude: lngLat[0] }, (err, res) => {
+        if (err) return reject(err)
+        resolve(res)
+      })
+    })
   }
 
   addMarker = (lngLat, content) => {
     this.removeMarker()
     this.marker.setLngLat(lngLat)
-    this.popup.setLngLat(lngLat)
-    this.popup.setHTML(content)
     this.marker.addTo(this.map)
-    this.popup.addTo(this.map)
+    this.makeContent(lngLat)
+      .then((content) => {
+        this.popup.setLngLat(lngLat)
+        this.popup.setHTML(content)
+        this.popup.addTo(this.map)
+      })
   }
 
   removeMarker = () => {
