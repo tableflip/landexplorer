@@ -80,9 +80,8 @@ export default class extends React.Component {
       const bounds = this.map.getBounds()
       const height = bounds.getNorth() - bounds.getSouth()
       const evtLngLat = evt.lngLat.toArray()
-      this.addMarker(evtLngLat)
+      this.addMarker(evtLngLat, evt)
       this.setState({ marker: evtLngLat })
-      this.map.flyTo({ center: [ evtLngLat[0], evtLngLat[1] + (height * 0.2) ] })
     })
   }
 
@@ -104,17 +103,20 @@ export default class extends React.Component {
     }).join(' ')
   }
 
-  makeContent = (lngLat) => {
+  makeContent = (lngLat, evt) => {
+    const features = this.map.queryRenderedFeatures(evt.point)
     return this.reverseGeo(lngLat)
       .then((geoData) => {
         const address = getFeature(geoData, 'address')
         const postcode = getFeature(geoData, 'postcode')
-        const features = this.map.queryRenderedFeatures(lngLat)
-        return Promise.resolve(`<div class="ph1">
-          <label class="f6 b">Address</label>
+        return Promise.resolve(`<div class="pa2">
+          <label class="f6 b">Coordinates</label>
+          <code class="f6 monospace db">${round(lngLat[0], 3)}, ${round(lngLat[1], 3)}</code>
+          <label class="f6 b db mt3">Address</label>
           <address class="f5 db">
             <div>${address ? address : ''}</div>
             <div>${postcode ? postcode : ''}</div>
+            <div>${!postcode && !address ? 'Unknown' : ''}</div>
           </address>
           <label class="f6 b mt3 db">Features</label>
           ${this.featuresToHtml(features)}
@@ -123,8 +125,14 @@ export default class extends React.Component {
       .catch((err) => {
         console.error('Geocoding error', err)
         return Promise.resolve(`<div class="pa2">
-          <p class="f6 b">Marker position:</p>
+          <label class="f6 b">Coordinates</label>
           <p class="f5">(${round(lngLat[0], 3)}, ${round(lngLat[1], 3)})</p>
+          <label class="f6 b db mt3">Address</label>
+          <address class="f5 db">
+            <div>Temporarily unavailable</div>
+          </address>
+          <label class="f6 b mt3 db">Features</label>
+          ${this.featuresToHtml(features)}
         </div>`)
       })
   }
@@ -138,11 +146,11 @@ export default class extends React.Component {
     })
   }
 
-  addMarker = (lngLat, content) => {
+  addMarker = (lngLat, evt) => {
     this.removeMarker()
     this.marker.setLngLat(lngLat)
     this.marker.addTo(this.map)
-    this.makeContent(lngLat)
+    this.makeContent(lngLat, evt)
       .then((content) => {
         this.popup.setLngLat(lngLat)
         this.popup.setHTML(content)
