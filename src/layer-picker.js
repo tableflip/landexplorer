@@ -22,7 +22,7 @@ export default class extends React.Component {
 
   renderCategory = (category) => {
     return (<section key={category.name} className='mb4 pb2'>
-      <header className='bg-gray pv1'>
+      <header className='bg-dark-gray pv1'>
         <h1 className='f4 pl3 ma3 ttu tracked white'>{category.category}</h1>
       </header>
       <p className='f5 pl3 ma3 lh-copy' style={{ whiteSpace: 'pre-wrap' }}>{category.description}</p>
