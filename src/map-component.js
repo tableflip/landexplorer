@@ -97,9 +97,10 @@ export default class extends React.Component {
     console.log('featuresToHtml', features)
     if (!features || !features.length) return ''
     return features.map((f) => {
-      const label = humanize(f.layer['source-layer'])
-      const value = humanize(f.properties.class || f.properties.name)
-      return `<div class="f6 b">${label} ${value}</div>`
+      const label = f.layer['source-layer']
+      const value = f.properties.class || f.properties.name
+      const text = humanize([value, label].join(' '))
+      return `<div class="f5">${text}</div>`
     }).join(' ')
   }
 
@@ -110,20 +111,20 @@ export default class extends React.Component {
         const postcode = getFeature(geoData, 'postcode')
         const features = this.map.queryRenderedFeatures(lngLat)
         return Promise.resolve(`<div class="ph1">
-          <label class="f5">Address</label>
-          <address class="f6 b db">
-            <div>${address}</div>
-            <div>${postcode}</div>
+          <label class="f6 b">Address</label>
+          <address class="f5 db">
+            <div>${address ? address : ''}</div>
+            <div>${postcode ? postcode : ''}</div>
           </address>
-          <label class="f5 mt3 db">Features</label>
+          <label class="f6 b mt3 db">Features</label>
           ${this.featuresToHtml(features)}
         </div>`)
       })
       .catch((err) => {
         console.error('Geocoding error', err)
         return Promise.resolve(`<div class="pa2">
-          <p class="f5">Marker position:</p>
-          <p class="f6 b">(${round(lngLat[0], 3)}, ${round(lngLat[1], 3)})</p>
+          <p class="f6 b">Marker position:</p>
+          <p class="f5">(${round(lngLat[0], 3)}, ${round(lngLat[1], 3)})</p>
         </div>`)
       })
   }
