@@ -1,7 +1,7 @@
 # Logs
 logs
 *.log
-npm-debug.log*
+npm-debug.*
 
 # Runtime data
 pids
@@ -43,7 +43,4 @@ jspm_packages
 # Output of 'npm pack'
 *.tgz
 
-dist/index.js
-dist/tachyons.min.css
-dist/mapbox-gl
-dist/mapbox-gl-geocoder
+dist/**/*

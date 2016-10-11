@@ -13,7 +13,7 @@
     "build:mapbox-gl-geocoder": "rsync -r node_modules/mapbox-gl-geocoder/dist/* ./dist/mapbox-gl-geocoder",
     "watch": "npm-run-all --parallel watch:*",
     "watch:js": "nodemon --exec 'npm run build:js && npm run build:html' --watch node_modules --watch src",
-    "watch:server": "node_modules/http-server/bin/http-server dist -c-1",
+    "watch:server": "http-server dist -c-1 -p 3000",
     "postinstall": "npm run build"
   },
   "keywords": [],
