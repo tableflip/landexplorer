@@ -46,6 +46,7 @@
     "react-leaflet": "^0.12.3",
     "react-map-gl": "^1.6.1",
     "tachyons": "^4.5.3",
+    "underscore.string": "^3.3.4",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {

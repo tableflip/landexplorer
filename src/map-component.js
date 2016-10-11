@@ -4,6 +4,7 @@ import MapboxClient from 'mapbox'
 import mapboxgl from 'mapbox-gl'
 import Geocoder from 'mapbox-gl-geocoder'
 import config from './config'
+import humanize from 'underscore.string/humanize'
 
 const iconSize = 40
 const iconColor = '#62577'
@@ -92,15 +93,30 @@ export default class extends React.Component {
     })
   }
 
+  featuresToHtml = (features) => {
+    console.log('featuresToHtml', features)
+    if (!features || !features.length) return ''
+    return features.map((f) => {
+      const label = humanize(f.layer['source-layer'])
+      const value = humanize(f.properties.class || f.properties.name)
+      return `<div class="f6 b">${label} ${value}</div>`
+    }).join(' ')
+  }
+
   makeContent = (lngLat) => {
     return this.reverseGeo(lngLat)
       .then((geoData) => {
         const address = getFeature(geoData, 'address')
         const postcode = getFeature(geoData, 'postcode')
-        return Promise.resolve(`<div class="ph2">
-          <p class="f5">Marker position:</p>
-          ${address ? `<p class="f6 b">${address.text}</p>` : ''}
-          ${postcode ? `<p class="f6 b">${postcode.text}</p>` : ''}
+        const features = this.map.queryRenderedFeatures(lngLat)
+        return Promise.resolve(`<div class="ph1">
+          <label class="f5">Address</label>
+          <address class="f6 b db">
+            <div>${address}</div>
+            <div>${postcode}</div>
+          </address>
+          <label class="f5 mt3 db">Features</label>
+          ${this.featuresToHtml(features)}
         </div>`)
       })
       .catch((err) => {
@@ -156,9 +172,10 @@ export default class extends React.Component {
 }
 
 function getFeature (geoJson, featureName) {
-  return geoJson.features.find((feature) => {
+  const f = geoJson.features.find((feature) => {
     return feature.id.substr(0, featureName.length) === featureName
   })
+  return f && f.text
 }
 
 function round (number, dps) {
