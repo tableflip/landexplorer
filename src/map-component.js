@@ -4,6 +4,7 @@ import MapboxClient from 'mapbox'
 import mapboxgl from 'mapbox-gl'
 import Geocoder from 'mapbox-gl-geocoder'
 import config from './config'
+import humanize from 'underscore.string/humanize'
 
 const iconSize = 40
 const iconColor = '#62577'
@@ -32,18 +33,19 @@ const mapboxClient = new MapboxClient(config.mapboxApiAccessToken)
 export default class extends React.Component {
   state = {
     viewport: {
-      latitude: 51.4620930,
-      longitude: -0.0673730,
-      zoom: 13.7
+      latitude: 54.53797918714042,
+      longitude: -4.2541837906720446,
+      zoom: 5.2
     },
     marker: null
   }
 
   runMapHandlers = (c) => {
-    this.map = c._getMap()
+    window.map = this.map = c._getMap()
     this.injectGeocoder()
     this.addDblClickHandler()
     this.addClickHandler()
+    this.addSoilLayer()
   }
 
   injectGeocoder = () => {
@@ -53,6 +55,24 @@ export default class extends React.Component {
     }))
   }
 
+  addSoilLayer = () => {
+    this.map.on('load', () => {
+      this.map.addSource('nfe_soil_gb', {
+        'type': 'geojson',
+        'data': 'http://geoserver.dev.sharedassets.org.uk/geoserver/land_explorer/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=land_explorer:nfe_soil_gb&maxFeatures=9000&outputFormat=application%2Fjson'
+      })
+
+      this.map.addLayer({
+        'id': 'nfe_soil_gb',
+        'source': 'nfe_soil_gb',
+        "type": "fill",
+        "paint": {
+          "fill-color": "#bc99e6"
+        }
+      })
+    })
+  }
+
   addDblClickHandler = () => {
     this.marker = new mapboxgl.Marker(marker(), { offset: [-iconSize / 2, -iconSize] })
     this.popup = new mapboxgl.Popup({ offset: [0, -iconSize - 5], closeButton: false })
@@ -60,9 +80,8 @@ export default class extends React.Component {
       const bounds = this.map.getBounds()
       const height = bounds.getNorth() - bounds.getSouth()
       const evtLngLat = evt.lngLat.toArray()
-      this.addMarker(evtLngLat)
+      this.addMarker(evtLngLat, evt)
       this.setState({ marker: evtLngLat })
-      this.map.flyTo({ center: [ evtLngLat[0], evtLngLat[1] + (height * 0.2) ] })
     })
   }
 
@@ -73,22 +92,47 @@ export default class extends React.Component {
     })
   }
 
-  makeContent = (lngLat) => {
+  featuresToHtml = (features) => {
+    console.log('featuresToHtml', features)
+    if (!features || !features.length) return ''
+    return features.map((f) => {
+      const label = f.layer['source-layer']
+      const value = f.properties.class || f.properties.name
+      const text = humanize([value, label].join(' '))
+      return `<div class="f5">${text}</div>`
+    }).join(' ')
+  }
+
+  makeContent = (lngLat, evt) => {
+    const features = this.map.queryRenderedFeatures(evt.point)
     return this.reverseGeo(lngLat)
       .then((geoData) => {
         const address = getFeature(geoData, 'address')
         const postcode = getFeature(geoData, 'postcode')
-        return Promise.resolve(`<div class="ph2">
-          <p class="f5">Marker position:</p>
-          ${address ? `<p class="f6 b">${address.text}</p>` : ''}
-          ${postcode ? `<p class="f6 b">${postcode.text}</p>` : ''}
+        return Promise.resolve(`<div class="pa2">
+          <label class="f6 b">Coordinates</label>
+          <code class="f6 monospace db">${round(lngLat[0], 3)}, ${round(lngLat[1], 3)}</code>
+          <label class="f6 b db mt3">Address</label>
+          <address class="f5 db">
+            <div>${address ? address : ''}</div>
+            <div>${postcode ? postcode : ''}</div>
+            <div>${!postcode && !address ? 'Unknown' : ''}</div>
+          </address>
+          <label class="f6 b mt3 db">Features</label>
+          ${this.featuresToHtml(features)}
         </div>`)
       })
       .catch((err) => {
         console.error('Geocoding error', err)
         return Promise.resolve(`<div class="pa2">
-          <p class="f5">Marker position:</p>
-          <p class="f6 b">(${round(lngLat[0], 3)}, ${round(lngLat[1], 3)})</p>
+          <label class="f6 b">Coordinates</label>
+          <p class="f5">(${round(lngLat[0], 3)}, ${round(lngLat[1], 3)})</p>
+          <label class="f6 b db mt3">Address</label>
+          <address class="f5 db">
+            <div>Temporarily unavailable</div>
+          </address>
+          <label class="f6 b mt3 db">Features</label>
+          ${this.featuresToHtml(features)}
         </div>`)
       })
   }
@@ -102,11 +146,11 @@ export default class extends React.Component {
     })
   }
 
-  addMarker = (lngLat, content) => {
+  addMarker = (lngLat, evt) => {
     this.removeMarker()
     this.marker.setLngLat(lngLat)
     this.marker.addTo(this.map)
-    this.makeContent(lngLat)
+    this.makeContent(lngLat, evt)
       .then((content) => {
         this.popup.setLngLat(lngLat)
         this.popup.setHTML(content)
@@ -137,9 +181,10 @@ export default class extends React.Component {
 }
 
 function getFeature (geoJson, featureName) {
-  return geoJson.features.find((feature) => {
+  const f = geoJson.features.find((feature) => {
     return feature.id.substr(0, featureName.length) === featureName
   })
+  return f && f.text
 }
 
 function round (number, dps) {
