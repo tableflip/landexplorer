@@ -3,11 +3,21 @@
   "description": "Soil quality (e.g. compaction, chemical analysis, agricultural grade). Possible uses include:\n- identifying suitable land for food growing, forestry, horticulture etc.\n- understanding how to make the most out of a site",
   "datasets": [
     {
+      "id": "nfe_soil_gb",
       "name": "National Forest Estate soils",
       "provider": "Forestry Commission",
-      "id": 3,
       "description": "This vector dataset provides detailed (1:10,000) soil information for approximately half the Public Forest Estate.",
-      "url": "http://www.forestry.gov.uk/forestry/infd-8g5bya"
+      "url": "http://www.forestry.gov.uk/forestry/infd-8g5bya",
+      "source": {
+        "type": "geojson",
+        "data": "http://geoserver.dev.sharedassets.org.uk/geoserver/land_explorer/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=land_explorer:nfe_soil_gb&maxFeatures=9000&outputFormat=application%2Fjson"
+      },
+      "style" :{
+        "type": "fill",
+        "paint": {
+          "fill-color": "#bc99e6"
+        }
+      }
     },
     {
       "name": "Agricultural Land Classification detailed post 1988 ALC survey",
@@ -220,28 +230,28 @@
     {
       "name": "CRoW Act 2000 data",
       "provider": "Natural England",
-      "id": 0,
+      "id": 27,
       "description": "Countryside and Rights of Way Act maps - this shows areas designated for public access to the countryside (rights to roam).",
       "url": "https://data.gov.uk/data/search?q=crow+act"
     },
     {
       "name": "Land Use Statistics (Generalised Land Use Database)",
       "provider": "ONS",
-      "id": 0,
+      "id": 28,
       "description": "A classification has been developed which allocates all identifiable land features on Ordnance Survey MasterMap into nine simplified land categories and an additional 'unclassified' category. These are: domestic buildings, non-domestic buildings, roads, paths, rail, gardens (domestic), green space, water, other land uses.",
       "url": "https://data.gov.uk/dataset/land_use_statistics_generalised_land_use_database"
     },
     {
       "name": "Derelict Land",
       "provider": "data.gov.uk",
-      "id": 0,
+      "id": 29,
       "description": "Previously developed land that is unused or may be available for redevelopment by land type and Planning Authority.",
       "url": "https://data.gov.uk/dataset/derelict_land"
     },
     {
       "name": "Environmental Stewardship Scheme Agreement",
       "provider": "RPA",
-      "id": 0,
+      "id": 30,
       "description": "This has polygons and details of who gets the money.",
       "url": "https://data.gov.uk/dataset/environmental-stewardship-scheme-agreements1"
     }

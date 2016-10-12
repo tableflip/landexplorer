@@ -2,13 +2,14 @@ import React from 'react'
 
 export default class extends React.Component {
   renderLayerTile = (layer) => {
-    const backgroundColor = `hsl(${(layer.id * 209) % 360}, 60%, 75%)`
-    const borderStyle = this.props.selectedLayers.indexOf(layer.id) > -1 ? 'b--black-80' : 'b--black-30'
+    const defaultColor = `hsl(${(layer.id * 209) % 360}, 60%, 75%)`
+    const backgroundColor = layer.style && layer.style.paint['fill-color'] || defaultColor
+    const borderStyle = this.props.selectedLayers.indexOf(layer) > -1 ? 'b--black-80' : 'b--black-30'
     return (
       <div
         key={layer.id}
         className={`w-70 w-40-ns mw6 mr3 ba pointer bg-light-gray flex-none ${borderStyle}`}
-        onClick={this.props.toggleLayer(layer.id)}
+        onClick={this.props.toggleLayer(layer)}
       >
         <div className='h3' style={{ backgroundColor }}></div>
         <div className='flex-auto pa3'>

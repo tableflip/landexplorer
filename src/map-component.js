@@ -5,6 +5,8 @@ import mapboxgl from 'mapbox-gl'
 import Geocoder from 'mapbox-gl-geocoder'
 import config from './config'
 import humanize from 'underscore.string/humanize'
+import difference from 'lodash.difference'
+import flatMap from 'lodash.flatmap'
 
 const iconSize = 40
 const iconColor = '#62577'
@@ -40,12 +42,49 @@ export default class extends React.Component {
     marker: null
   }
 
+  componentWillReceiveProps = (nextProps) => {
+    this.updateLayers(nextProps)
+  }
+
   runMapHandlers = (c) => {
     window.map = this.map = c._getMap()
+    this.addSources()
     this.injectGeocoder()
     this.addDblClickHandler()
     this.addClickHandler()
-    this.addSoilLayer()
+  }
+
+  addSources = () => {
+    // unwrap from categories
+    const datasets = this.props.datasets.map((d) => d.datasets)
+    // only use layers that have a source prop
+    const sources = flatMap(datasets).filter((d) => !!d.source)
+    this.map.on('load', () => {
+      console.log('addSources', sources)
+        sources.forEach((l) => this.map.addSource(l.id, l.source))
+    })
+  }
+
+  updateLayers = (nextProps) => {
+    const layers = this.props.selectedLayers
+    const nextLayers = nextProps.selectedLayers
+    const toAdd = difference(nextLayers, layers)
+    const toRemove = difference(layers, nextLayers)
+    console.log('toAdd', toAdd)
+    console.log('toRemove', toRemove)
+    toAdd.forEach(this.addLayer.bind(this))
+    toRemove.forEach(this.removeLayer.bind(this))
+  }
+
+  addLayer = (l) => {
+    this.map.addLayer(Object.assign(
+      {'id': l.id, 'source': l.id},
+      l.style
+    ))
+  }
+
+  removeLayer = (l) => {
+    this.map.removeLayer(l.id)
   }
 
   injectGeocoder = () => {
@@ -53,24 +92,6 @@ export default class extends React.Component {
       accessToken: config.mapboxApiAccessToken,
       country: 'gb'
     }))
-  }
-
-  addSoilLayer = () => {
-    this.map.on('load', () => {
-      this.map.addSource('nfe_soil_gb', {
-        'type': 'geojson',
-        'data': 'http://geoserver.dev.sharedassets.org.uk/geoserver/land_explorer/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=land_explorer:nfe_soil_gb&maxFeatures=9000&outputFormat=application%2Fjson'
-      })
-
-      this.map.addLayer({
-        'id': 'nfe_soil_gb',
-        'source': 'nfe_soil_gb',
-        "type": "fill",
-        "paint": {
-          "fill-color": "#bc99e6"
-        }
-      })
-    })
   }
 
   addDblClickHandler = () => {

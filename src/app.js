@@ -11,13 +11,14 @@ export default class extends React.Component {
 
   toggleLayer = (layer) => {
     return () => {
-      const currentLayers = this.state.selectedLayers
-      let newLayers
-      if (currentLayers.indexOf(layer) === -1) {
-        newLayers = currentLayers.concat(layer)
-      } else {
-        newLayers = currentLayers.filter((thisLayer) => thisLayer !== layer)
+      const selectedLayers = this.state.selectedLayers
+      // try and remove it
+      const newLayers = selectedLayers.filter((l) => l.id !== layer.id)
+      if (newLayers.length === selectedLayers.length) {
+        // wasn't there so add it
+        newLayers.push(layer)
       }
+      console.log('newLayers', newLayers)
       this.setState({ selectedLayers: newLayers })
     }
   }
@@ -29,7 +30,7 @@ export default class extends React.Component {
           <LayerPicker datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} toggleLayer={this.toggleLayer} />
         </div>
         <div className='fl w-100 w-50-ns relative'>
-          <MapComponent />
+          <MapComponent datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
         </div>
       </div>
     )
