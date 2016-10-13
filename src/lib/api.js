@@ -17,7 +17,7 @@ export default {
     const qs = queryString.stringify(allParams)
     const url = `${endpoint}?${qs}`
 
-    return fetch(url)
+    return window.fetch(url)
       .then((res) => res.json())
   }
 }

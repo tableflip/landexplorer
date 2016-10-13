@@ -1,26 +1,39 @@
 {
   "name": "shared-assets-frontend",
+  "private": true,
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
+  "keywords": ["Land Explorer"],
+  "author": "TABLEFLIP",
+  "license": "ISC",
+  "pre-commit": ["test"],
   "scripts": {
     "postinstall": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "standard",
+    "lint:fix": "standard --fix",
     "build": "npm-run-all --parallel build:*",
     "build:js": "browserify src/index.js -o dist/index.js",
-    "build:html": "cp src/index.html dist/index.html",
-    "build:css": "rsync node_modules/tachyons/css/tachyons.min.css ./dist",
-    "build:mapbox-gl": "rsync -r node_modules/mapbox-gl/dist/* ./dist/mapbox-gl",
-    "build:mapbox-gl-geocoder": "rsync -r node_modules/mapbox-gl-geocoder/dist/* ./dist/mapbox-gl-geocoder",
+    "build:html": "rsync -a src/index.html dist/index.html",
+    "build:css": "rsync -a node_modules/tachyons/css/tachyons.min.css ./dist",
+    "build:mapbox-gl": "rsync -a node_modules/mapbox-gl/dist/* ./dist/mapbox-gl",
+    "build:mapbox-gl-geocoder": "rsync -a node_modules/mapbox-gl-geocoder/dist/* ./dist/mapbox-gl-geocoder",
     "watch": "npm-run-all --parallel watch:*",
     "watch:js": "watchify src/index.js -o dist/index.js",
     "watch:html": "nodemon --exec 'npm run build:html' --watch src/index.html",
     "watch:server": "http-server dist -c-1 -p 3000",
     "deploy:next": "npm run build && surge -p ./dist -d sharedassets.tableflip.io"
   },
-  "keywords": [],
-  "author": "TABLEFLIP",
-  "license": "ISC",
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-2",
+      "react"
+    ]
+  },
   "browserify": {
     "transform": [
       [
@@ -35,12 +48,8 @@
       ]
     ]
   },
-  "standard": {
-    "parser": "babel-eslint"
-  },
   "dependencies": {
     "es6-promise": "^4.0.5",
-    "leaflet": "^1.0.1",
     "mapbox": "^1.0.0-beta3",
     "mapbox-gl-geocoder": "git://github.com/tableflip/mapbox-gl-geocoder.git#fix-import",
     "query-string": "^4.2.3",
@@ -48,7 +57,6 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-geocoder": "^2.5.0",
-    "react-leaflet": "^0.12.3",
     "react-map-gl": "^1.6.1",
     "tachyons": "^4.5.3",
     "underscore.string": "^3.3.4",
@@ -56,7 +64,6 @@
   },
   "devDependencies": {
     "babel": "^6.5.2",
-    "babel-cli": "^6.16.0",
     "babel-eslint": "^7.0.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
@@ -65,6 +72,8 @@
     "browserify": "^13.1.0",
     "http-server": "^0.9.0",
     "npm-run-all": "^3.1.0",
+    "precommit-hook": "^3.0.0",
+    "standard": "^8.4.0",
     "tachyons-cli": "^1.0.8",
     "watchify": "^3.7.0"
   }

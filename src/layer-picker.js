@@ -11,11 +11,11 @@ export default class extends React.Component {
     return (
       <div
         key={layer.id}
-        style={{width:'300px', opacity}}
+        style={{width: '300px', opacity}}
         className={`mw6 mr3 ba pointer bg-light-gray flex-none ${borderStyle}`}
         onClick={this.props.toggleLayer(layer)}
       >
-        <div className="pv1" style={{ backgroundColor }}>
+        <div className='pv1' style={{ backgroundColor }}>
           <div className='f6 ttu tracked white pa3 lh-title'>Map Layer</div>
         </div>
         <div className='flex-auto pa3'>
@@ -32,11 +32,11 @@ export default class extends React.Component {
     return (
       <a
         key={layer.id}
-        style={{width:'300px', opacity:0.9}}
+        style={{width: '300px', opacity: 0.9}}
         className='db mw6 mr3 ba pointer bg-light-gray flex-none b--black-30 no-underline black'
-        target="_blank" href={layer.url}
+        target='_blank' href={layer.url}
       >
-        <div className="pv1" style={{ backgroundColor }}>
+        <div className='pv1' style={{ backgroundColor }}>
           <div className='f6 ttu tracked white pa3 lh-title'>External link</div>
         </div>
         <div className='flex-auto pa3'>
@@ -49,7 +49,7 @@ export default class extends React.Component {
   }
 
   renderCategory = (category) => {
-    return (<section key={category.name}>
+    return (<section key={category.category}>
       <header className='bg-dark-gray pv1'>
         <h1 className='f4 pl3 ma3 ttu tracked white'>{category.category}</h1>
       </header>
@@ -61,9 +61,9 @@ export default class extends React.Component {
   }
 
   render () {
-    return (<div className='py3 overflow-y-auto' style={{ height: '100vh', backgroundColor:'rgba(255,255,255,1)'}}>
+    return (<div className='py3 overflow-y-auto' style={{ height: '100vh', backgroundColor: 'rgba(255,255,255,1)' }}>
       <header className='pa3'>
-        <a href="http://www.sharedassets.org.uk/">
+        <a href='http://www.sharedassets.org.uk/'>
           <img height='38' src='http://www.sharedassets.org.uk/wp-content/themes/sharedassets/build/images/sa-logo-black.svg' />
         </a>
       </header>

@@ -18,7 +18,6 @@ export default class extends React.Component {
         // wasn't there so add it
         newLayers.push(layer)
       }
-      console.log('newLayers', newLayers)
       this.setState({ selectedLayers: newLayers })
     }
   }

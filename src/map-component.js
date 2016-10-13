@@ -59,8 +59,7 @@ export default class extends React.Component {
     // only use layers that have a source prop
     const sources = flatMap(datasets).filter((d) => !!d.source)
     this.map.on('load', () => {
-      console.log('addSources', sources)
-        sources.forEach((l) => this.map.addSource(l.id, l.source))
+      sources.forEach((l) => this.map.addSource(l.id, l.source))
     })
   }
 
@@ -69,12 +68,9 @@ export default class extends React.Component {
     const nextLayers = nextProps.selectedLayers
     const toAdd = difference(nextLayers, layers)
     const toRemove = difference(layers, nextLayers)
-    console.log('toAdd', toAdd)
-    console.log('toRemove', toRemove)
     toAdd.forEach(this.addLayer.bind(this))
     toRemove.forEach(this.removeLayer.bind(this))
   }
-
 
   addLayer = (l) => {
     // Our custom layer for NATIONAL_FOREST_ESTATE_SOIL is made up of many sub layers, 1 per soil group
@@ -105,8 +101,6 @@ export default class extends React.Component {
       } else {
         this.marker = new mapboxgl.Marker(marker(), { offset: [-iconSize / 2, -iconSize] })
         this.popup = new mapboxgl.Popup({ offset: [0, -iconSize - 5], closeButton: false })
-        const bounds = this.map.getBounds()
-        const height = bounds.getNorth() - bounds.getSouth()
         const evtLngLat = evt.lngLat.toArray()
         this.addMarker(evtLngLat, evt)
         this.setState({ marker: evtLngLat })
@@ -152,15 +146,15 @@ export default class extends React.Component {
     const features = this.map.queryRenderedFeatures(evt.point)
     return this.reverseGeo(lngLat)
       .then((geoData) => {
-        const address = getFeature(geoData, 'address')
-        const postcode = getFeature(geoData, 'postcode')
+        const address = getFeature(geoData, 'address') || ''
+        const postcode = getFeature(geoData, 'postcode') || ''
         return Promise.resolve(`<div class="pa2">
           <label class="f6 b">Coordinates</label>
           <code class="f6 monospace db">${round(lngLat[0], 3)}, ${round(lngLat[1], 3)}</code>
           <label class="f6 b db mt3">Address</label>
           <address class="f5 db">
-            <div>${address ? address : ''}</div>
-            <div>${postcode ? postcode : ''}</div>
+            <div>${address}</div>
+            <div>${postcode}</div>
             <div>${!postcode && !address ? 'Unknown' : ''}</div>
           </address>
           ${this.featuresToHtml(features)}
