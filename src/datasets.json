@@ -1,6 +1,6 @@
 [{
   "category": "Soil quality",
-  "description": "Soil quality (e.g. compaction, chemical analysis, agricultural grade). Possible uses include:\n- identifying suitable land for food growing, forestry, horticulture etc.\n- understanding how to make the most out of a site",
+  "description": "Soil quality (e.g. compaction, chemical analysis, agricultural grade). \nPossible uses include:\n- identifying suitable land for food growing, forestry, horticulture etc.\n- understanding how to make the most out of a site",
   "datasets": [
     {
       "id": "NATIONAL_FOREST_ESTATE_SOIL",
@@ -380,7 +380,7 @@
 },
 {
   "category": "Ownership info",
-  "description": "Ownership info (owner contact details, type of owner, owners ambition for site). Possible uses include:\n- Contacting owners about land purchase or sharing.\n- Identifying owners who might be open to collaboration (e.g. local authorities, utilities, national trust, RSPB, Wildlife Trust, Woodland Trust)\n- Identifying boundaries",
+  "description": "Ownership info (owner contact details, type of owner, owners ambition for site). \nPossible uses include:\n- Contacting owners about land purchase or sharing.\n- Identifying owners who might be open to collaboration (e.g. local authorities, utilities, national trust, RSPB, Wildlife Trust, Woodland Trust)\n- Identifying boundaries",
   "datasets": [
     {
       "name": "INSPIRE Index Polygons",
@@ -422,7 +422,7 @@
 },
 {
   "category": "Drainage",
-  "description": "Drainage (in relation to impacts on soil, ability to build, access etc.). Possible uses include:\n- Evaluating a site's potential for various activities (e.g. growing, recreation)\n- Potential need for investment to improve drainage",
+  "description": "Drainage (in relation to impacts on soil, ability to build, access etc.). \nPossible uses include:\n- Evaluating a site's potential for various activities (e.g. growing, recreation)\n- Potential need for investment to improve drainage",
   "datasets": [
     {
       "name": "Sustainable drainage systems",
@@ -457,7 +457,7 @@
 },
 {
   "category": "Contamination",
-  "description": "Contamination (e.g. history of use, proximity to waste disposal or other pollutants). Possible uses include:\n- Ruling out sites (e.g. for Organic production)\n- Identifying available subsidies",
+  "description": "Contamination (e.g. history of use, proximity to waste disposal or other pollutants). \nPossible uses include:\n- Ruling out sites (e.g. for Organic production)\n- Identifying available subsidies",
   "datasets": [
     {
       "name": "Air quality framework",
@@ -512,7 +512,7 @@
 },
 {
   "category": "Current use",
-  "description": "Current use (e.g. activities used for or identifying unused land). Possible uses include:\n- Identifying likelihood of being able to access land, and likely existing infrastructure",
+  "description": "Current use (e.g. activities used for or identifying unused land). \nPossible uses include:\n- Identifying likelihood of being able to access land, and likely existing infrastructure",
   "datasets": [
     {
       "name": "National Forest Inventory",
