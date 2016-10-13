@@ -50,7 +50,6 @@ export default class extends React.Component {
     window.map = this.map = c._getMap()
     this.addSources()
     this.injectGeocoder()
-    this.addDblClickHandler()
     this.addClickHandler()
   }
 
@@ -76,7 +75,10 @@ export default class extends React.Component {
     toRemove.forEach(this.removeLayer.bind(this))
   }
 
+
   addLayer = (l) => {
+    // Our custom layer for NATIONAL_FOREST_ESTATE_SOIL is made up of many sub layers, 1 per soil group
+    if (l.layers) return l.layers.forEach((l) => this.map.addLayer(l))
     this.map.addLayer(Object.assign(
       {'id': l.id, 'source': l.id},
       l.style
@@ -84,6 +86,7 @@ export default class extends React.Component {
   }
 
   removeLayer = (l) => {
+    if (l.layers) return l.layers.forEach((l) => this.map.removeLayer(l.id))
     this.map.removeLayer(l.id)
   }
 
@@ -94,37 +97,58 @@ export default class extends React.Component {
     }))
   }
 
-  addDblClickHandler = () => {
-    this.marker = new mapboxgl.Marker(marker(), { offset: [-iconSize / 2, -iconSize] })
-    this.popup = new mapboxgl.Popup({ offset: [0, -iconSize - 5], closeButton: false })
-    this.map.on('dblclick', (evt) => {
-      const bounds = this.map.getBounds()
-      const height = bounds.getNorth() - bounds.getSouth()
-      const evtLngLat = evt.lngLat.toArray()
-      this.addMarker(evtLngLat, evt)
-      this.setState({ marker: evtLngLat })
-    })
-  }
-
   addClickHandler = () => {
-    this.map.on('click', () => {
-      this.setState({ marker: null })
-      this.removeMarker()
+    this.map.on('click', (evt) => {
+      if (this.state.marker) {
+        this.setState({ marker: null })
+        this.removeMarker()
+      } else {
+        this.marker = new mapboxgl.Marker(marker(), { offset: [-iconSize / 2, -iconSize] })
+        this.popup = new mapboxgl.Popup({ offset: [0, -iconSize - 5], closeButton: false })
+        const bounds = this.map.getBounds()
+        const height = bounds.getNorth() - bounds.getSouth()
+        const evtLngLat = evt.lngLat.toArray()
+        this.addMarker(evtLngLat, evt)
+        this.setState({ marker: evtLngLat })
+      }
     })
   }
 
   featuresToHtml = (features) => {
     console.log('featuresToHtml', features)
     if (!features || !features.length) return ''
-    return features.map((f) => {
-      const label = f.layer['source-layer']
-      const value = f.properties.class || f.properties.name
-      const text = humanize([value, label].join(' '))
-      return `<div class="f5">${text}</div>`
-    }).join(' ')
+
+    function featureToHtml (f) {
+      const isCustomLayer = f.layer.source !== 'composite'
+      const label = isCustomLayer ? f.layer.source : f.layer['source-layer']
+      const value = isCustomLayer ? f.layer.id : (f.properties.class || f.properties.name)
+      return `<tr class="striped--near-white">
+                <td class="f5 ph2">${humanize(value)}</td>
+                <td class="f8 ttu tracked light-silver ph2">${humanize(label)}</td>
+              </tr>`
+    }
+
+    return `
+      <table class='collapse pv2 ph3 mt3'>
+        <thead class='tl'>
+          <tr><th class="f6 b ph2">Feature</th><th class="f6 b ph2">Source</th></tr>
+        </thead>
+        <tbody>
+          ${features.map(featureToHtml).join(' ')}
+        </tbody>
+      </table>`
   }
 
   makeContent = (lngLat, evt) => {
+    const features = this.map.queryRenderedFeatures(evt.point)
+    return Promise.resolve(`<div class="pa2">
+      <label class="f6 b">Coordinates</label>
+      <code class="f6 monospace db">${round(lngLat[0], 3)}, ${round(lngLat[1], 3)}</code>
+      ${this.featuresToHtml(features)}
+    </div>`)
+  }
+
+  makeContentWithAddressLookUp = (lngLat, evt) => {
     const features = this.map.queryRenderedFeatures(evt.point)
     return this.reverseGeo(lngLat)
       .then((geoData) => {
@@ -139,7 +163,6 @@ export default class extends React.Component {
             <div>${postcode ? postcode : ''}</div>
             <div>${!postcode && !address ? 'Unknown' : ''}</div>
           </address>
-          <label class="f6 b mt3 db">Features</label>
           ${this.featuresToHtml(features)}
         </div>`)
       })

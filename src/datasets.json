@@ -3,21 +3,329 @@
   "description": "Soil quality (e.g. compaction, chemical analysis, agricultural grade). Possible uses include:\n- identifying suitable land for food growing, forestry, horticulture etc.\n- understanding how to make the most out of a site",
   "datasets": [
     {
-      "id": "nfe_soil_gb",
+      "id": "NATIONAL_FOREST_ESTATE_SOIL",
       "name": "National Forest Estate soils",
       "provider": "Forestry Commission",
       "description": "This vector dataset provides detailed (1:10,000) soil information for approximately half the Public Forest Estate.",
       "url": "http://www.forestry.gov.uk/forestry/infd-8g5bya",
       "source": {
-        "type": "geojson",
-        "data": "http://geoserver.dev.sharedassets.org.uk/geoserver/land_explorer/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=land_explorer:nfe_soil_gb&maxFeatures=9000&outputFormat=application%2Fjson"
+        "type": "vector",
+        "url": "mapbox://tableflip.6tngjxlh"
       },
       "style" :{
         "type": "fill",
+        "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
         "paint": {
-          "fill-color": "#bc99e6"
+          "fill-color": "#895c44", "fill-opacity": 0.6,
+          "fill-opacity": 0.6
         }
-      }
+      },
+      "layers": [
+          {
+              "id": "Basin Bog",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Basin Bog"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#b2b2b2", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "Brown Earth",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Brown Earth"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#895c44", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "Calcareous Soil",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Calcareous Soil"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#4de600", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "Eroded Bog",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Eroded Bog"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#9c9c9c", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "Flat or Raised Bogs",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Flat or Raised Bogs"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#686868", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "Flushed Blanket Bog",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Flushed Blanket Bog"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#333333", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "\tGround-Water Gley",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Ground-water Gley"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#014ea6", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "\tIronpan Soil",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Ironpan Soil"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#fc5601", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "Littoral Soil",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Littoral Soil"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#fefe67", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "Man-made soil",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Man-made Soil"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#ab00e5", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "Peaty Surface-water Gley",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Peaty Surface-water Gley"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#0085a8", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "Podzol",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Podzol"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#e60002", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "Skeletal Soil",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Skeletal Soil"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#e7e600", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "Surface-water Gley",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Surface-water Gley"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#00a8e7", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "Unflushed Blanket Bog",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Unflushed Blanket Bog"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#010101", "fill-opacity": 0.6
+              }
+          },
+          {
+              "id": "Valley Complex",
+              "type": "fill",
+              "source": "NATIONAL_FOREST_ESTATE_SOIL",
+              "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
+              "minzoom": 8,
+              "interactive": true,
+              "filter": [
+                  "==",
+                  "S1_Group",
+                  "Valley Complex"
+              ],
+              "layout": {
+                  "visibility": "visible"
+              },
+              "paint": {
+                  "fill-color": "#8d8ead", "fill-opacity": 0.6
+              }
+          }
+      ],
     },
     {
       "name": "Agricultural Land Classification detailed post 1988 ALC survey",
