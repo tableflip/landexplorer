@@ -16,8 +16,8 @@
         "type": "fill",
         "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
         "paint": {
-          "fill-color": "#895c44", "fill-opacity": 0.6,
-          "fill-opacity": 0.6
+          "fill-color": "#895c44", "fill-opacity": 0.4,
+          "fill-opacity": 0.4
         }
       },
       "layers": [
@@ -37,7 +37,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#b2b2b2", "fill-opacity": 0.6
+                  "fill-color": "#b2b2b2", "fill-opacity": 0.4
               }
           },
           {
@@ -56,7 +56,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#895c44", "fill-opacity": 0.6
+                  "fill-color": "#895c44", "fill-opacity": 0.4
               }
           },
           {
@@ -75,7 +75,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#4de600", "fill-opacity": 0.6
+                  "fill-color": "#4de600", "fill-opacity": 0.4
               }
           },
           {
@@ -94,7 +94,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#9c9c9c", "fill-opacity": 0.6
+                  "fill-color": "#9c9c9c", "fill-opacity": 0.4
               }
           },
           {
@@ -113,7 +113,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#686868", "fill-opacity": 0.6
+                  "fill-color": "#686868", "fill-opacity": 0.4
               }
           },
           {
@@ -132,7 +132,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#333333", "fill-opacity": 0.6
+                  "fill-color": "#333333", "fill-opacity": 0.4
               }
           },
           {
@@ -151,7 +151,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#014ea6", "fill-opacity": 0.6
+                  "fill-color": "#014ea6", "fill-opacity": 0.4
               }
           },
           {
@@ -170,7 +170,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#fc5601", "fill-opacity": 0.6
+                  "fill-color": "#fc5601", "fill-opacity": 0.4
               }
           },
           {
@@ -189,7 +189,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#fefe67", "fill-opacity": 0.6
+                  "fill-color": "#fefe67", "fill-opacity": 0.4
               }
           },
           {
@@ -208,7 +208,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#ab00e5", "fill-opacity": 0.6
+                  "fill-color": "#ab00e5", "fill-opacity": 0.4
               }
           },
           {
@@ -227,7 +227,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#0085a8", "fill-opacity": 0.6
+                  "fill-color": "#0085a8", "fill-opacity": 0.4
               }
           },
           {
@@ -246,7 +246,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#e60002", "fill-opacity": 0.6
+                  "fill-color": "#e60002", "fill-opacity": 0.4
               }
           },
           {
@@ -265,7 +265,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#e7e600", "fill-opacity": 0.6
+                  "fill-color": "#e7e600", "fill-opacity": 0.4
               }
           },
           {
@@ -284,7 +284,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#00a8e7", "fill-opacity": 0.6
+                  "fill-color": "#00a8e7", "fill-opacity": 0.4
               }
           },
           {
@@ -303,7 +303,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#010101", "fill-opacity": 0.6
+                  "fill-color": "#010101", "fill-opacity": 0.4
               }
           },
           {
@@ -322,7 +322,7 @@
                   "visibility": "visible"
               },
               "paint": {
-                  "fill-color": "#8d8ead", "fill-opacity": 0.6
+                  "fill-color": "#8d8ead", "fill-opacity": 0.4
               }
           }
       ],
@@ -375,6 +375,45 @@
       "id": 7,
       "description": "Soilscapes is a 1:250,000 scale, simplified soils dataset covering England and Wales. It was created from the more detailed National Soil Map (NATMAPvector) with the purpose of effectively communicating a general understanding of the variations which occur between soil types, and how soils affect the environment.",
       "url": "http://www.landis.org.uk/soilscapes/"
+    }
+  ]
+},
+{
+  "category": "Flooding",
+  "description": "Potential uses include:\n- Finding suitable sites\n- Planning development of sites",
+  "datasets": [
+    {
+      "id": "Historic Flood Map",
+      "name": "Historic Flood Map",
+      "provider": "Environment Agency",
+      "description": "Historic Flood Map is a GIS layer showing the maximum extent of all individual Recorded Flood Outlines from river, the sea and groundwater springs and shows areas of land that have previously been subject to flooding in England.",
+      "url": "https://data.gov.uk/dataset/historic-flood-map1",
+      "source": {
+        "type": "vector",
+        "url": "mapbox://tableflip.4mqghkn4"
+      },
+      "style" :{
+        "type": "fill",
+        "source": "Historic Flood Map",
+        "source-layer": "Historic_Flood_Map-2j3hj8",
+        "paint": {
+          "fill-color": "rgb(117,207,240)", "fill-opacity": 0.4
+        }
+      },
+    },
+    {
+      "id": "102",
+      "name": "UK Flood Risk and Flood Management",
+      "provider": "Owen Boswarva",
+      "description": "Guide to open data on UK flooding",
+      "url": "http://www.owenboswarva.com/opendata/Open%20Data%20Discovery%20Guide%20-%20UK%20Flood%20Data.pdf",
+    },
+    {
+      "id": "101",
+      "name": "Realtime Flood Data Groundwater Levels",
+      "provider": "Environment Agency",
+      "description": "Realtime Flood Data Groundwater Levels, this dataset covers monitoring data that is only updated on our systems on a daily update cycle. This is usually increased during times of flooding etc. Readings are transferred via telemetry to internal and external systems in or close to real time.",
+      "url": "https://data.gov.uk/dataset/realtime-flood-data-groundwater-levels1",
     }
   ]
 },
