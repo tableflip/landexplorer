@@ -418,6 +418,69 @@
   ]
 },
 {
+  "category": "Planning process",
+  "description": "Designated areas, current developments, historical planning decisions, guidance on building. \nPossible uses include: \n- Identifying areas where certain developments are likely to be rejected (e.g. living on the land, building polytunnels, building visitor or education centres)\n- Identifying competition for land\n- Identifying planning authority cultures towards community projects",
+  "datasets": [
+    {
+      "id": "Sites of Specific Scientific Interest",
+      "name": "Sites of Specific Scientific Interest",
+      "provider": "Natural England",
+      "description": "SSSI are the finest sites for wildlife and natural features in England, supporting many characteristic, rare and endangered species, habitats and natural features.",
+      "url": "https://data.gov.uk/dataset/historic-flood-map1",
+      "source": {
+        "type": "vector",
+        "url": "mapbox://tableflip.bu0wectl"
+      },
+      "style" :{
+        "type": "fill",
+        "source": "Sites of Specific Scientific Interest",
+        "source-layer": "SSSI_England-8hdj4d",
+        "paint": {
+          "fill-color": "hsl(1,30%,40%)", "fill-opacity": 0.4
+        }
+      },
+    },
+    {
+      "id": "Special Protection Areas",
+      "name": "Special Protection Areas",
+      "provider": "Natural England",
+      "description": "Special Protection Areas (SPAs) are strictly protected sites classified in accordance with Article 4 of the EC Birds Directive, which came into force in April 1979. They are classified for rare and vulnerable birds and for regularly occurring migratory species.",
+      "url": "https://data.gov.uk/dataset/special-protection-areas-england",
+      "source": {
+        "type": "vector",
+        "url": "mapbox://tableflip.0nonip5u"
+      },
+      "style" :{
+        "type": "fill",
+        "source": "Special Protection Areas",
+        "source-layer": "Special_Protection_Areas_Engl-a0660y",
+        "paint": {
+          "fill-color": "hsl(51,30%,40%)", "fill-opacity": 0.4
+        }
+      },
+    },
+    {
+      "id": "Special Areas of Conservation",
+      "name": "Special Areas of Conservation",
+      "provider": "Natural England",
+      "description": "A Special Area of Conservation (SAC) is the land designated under Directive 92/43/EEC on the Conservation of Natural Habitats and of Wild Fauna and Flora.",
+      "url": "https://data.gov.uk/dataset/special-areas-of-conservation-england",
+      "source": {
+        "type": "vector",
+        "url": "mapbox://tableflip.1cqp36zp"
+      },
+      "style" :{
+        "type": "fill",
+        "source": "Special Areas of Conservation",
+        "source-layer": "Special_Areas_of_Conservation-ajyywf",
+        "paint": {
+          "fill-color": "hsl(101,30%,40%)", "fill-opacity": 0.4
+        }
+      },
+    }
+  ]
+},
+{
   "category": "Ownership info",
   "description": "Ownership info (owner contact details, type of owner, owners ambition for site). \nPossible uses include:\n- Contacting owners about land purchase or sharing.\n- Identifying owners who might be open to collaboration (e.g. local authorities, utilities, national trust, RSPB, Wildlife Trust, Woodland Trust)\n- Identifying boundaries",
   "datasets": [
