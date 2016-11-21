@@ -8,10 +8,6 @@
     "Land Explorer"
   ],
   "author": "TABLEFLIP",
-  "license": "ISC",
-  "pre-commit": [
-    "test"
-  ],
   "scripts": {
     "postinstall": "npm run build",
     "test": "standard",
@@ -26,9 +22,7 @@
     "watch:js": "watchify src/index.js -o dist/index.js",
     "watch:html": "nodemon --exec 'npm run build:html' --watch src/index.html",
     "watch:server": "http-server dist -c-1 -p 3000",
-    "deploy:next": "npm run build && surge -p ./dist -d sharedassets.tableflip.io",
-    "lint": "jshint .",
-    "validate": "npm ls"
+    "deploy:next": "npm run build && surge -p ./dist -d sharedassets.tableflip.io"
   },
   "standard": {
     "parser": "babel-eslint"
@@ -80,7 +74,6 @@
     "browserify": "^13.1.0",
     "http-server": "^0.9.0",
     "npm-run-all": "^3.1.0",
-    "precommit-hook": "^3.0.0",
     "standard": "^8.4.0",
     "tachyons-cli": "^1.0.8",
     "watchify": "^3.7.0"
