@@ -4,10 +4,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
-  "keywords": ["Land Explorer"],
+  "keywords": [
+    "Land Explorer"
+  ],
   "author": "TABLEFLIP",
   "license": "ISC",
-  "pre-commit": ["test"],
+  "pre-commit": [
+    "test"
+  ],
   "scripts": {
     "postinstall": "npm run build",
     "test": "standard",
@@ -22,7 +26,9 @@
     "watch:js": "watchify src/index.js -o dist/index.js",
     "watch:html": "nodemon --exec 'npm run build:html' --watch src/index.html",
     "watch:server": "http-server dist -c-1 -p 3000",
-    "deploy:next": "npm run build && surge -p ./dist -d sharedassets.tableflip.io"
+    "deploy:next": "npm run build && surge -p ./dist -d sharedassets.tableflip.io",
+    "lint": "jshint .",
+    "validate": "npm ls"
   },
   "standard": {
     "parser": "babel-eslint"
@@ -50,6 +56,8 @@
   },
   "dependencies": {
     "es6-promise": "^4.0.5",
+    "lodash.difference": "^4.5.0",
+    "lodash.flatmap": "^4.5.0",
     "mapbox": "^1.0.0-beta3",
     "mapbox-gl-geocoder": "git://github.com/tableflip/mapbox-gl-geocoder.git#fix-import",
     "query-string": "^4.2.3",
