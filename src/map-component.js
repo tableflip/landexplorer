@@ -113,13 +113,28 @@ export default class extends React.Component {
     if (!features || !features.length) return ''
 
     function featureToHtml (f) {
-      const isCustomLayer = f.layer.source !== 'composite'
-      const label = isCustomLayer ? f.layer.source : f.layer['source-layer']
-      const value = isCustomLayer ? f.layer.id : (f.properties.class || f.properties.name)
+      const {value, label} = extractLabels(f)
       return `<tr class="striped--near-white">
                 <td class="f5 ph2">${humanize(value)}</td>
                 <td class="f8 ttu tracked light-silver ph2">${humanize(label)}</td>
               </tr>`
+    }
+
+    function extractLabels (f) {
+      const customFormaters = {
+        'INSPIRE Index Polygons': (f) => ({ label: 'INSPIREID', value: f.properties.INSPIREID })
+      }
+
+      const formatter = customFormaters[f.layer.id]
+
+      if (!formatter) {
+        const isCustomLayer = f.layer.source !== 'composite'
+        const label = isCustomLayer ? f.layer.source : f.layer['source-layer']
+        const value = isCustomLayer ? f.layer.id : (f.properties.class || f.properties.name)
+        return {label, value}
+      }
+
+      return formatter(f)
     }
 
     return `
