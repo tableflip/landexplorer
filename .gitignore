@@ -36,6 +36,8 @@ jspm_packages
 
 # Optional eslint cache
 .eslintcache
+.jshintrc
+.jshintignore
 
 # Optional REPL history
 .node_repl_history
