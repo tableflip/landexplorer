@@ -487,10 +487,25 @@
     {
       "name": "INSPIRE Index Polygons",
       "provider": "Land Registry",
-      "id": 8,
+      "id": "INSPIRE Index Polygons",
       "description": "This dataset enables you to see the boundaries of land ownership. There is a great guide on using this data in a blog by Anna Powell-Smith (see notes).",
       "notes": "http://anna.ps/blog/how-to-use-land-registry-data-to-explore-land-ownership-near-you",
-      "url": "https://www.gov.uk/guidance/inspire-index-polygons-spatial-data"
+      "url": "https://www.gov.uk/guidance/inspire-index-polygons-spatial-data",
+      "source": {
+        "type": "vector",
+        "url": "mapbox://tableflip.ax6ghaey"
+      },
+      "style" :{
+        "type": "fill",
+        "source": "INSPIRE Index Polygons",
+        "source-layer": "inspirelandregistryoxforshire",
+        "paint": {
+          "fill-color": "#D6E739",
+          "fill-antialias": true,
+          "fill-outline-color": "#A4B601",
+          "fill-opacity": 0.4
+        }
+      },
     },
     {
       "name": "Rural Land Register",
