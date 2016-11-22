@@ -39,7 +39,8 @@ export default class extends React.Component {
       longitude: -4.2541837906720446,
       zoom: 5.2
     },
-    marker: null
+    showHover: false,
+    hoverData: false
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -94,7 +95,15 @@ export default class extends React.Component {
   }
 
   addClickHandler = () => {
+    this.map.on('mousemove', (evt) => {
+      const { hoverData, showHover } = this.state
+      const nuShowHover = hoverData ? showHover : true
+      this.setState({hoverData: evt, showHover: nuShowHover})
+    })
     this.map.on('click', (evt) => {
+      const showHover = !this.state.showHover
+      console.log('click', showHover)
+      this.setState({showHover})
       if (this.state.marker) {
         this.setState({ marker: null })
         this.removeMarker()
@@ -217,8 +226,9 @@ export default class extends React.Component {
   }
 
   render () {
+    const { hoverData, showHover } = this.state
     return (
-      <div>
+      <div style={{position: 'relative', overflow: 'hidden'}}>
         <MapGL
           {...this.state.viewport}
           mapStyle='mapbox://styles/mapbox/outdoors-v10'
@@ -228,6 +238,7 @@ export default class extends React.Component {
           mapboxApiAccessToken={config.mapboxApiAccessToken}
           ref={this.runMapHandlers}
         />
+        <HoverInfo {...hoverData} open={showHover} />
       </div>
     )
   }
@@ -243,4 +254,23 @@ function getFeature (geoJson, featureName) {
 function round (number, dps) {
   const factor = Math.pow(10, dps)
   return Math.round(number * factor) / factor
+}
+
+const HoverInfo = ({lngLat, point, open}) => {
+  if (!lngLat || !open) return <div />
+  const style = {
+    background: '#444',
+    color: 'white',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: 150,
+    transform: `translate(${point.x + 20}px, ${point.y + 10}px)`
+  }
+  return (
+    <div className='pa2' style={style}>
+      <label className='f6 b'>Coordinates</label>
+      <code className='f6 monospace db'>{`${round(lngLat.lng, 3)} ,${round(lngLat.lat, 3)}`}</code>
+    </div>
+  )
 }
