@@ -328,18 +328,23 @@
       ],
     },
     {
-      "name": "Agricultural Land Classification detailed post 1988 ALC survey",
-      "provider": "Natural England",
-      "id": 0,
-      "description": "This is scanned maps and survey reports, at varying scales and detail. Also some sample point soils data.",
-      "url": "http://publications.naturalengland.org.uk/category/6249382855835648"
-    },
-    {
 	    "name": "Provisional Agricultural Land Classification (ALC)",
       "provider": "Natural England",
-      "id": 1,
+      "id": "Provisional Agricultural Land Classification (ALC)",
       "description": "Provisional Agricultural Land Classification Grade. Agricultural land classified into five grades. Grade one is best quality and grade five is poorest quality. A number of consistent criteria used for assessment which include climate (temperature, rainfall, aspect, exposure, frost risk), site (gradient, micro-relief, flood risk) and soil (depth, structure, texture, chemicals, stoniness).",
-      "url": "https://data.gov.uk/dataset/provisional-agricultural-land-classification-alc"
+      "url": "https://data.gov.uk/dataset/provisional-agricultural-land-classification-alc",
+      "source": {
+        "type": "vector",
+        "url": "mapbox://tableflip.8nx1fj87"
+      },
+      "style" :{
+        "type": "fill",
+        "source": "Provisional Agricultural Land Classification (ALC)",
+        "source-layer": "alc-21pcvi",
+        "paint": {
+          "fill-color": "hsla(48, 65%, 25%, 1)", "fill-opacity": 0.4
+        }
+      }
     },
     {
       "name": "Long term monitoring data",
