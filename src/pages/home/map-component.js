@@ -3,10 +3,10 @@ import MapGL from 'react-map-gl'
 import MapboxClient from 'mapbox'
 import mapboxgl from 'mapbox-gl'
 import Geocoder from 'mapbox-gl-geocoder'
-import config from './config'
 import humanize from 'underscore.string/humanize'
 import difference from 'lodash.difference'
 import flatMap from 'lodash.flatmap'
+import config from '../../config'
 
 const iconSize = 40
 const iconColor = '#62577'
