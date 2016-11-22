@@ -18,6 +18,7 @@
     "build:css": "rsync -a node_modules/tachyons/css/tachyons.min.css ./dist",
     "build:mapbox-gl": "rsync -a node_modules/mapbox-gl/dist/* ./dist/mapbox-gl",
     "build:mapbox-gl-geocoder": "rsync -a node_modules/mapbox-gl-geocoder/dist/* ./dist/mapbox-gl-geocoder",
+    "build:svgs": "rsync -a src/assets/svgs ./dist",
     "watch": "npm-run-all --parallel watch:*",
     "watch:js": "watchify src/index.js -o dist/index.js",
     "watch:html": "nodemon --exec 'npm run build:html' --watch src/index.html",

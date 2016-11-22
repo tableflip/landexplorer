@@ -1,8 +1,8 @@
 import React from 'react'
 import MapComponent from './map'
-import LayerPicker from './layer-picker'
 import datasets from '../../datasets'
-import { Link } from 'react-router'
+import InfoPanel from './info-panel'
+import Navbar from './navbar'
 
 export default class extends React.Component {
   state = {
@@ -25,14 +25,10 @@ export default class extends React.Component {
 
   render () {
     return (
-      <div className='dark-gray'>
+      <div className='dark-gray helvetica'>
+        <Navbar />
         <div className='fl w-100 w-50-ns'>
-          <ul>
-            <li><Link to='/place/Romsey'>Place</Link></li>
-            <li><Link to='/data/soil'>Data</Link></li>
-            <li><Link to='/place/Romsey/data/soil'>Soil data in Romsey</Link></li>
-          </ul>
-          <LayerPicker datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} toggleLayer={this.toggleLayer} />
+          <InfoPanel />
         </div>
         <div className='fl w-100 w-50-ns relative'>
           <MapComponent datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
