@@ -49,7 +49,6 @@ export default class extends React.Component {
           }).catch((err) => reject(err))
       })
     }
-
   }
 
   render () {
