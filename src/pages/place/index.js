@@ -25,20 +25,21 @@ export default class extends React.Component {
     }
   }
 
-  render () {
+  componentDidMount () {
     const { longitude, latitude } = this.state.viewport
-
     getPlaceData([longitude, latitude])
-      .then((placeData) => {
-        this.setState(Object.assign({}, this.state, {placeData}))
-        const query = placeData.place || placeData.address || placeData.postcode
-        return getWikiEntry(query)
-      })
-      .then((wikiEntry) => {
-        this.setState(Object.assign({}, this.state, {wikiEntry}))
-      })
-      .catch((err) => console.error(err))
+    .then((placeData) => {
+      this.setState(Object.assign({}, this.state, {placeData}))
+      const query = placeData.place || placeData.address || placeData.postcode
+      return getWikiEntry(query)
+    })
+    .then((wikiEntry) => {
+      this.setState(Object.assign({}, this.state, {wikiEntry}))
+    })
+    .catch(function (err) { return console.error(err) })
+  }
 
+  render () {
     return (
       <div className='dark-gray helvetica'>
         <Navbar />
