@@ -1,10 +1,9 @@
 import React from 'react'
 import datasets from '../../datasets'
 import PlaceComponent from './place-component'
-import getFeature from '../../lib/getFeature'
 import round from '../../lib/round'
 import getWikiEntry from '../../lib/getWikiEntry'
-import reverseGeo from '../../lib/reverseGeo'
+import getPlaceData from '../../lib/getPlaceData'
 import MapComponent from '../home/map'
 import Navbar from '../home/navbar'
 
@@ -24,26 +23,12 @@ export default class extends React.Component {
       datasets: datasets,
       selectedLayers: []
     }
-
-    this.getPlaceData = () => {
-      return new Promise((resolve, reject) => {
-        const { viewport } = this.state
-
-        reverseGeo([viewport.longitude, viewport.latitude])
-          .then((geoData) => {
-            const address = getFeature(geoData, 'address') || ''
-            const postcode = getFeature(geoData, 'postcode') || ''
-            const place = getFeature(geoData, 'place') || ''
-            return resolve({ address, postcode, place })
-          }).catch((err) => reject(err))
-      })
-    }
   }
 
   render () {
-    const { getPlaceData } = this
+    const { longitude, latitude } = this.state.viewport
 
-    getPlaceData()
+    getPlaceData([longitude, latitude])
       .then((placeData) => {
         this.setState(Object.assign({}, this.state, {placeData}))
         const query = placeData.place || placeData.address || placeData.postcode
