@@ -1,11 +1,12 @@
 import React from 'react'
 import MapComponent from './map'
-import LayerPicker from './layer-picker'
 import datasets from '../../datasets'
-import { Link } from 'react-router'
+import InfoPanel from './info-panel'
+import Navbar from './navbar'
 
 export default class extends React.Component {
   state = {
+    panel: <InfoPanel />,
     datasets: datasets,
     selectedLayers: []
   }
@@ -23,17 +24,20 @@ export default class extends React.Component {
     }
   }
 
+  setPanel = (component) => {
+    console.log('setPanel called with', component)
+    this.setState({panel: component})
+  }
+
   render () {
     return (
-      <div className='dark-gray'>
+      <div className='dark-gray helvetica'>
+        <Navbar />
         <div className='fl w-100 w-50-ns'>
-          <ul>
-            <li><Link to='/place?lat=-0.0623902&lng=51.4599198'>Place</Link></li>
-          </ul>
-          <LayerPicker datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} toggleLayer={this.toggleLayer} />
+          {this.state.panel}
         </div>
         <div className='fl w-100 w-50-ns relative'>
-          <MapComponent datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
+          <MapComponent datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} setPanel={this.setPanel} />
         </div>
       </div>
     )

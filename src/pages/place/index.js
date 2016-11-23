@@ -1,24 +1,20 @@
 import React from 'react'
-import MapComponent from '../home/map'
 import MapboxClient from 'mapbox'
 import datasets from '../../datasets'
 import PlaceComponent from './place-component'
 import config from '../../config'
 import getFeature from '../../lib/getFeature'
-import round from '../../lib/round'
 import fetchJsonp from 'fetch-jsonp'
 import qs from 'querystring'
 
 export default class extends React.Component {
   constructor (props) {
     super(props)
-    const { lat, lng } = props.location.query
     const mapboxClient = new MapboxClient(config.mapboxApiAccessToken)
-
     this.state = {
       viewport: {
-        latitude: round(lat, 4),
-        longitude: round(lng, 4),
+        latitude: props.lngLat.lat,
+        longitude: props.lngLat.lng,
         zoom: 10
       },
       placeData: {},
@@ -64,6 +60,7 @@ export default class extends React.Component {
         fetchJsonp(lookupUrl)
         .then((response) => response.json())
         .then((result) => {
+          if (!result || !result[2]) result = [null, null, ['There is no information for this area yet']]
           return resolve(result[2][0])
         }).catch((err) => reject(err))
       })
@@ -72,7 +69,6 @@ export default class extends React.Component {
 
   render () {
     const { getPlaceData, getWikiEntry } = this
-    const { datasets, selectedLayers } = this.state
 
     getPlaceData()
       .then((placeData) => {
@@ -89,9 +85,6 @@ export default class extends React.Component {
       <div className='dark-gray'>
         <div className='fl w-100 w-50-ns'>
           <PlaceComponent {...this.state} />
-        </div>
-        <div className='fl w-100 w-50-ns relative'>
-          <MapComponent datasets={datasets} selectedLayers={selectedLayers} />
         </div>
       </div>
     )
