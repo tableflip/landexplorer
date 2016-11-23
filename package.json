@@ -53,6 +53,7 @@
     "es6-promise": "^4.0.5",
     "lodash.difference": "^4.5.0",
     "lodash.flatmap": "^4.5.0",
+    "lodash.uniq": "^4.5.0",
     "mapbox": "^1.0.0-beta3",
     "mapbox-gl-geocoder": "git://github.com/tableflip/mapbox-gl-geocoder.git#fix-import",
     "query-string": "^4.2.3",
