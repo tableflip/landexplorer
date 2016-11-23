@@ -1,11 +1,10 @@
 import React from 'react'
-import MapboxClient from 'mapbox'
 import datasets from '../../datasets'
 import PlaceComponent from './place-component'
-import config from '../../config'
 import getFeature from '../../lib/getFeature'
 import round from '../../lib/round'
 import getWikiEntry from '../../lib/getWikiEntry'
+import reverseGeo from '../../lib/reverseGeo'
 import MapComponent from '../home/map'
 import Navbar from '../home/navbar'
 
@@ -13,7 +12,7 @@ export default class extends React.Component {
   constructor (props) {
     super(props)
     const { lat, lng } = props.location.query
-    const mapboxClient = new MapboxClient(config.mapboxApiAccessToken)
+
     this.state = {
       viewport: {
         latitude: round(lat, 6),
@@ -26,18 +25,8 @@ export default class extends React.Component {
       selectedLayers: []
     }
 
-    this.reverseGeo = (lngLat) => {
-      return new Promise((resolve, reject) => {
-        mapboxClient.geocodeReverse({ latitude: lngLat[1], longitude: lngLat[0] }, (err, res) => {
-          if (err) return reject(err)
-          resolve(res)
-        })
-      })
-    }
-
     this.getPlaceData = () => {
       return new Promise((resolve, reject) => {
-        const { reverseGeo } = this
         const { viewport } = this.state
 
         reverseGeo([viewport.longitude, viewport.latitude])
