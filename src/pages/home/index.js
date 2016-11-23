@@ -28,9 +28,7 @@ export default class extends React.Component {
       <div className='dark-gray'>
         <div className='fl w-100 w-50-ns'>
           <ul>
-            <li><Link to='/place/Romsey'>Place</Link></li>
-            <li><Link to='/data/soil'>Data</Link></li>
-            <li><Link to='/place/Romsey/data/soil'>Soil data in Romsey</Link></li>
+            <li><Link to='/place?lat=-0.0623902&lng=51.4599198'>Place</Link></li>
           </ul>
           <LayerPicker datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} toggleLayer={this.toggleLayer} />
         </div>
