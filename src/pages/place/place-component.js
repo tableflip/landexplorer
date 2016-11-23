@@ -1,5 +1,5 @@
 import React from 'react'
-import { RotatingPlane } from 'better-react-spinkit'
+import { ThreeBounce } from 'better-react-spinkit'
 
 export default class extends React.Component {
   render () {
@@ -7,16 +7,23 @@ export default class extends React.Component {
     const wikiEntry = this.props.wikiEntry
     return (
       <section className='bg-white pa3'>
-        <div className='pa3'>
-          <h1>{place || '---'}</h1>
-          <h2>{address || '---'}</h2>
-          <h3>{postcode || '---'}</h3>
-          <hr />
-          {wikiEntry ? (
-            <div className='block center'>{wikiEntry}</div>
-          ) : (
-            <div className='block center tc mt3'><RotatingPlane color='lightgray' size={60} duration='3s' /></div>
-          )}
+        <div className='bb b--black-05 pa3' style={{minHeight: '4rem'}}>
+          <label className='f6 black-40'>Selected Area</label>
+          <div className='f4 mt1'>{place}</div>
+        </div>
+        <div className='bb b--black-05 pa3'>
+          <div className='dib w-70'>
+            <label className='f4'>About this land</label>
+            <div style={{minHeight: '6rem'}}>
+              {wikiEntry ? <p className='mt1 measure-wide lh-copy black-40'>{wikiEntry}</p> : <span className='mt1'><ThreeBounce color='lightgray' size={30} duration='3s' /></span>}
+            </div>
+          </div>
+          <div className='dib w-30 v-top'>
+            <label className='f6 black-40'>Address</label>
+            <div className='mb3'>{address}</div>
+            <label className='f6 black-40'>Postcode</label>
+            <div>{postcode}</div>
+          </div>
         </div>
       </section>
     )
