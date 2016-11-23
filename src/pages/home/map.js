@@ -1,10 +1,10 @@
 import React from 'react'
 import MapGL from 'react-map-gl'
 import Geocoder from 'mapbox-gl-geocoder'
+import { Link } from 'react-router'
+import uniq from 'lodash.uniq'
 import config from '../../config'
 import round from '../../lib/round'
-import uniq from 'lodash.uniq'
-import PlacePanel from '../place'
 
 export default class extends React.Component {
   state = {
@@ -20,6 +20,7 @@ export default class extends React.Component {
   }
 
   onMapReady = (ctx) => {
+    if (!ctx) return
     const map = ctx._getMap()
 
     map.addControl(new Geocoder({
@@ -60,7 +61,6 @@ export default class extends React.Component {
   render () {
     const { onMapReady, updateViewport } = this
     const { viewport, hoverData, showHover, hoverFeatures, clickData, showClick } = this.state
-    const { setPanel } = this.props
     return (
       <div style={{position: 'relative', overflow: 'hidden'}}>
         <MapGL
@@ -73,7 +73,7 @@ export default class extends React.Component {
           ref={onMapReady}
         />
         <HoverInfo {...hoverData} features={hoverFeatures} open={showHover} />
-        <ClickInfo {...clickData} open={showClick} setPanel={setPanel} />
+        <ClickInfo {...clickData} open={showClick} />
       </div>
     )
   }
@@ -105,7 +105,7 @@ const HoverInfo = ({lngLat, point, open, features}) => {
   )
 }
 
-const ClickInfo = ({lngLat, point, open, features, setPanel}) => {
+const ClickInfo = ({lngLat, point, open, features}) => {
   if (!lngLat || !open) return null
   const height = 160
   const width = 250
@@ -120,7 +120,7 @@ const ClickInfo = ({lngLat, point, open, features, setPanel}) => {
         ))}
       </div>
       <div className='absolute bottom-0 left-0 right-0 pa2'>
-        <div className='db tc br2 ph3 pv2 bg-gold white' onClick={(evt) => setPanel(<PlacePanel lngLat={lngLat} />)}>Explore the area</div>
+        <Link className='db tc br2 ph3 pv2 bg-gold white' to={{pathname: '/place', query: lngLat}}>Explore the area</Link>
       </div>
     </div>
   )

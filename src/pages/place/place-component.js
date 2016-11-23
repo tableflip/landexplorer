@@ -7,15 +7,15 @@ export default class extends React.Component {
     const wikiEntry = this.props.wikiEntry
     return (
       <section className='bg-white pa3'>
-        <div>
+        <div className='pa3'>
           <h1>{place || '---'}</h1>
           <h2>{address || '---'}</h2>
           <h3>{postcode || '---'}</h3>
           <hr />
           {wikiEntry ? (
-            <div className='block center pa3'>{wikiEntry}</div>
+            <div className='block center'>{wikiEntry}</div>
           ) : (
-            <div className='block w-30 center tc pt3'><RotatingPlane color='lightgray' size={60} duration='3s' /></div>
+            <div className='block center tc mt3'><RotatingPlane color='lightgray' size={60} duration='3s' /></div>
           )}
         </div>
       </section>

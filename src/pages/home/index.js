@@ -6,7 +6,6 @@ import Navbar from './navbar'
 
 export default class extends React.Component {
   state = {
-    panel: <InfoPanel />,
     datasets: datasets,
     selectedLayers: []
   }
@@ -24,20 +23,15 @@ export default class extends React.Component {
     }
   }
 
-  setPanel = (component) => {
-    console.log('setPanel called with', component)
-    this.setState({panel: component})
-  }
-
   render () {
     return (
       <div className='dark-gray helvetica'>
         <Navbar />
         <div className='fl w-100 w-50-ns'>
-          {this.state.panel}
+          <InfoPanel />
         </div>
         <div className='fl w-100 w-50-ns relative'>
-          <MapComponent datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} setPanel={this.setPanel} />
+          <MapComponent datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
         </div>
       </div>
     )

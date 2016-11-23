@@ -1,20 +1,24 @@
 import React from 'react'
 import MapboxClient from 'mapbox'
+import qs from 'querystring'
+import fetchJsonp from 'fetch-jsonp'
 import datasets from '../../datasets'
 import PlaceComponent from './place-component'
 import config from '../../config'
 import getFeature from '../../lib/getFeature'
-import fetchJsonp from 'fetch-jsonp'
-import qs from 'querystring'
+import round from '../../lib/round'
+import MapComponent from '../home/map'
+import Navbar from '../home/navbar'
 
 export default class extends React.Component {
   constructor (props) {
     super(props)
+    const { lat, lng } = props.location.query
     const mapboxClient = new MapboxClient(config.mapboxApiAccessToken)
     this.state = {
       viewport: {
-        latitude: props.lngLat.lat,
-        longitude: props.lngLat.lng,
+        latitude: round(lat, 6),
+        longitude: round(lng, 6),
         zoom: 10
       },
       placeData: {},
@@ -37,7 +41,7 @@ export default class extends React.Component {
         const { reverseGeo } = this
         const { viewport } = this.state
 
-        reverseGeo([viewport.latitude, viewport.longitude])
+        reverseGeo([viewport.longitude, viewport.latitude])
           .then((geoData) => {
             const address = getFeature(geoData, 'address') || ''
             const postcode = getFeature(geoData, 'postcode') || ''
@@ -82,9 +86,13 @@ export default class extends React.Component {
       .catch((err) => console.error(err))
 
     return (
-      <div className='dark-gray'>
+      <div className='dark-gray helvetica'>
+        <Navbar />
         <div className='fl w-100 w-50-ns'>
           <PlaceComponent {...this.state} />
+        </div>
+        <div className='fl w-100 w-50-ns relative'>
+          <MapComponent datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
         </div>
       </div>
     )
