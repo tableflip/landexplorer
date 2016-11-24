@@ -2,7 +2,7 @@ import React from 'react'
 
 export default (props) => {
   return (
-    <section className='bg-near-white pv5' style={{height: `${window.innerHeight}px`}}>
+    <section className='bg-near-white pv5' style={{height: `${window.innerHeight}px`, marginTop: '53px'}}>
       <div className='w-20 center'>
         <img src='/svgs/land-explorer-compas.svg' width='100%' />
       </div>
