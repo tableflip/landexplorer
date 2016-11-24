@@ -1,5 +1,5 @@
 import React from 'react'
-import MapComponent from './map'
+import Map from './map'
 import datasets from '../../datasets'
 import InfoPanel from './info-panel'
 import Navbar from './navbar'
@@ -31,7 +31,7 @@ export default class extends React.Component {
           <InfoPanel />
         </div>
         <div className='fl w-100 w-50-ns relative'>
-          <MapComponent datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
+          <Map datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
         </div>
       </div>
     )

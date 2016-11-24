@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 export default (props) => {
   return (
-    <nav className='block w-100 bg-white' style={{height: '53px'}}>
+    <nav className='block w-100 bg-white bb b--black-05' style={{height: '53px'}}>
       <div className='fl w-80 pa2'>
         <Link to='/'>
           <img src='/svgs/land-explorer-logo.svg' />

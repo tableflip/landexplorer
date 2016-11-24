@@ -1,3 +1,4 @@
+// This file is for reference only
 import React from 'react'
 import MapGL from 'react-map-gl'
 import MapboxClient from 'mapbox'

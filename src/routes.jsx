@@ -12,7 +12,7 @@ const Routes = (props) => {
       <Route path='/' component={Layout}>
         <IndexRoute component={Home} />
         <Route path='place/:place/data/:data' component={Data} />
-        <Route path='place/:place' component={Place} />
+        <Route path='place' component={Place} />
         <Route path='data/:data' component={Data} />
       </Route>
     </Router>

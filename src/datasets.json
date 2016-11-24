@@ -3,6 +3,171 @@
   "description": "Soil quality (e.g. compaction, chemical analysis, agricultural grade). \nPossible uses include:\n- identifying suitable land for food growing, forestry, horticulture etc.\n- understanding how to make the most out of a site",
   "datasets": [
     {
+	    "name": "Provisional Agricultural Land Classification (ALC)",
+      "provider": "Natural England",
+      "id": "Provisional Agricultural Land Classification (ALC)",
+      "description": "Provisional Agricultural Land Classification Grade. Agricultural land classified into five grades. Grade one is best quality and grade five is poorest quality. A number of consistent criteria used for assessment which include climate (temperature, rainfall, aspect, exposure, frost risk), site (gradient, micro-relief, flood risk) and soil (depth, structure, texture, chemicals, stoniness).",
+      "url": "https://data.gov.uk/dataset/provisional-agricultural-land-classification-alc",
+      "source": {
+        "type": "vector",
+        "url": "mapbox://tableflip.8nx1fj87"
+      },
+      "layers": [
+        {
+            "id": "Grade 1",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Grade 1"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#3980D0", "fill-opacity": 0.4
+            }
+        },
+        {
+            "id": "Grade 2",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Grade 2"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#10C3EF", "fill-opacity": 0.4
+            }
+        },
+        {
+            "id": "Grade 3",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Grade 3"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#0FB08F", "fill-opacity": 0.4
+            }
+        },
+        {
+            "id": "Grade 4",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Grade 4"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#F9F90D", "fill-opacity": 0.4
+            }
+        },
+        {
+            "id": "Grade 5",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Grade 5"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#C9748E", "fill-opacity": 0.4
+            }
+        },
+        {
+            "id": "Exclusion",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Exclusion"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#b2b2b2", "fill-opacity": 0.1
+            }
+        },
+        {
+            "id": "Non Agricultural",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Non Agricultural"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#b2b2b2", "fill-opacity": 0.1
+            }
+        },
+        {
+            "id": "Urban",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Urban"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#b2b2b2", "fill-opacity": 0.4
+            }
+        }
+      ]
+    },
+    {
       "id": "NATIONAL_FOREST_ESTATE_SOIL",
       "name": "National Forest Estate soils",
       "provider": "Forestry Commission",
@@ -11,14 +176,6 @@
       "source": {
         "type": "vector",
         "url": "mapbox://tableflip.6tngjxlh"
-      },
-      "style" :{
-        "type": "fill",
-        "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
-        "paint": {
-          "fill-color": "#895c44", "fill-opacity": 0.4,
-          "fill-opacity": 0.4
-        }
       },
       "layers": [
           {
@@ -326,25 +483,6 @@
               }
           }
       ],
-    },
-    {
-	    "name": "Provisional Agricultural Land Classification (ALC)",
-      "provider": "Natural England",
-      "id": "Provisional Agricultural Land Classification (ALC)",
-      "description": "Provisional Agricultural Land Classification Grade. Agricultural land classified into five grades. Grade one is best quality and grade five is poorest quality. A number of consistent criteria used for assessment which include climate (temperature, rainfall, aspect, exposure, frost risk), site (gradient, micro-relief, flood risk) and soil (depth, structure, texture, chemicals, stoniness).",
-      "url": "https://data.gov.uk/dataset/provisional-agricultural-land-classification-alc",
-      "source": {
-        "type": "vector",
-        "url": "mapbox://tableflip.8nx1fj87"
-      },
-      "style" :{
-        "type": "fill",
-        "source": "Provisional Agricultural Land Classification (ALC)",
-        "source-layer": "alc-21pcvi",
-        "paint": {
-          "fill-color": "hsla(48, 65%, 25%, 1)", "fill-opacity": 0.4
-        }
-      }
     },
     {
       "name": "Long term monitoring data",

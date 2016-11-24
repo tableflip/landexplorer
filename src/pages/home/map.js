@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router'
 import ReactMapboxGl from './mapbox-gl-map'
 import Geocoder from 'mapbox-gl-geocoder'
+import uniq from 'lodash.uniq'
 import config from '../../config'
 import round from '../../lib/round'
-import uniq from 'lodash.uniq'
 
 export default class extends React.Component {
   state = {
@@ -47,7 +47,6 @@ export default class extends React.Component {
   }
 
   updateViewport = (viewport) => {
-    console.log('updateViewport', viewport)
     this.setState({ viewport })
   }
 
