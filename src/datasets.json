@@ -337,14 +337,160 @@
         "type": "vector",
         "url": "mapbox://tableflip.8nx1fj87"
       },
-      "style" :{
-        "type": "fill",
-        "source": "Provisional Agricultural Land Classification (ALC)",
-        "source-layer": "alc-21pcvi",
-        "paint": {
-          "fill-color": "hsla(48, 65%, 25%, 1)", "fill-opacity": 0.4
+      "layers": [
+        {
+            "id": "Grade 1",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Grade 1"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#3980D0", "fill-opacity": 0.4
+            }
+        },
+        {
+            "id": "Grade 2",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Grade 2"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#10C3EF", "fill-opacity": 0.4
+            }
+        },
+        {
+            "id": "Grade 3",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Grade 3"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#0FB08F", "fill-opacity": 0.4
+            }
+        },
+        {
+            "id": "Grade 4",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Grade 4"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#F9F90D", "fill-opacity": 0.4
+            }
+        },
+        {
+            "id": "Grade 5",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Grade 5"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#C9748E", "fill-opacity": 0.4
+            }
+        },
+        {
+            "id": "Exclusion",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Exclusion"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#b2b2b2", "fill-opacity": 0.1
+            }
+        },
+        {
+            "id": "Non Agricultural",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Non Agricultural"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#b2b2b2", "fill-opacity": 0.1
+            }
+        },
+        {
+            "id": "Urban",
+            "type": "fill",
+            "source": "Provisional Agricultural Land Classification (ALC)",
+            "source-layer": "alc-21pcvi",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "==",
+                "ALC_GRADE",
+                "Urban"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "fill-color": "#b2b2b2", "fill-opacity": 0.4
+            }
         }
-      }
+      ]
     },
     {
       "name": "Long term monitoring data",
