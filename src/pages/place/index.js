@@ -44,7 +44,7 @@ export default class extends React.Component {
     return (
       <div className='black-60 helvetica'>
         <Navbar />
-        <div className='fl w-100 w-50-ns bg-near-white'>
+        <div className='fl w-100 w-50-ns bg-near-white pt4'>
           <PlaceIntro {...this.state} />
           <DataHighlights datasets={datasets} />
         </div>
