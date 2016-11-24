@@ -46,7 +46,6 @@ export default class extends React.Component {
         <Navbar />
         <div className='fl w-100 w-50-ns'>
           <PlaceIntro {...this.state} />
-          <DataSets datasets={datasets} />
         </div>
         <div className='fl w-100 w-50-ns relative'>
           <Map datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
