@@ -24,28 +24,26 @@ export default class extends React.Component {
   componentWillReceiveProps (nextProps) {
     const { query } = nextProps.location
     const center = centerFromObj(query)
-    console.log({center, query})
     this.setState({center})
-    this.lookupPlaceInfo({center, query})
+    this.lookupPlaceInfo(center)
   }
 
   componentDidMount () {
     const { query } = this.props.location
     const center = centerFromObj(query)
-    this.lookupPlaceInfo({center, query})
+    this.lookupPlaceInfo(center)
   }
 
-  lookupPlaceInfo (center, query) {
+  lookupPlaceInfo (center) {
+    console.log(center)
     getPlaceData(center)
-    .then((placeData) => {
-      this.setState({placeData})
-      const query = placeData.place || placeData.address || placeData.postcode
-      return getWikiEntry(query)
-    })
-    .then((wikiEntry) => {
-      this.setState({wikiEntry})
-    })
-    .catch(function (err) { return console.error(err) })
+      .then((placeData) => {
+        this.setState({placeData})
+        const query = placeData.place || placeData.address || placeData.postcode
+        return getWikiEntry(query)
+      })
+      .then((wikiEntry) => this.setState({wikiEntry}))
+      .catch(function (err) { return console.error(err) })
   }
 
   render () {
@@ -58,7 +56,7 @@ export default class extends React.Component {
           <PlaceIntro coordinates={query} wikiEntry={wikiEntry} placeData={placeData} />
           <DataHighlights datasets={datasets} />
         </div>
-        <div className='fl w-100 w-50-ns relative'>
+        <div className='fixed top-0 right-0 w-100 w-50-ns'>
           <Map center={center} datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
         </div>
       </div>
