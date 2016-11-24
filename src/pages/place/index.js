@@ -6,7 +6,7 @@ import getWikiEntry from '../../lib/getWikiEntry'
 import getPlaceData from '../../lib/getPlaceData'
 import Map from '../home/map'
 import Navbar from '../home/navbar'
-import DataSets from './data-sets'
+import DataHighlights from './data-highlights'
 
 export default class extends React.Component {
   constructor (props) {
@@ -46,6 +46,7 @@ export default class extends React.Component {
         <Navbar />
         <div className='fl w-100 w-50-ns'>
           <PlaceIntro {...this.state} />
+          <DataHighlights datasets={datasets} />
         </div>
         <div className='fl w-100 w-50-ns relative'>
           <Map datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
