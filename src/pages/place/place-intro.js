@@ -1,6 +1,7 @@
 import React from 'react'
 import { ThreeBounce } from 'better-react-spinkit'
 import round from '../../lib/round'
+import Icon from './icon'
 
 export default class extends React.Component {
   render () {
@@ -55,9 +56,15 @@ export default class extends React.Component {
           </div>
           <div className='dtc'>
             <label className='db f6 black-40'>Land cover</label>
-            <div className='dt dt--fixed w-100 pt2'>
-              <label className='dtc pr1'>Grass</label>
-              <label className='dtc pr1'>Wood</label>
+            <div className='dt dt--fixed w-100 pt2 v-mid'>
+              <div className='dtc pr1'>
+                <Icon name='wheat' className='mr1 v-mid' />
+                <label className='v-mid'>Grass</label>
+              </div>
+              <div className='dtc pr1'>
+                <Icon name='plant' className='mr1 v-mid' />
+                <label className='v-mid'>Wood</label>
+              </div>
             </div>
           </div>
         </div>

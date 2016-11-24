@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "better-react-spinkit": "^2.0.0-4",
+    "classnames": "^2.2.5",
     "es6-promise": "^4.0.5",
     "fetch-jsonp": "^1.0.2",
     "inline-style-prefixer": "^2.0.4",
