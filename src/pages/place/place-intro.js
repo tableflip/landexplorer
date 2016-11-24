@@ -50,21 +50,27 @@ export default class extends React.Component {
           <div className='dtc'>
             <label className='db f6 black-40'>Land use</label>
             <div className='dt dt--fixed w-100 pt2'>
-              <label className='dtc pr1'>Trunk</label>
-              <label className='dtc pr1'>Crop</label>
+              {['Pines', 'Road'].map((feature) => {
+                return (
+                  <div className='dtc pr1'>
+                    <Icon name={feature.toLowerCase()} className='mr1 v-mid' />
+                    <label className='v-mid'>{feature}</label>
+                  </div>
+                )
+              })}
             </div>
           </div>
           <div className='dtc'>
             <label className='db f6 black-40'>Land cover</label>
             <div className='dt dt--fixed w-100 pt2 v-mid'>
-              <div className='dtc pr1'>
-                <Icon name='wheat' className='mr1 v-mid' />
-                <label className='v-mid'>Grass</label>
-              </div>
-              <div className='dtc pr1'>
-                <Icon name='plant' className='mr1 v-mid' />
-                <label className='v-mid'>Wood</label>
-              </div>
+              {['Wheat', 'Plant'].map((feature) => {
+                return (
+                  <div className='dtc pr1'>
+                    <Icon name={feature.toLowerCase()} className='mr1 v-mid' />
+                    <label className='v-mid'>{feature}</label>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>
