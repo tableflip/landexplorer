@@ -44,11 +44,11 @@ export default class extends React.Component {
     return (
       <div className='black-60 helvetica'>
         <Navbar />
-        <div className='fl w-100 w-50-ns bg-near-white pt4'>
+        <div className='fl w-100 w-50-ns bg-near-white pt4' style={{marginTop: '53px'}}>
           <PlaceIntro {...this.state} />
           <DataHighlights datasets={datasets} />
         </div>
-        <div className='fl w-100 w-50-ns relative'>
+        <div className='fixed top-0 right-0 w-100 w-50-ns'>
           <Map datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
         </div>
       </div>

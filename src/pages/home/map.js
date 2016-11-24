@@ -61,7 +61,7 @@ export default class extends React.Component {
     const { onMapReady } = this
     const { hoverData, showHover, hoverFeatures, clickData, showClick } = this.state
     return (
-      <div style={{position: 'relative', overflow: 'hidden'}}>
+      <div className='relative' style={{overflow: 'hidden', scroll: 'none', marginTop: '53px'}}>
         <ReactMapboxGl
           containerStyle={{width: '100%', height: 'calc(100vh - 54px)'}}
           style='mapbox://styles/mapbox/outdoors-v10'
