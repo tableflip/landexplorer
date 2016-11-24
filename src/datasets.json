@@ -12,14 +12,6 @@
         "type": "vector",
         "url": "mapbox://tableflip.6tngjxlh"
       },
-      "style" :{
-        "type": "fill",
-        "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
-        "paint": {
-          "fill-color": "#895c44", "fill-opacity": 0.4,
-          "fill-opacity": 0.4
-        }
-      },
       "layers": [
           {
               "id": "Basin Bog",

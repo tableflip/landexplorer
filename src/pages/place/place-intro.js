@@ -8,7 +8,7 @@ export default class extends React.Component {
     const wikiEntry = this.props.wikiEntry
     const { latitude, longitude } = this.props.viewport
     return (
-      <section className='mh3 bg-white bb b--black-30 pb3'>
+      <section className='mh3 bb b--black-20 pb3'>
         <div className='pv2' style={{minHeight: '4rem'}}>
           <label className='f6 black-40'>Title of address</label>
           <div className='f4 mt1 black-40'>{address || 'Unknown location'} {postcode && `, ${postcode}`}</div>
