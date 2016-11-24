@@ -8,11 +8,6 @@ import round from '../../lib/round'
 
 export default class extends React.Component {
   state = {
-    viewport: {
-      latitude: 54.53797918714042,
-      longitude: -4.2541837906720446,
-      zoom: 5.2
-    },
     showHover: false,
     hoverData: false,
     showClick: false,
@@ -22,9 +17,15 @@ export default class extends React.Component {
   onMapReady = (map) => {
     console.log('onMapReady', map)
     window.map = map
+    const { center } = this.props
+    console.log('center', center)
+    if (center) {
+      map.setCenter(center)
+    }
     map.addControl(new Geocoder({
       accessToken: config.mapboxApiAccessToken,
-      country: 'gb'
+      country: 'gb',
+      position: 'top-left'
     }))
 
     map.on('mousemove', (evt) => {

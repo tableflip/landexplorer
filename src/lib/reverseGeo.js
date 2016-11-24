@@ -5,7 +5,11 @@ export default (lngLat) => {
   const mapboxClient = new MapboxClient(config.mapboxApiAccessToken)
 
   return new Promise((resolve, reject) => {
-    mapboxClient.geocodeReverse({ latitude: lngLat[1], longitude: lngLat[0] }, (err, res) => {
+    const lngLat = {
+      longitude: Number(lngLat[0]),
+      latitude: Number(lngLat[1])
+    }
+    mapboxClient.geocodeReverse(lngLat, (err, res) => {
       if (err) return reject(err)
       resolve(res)
     })
