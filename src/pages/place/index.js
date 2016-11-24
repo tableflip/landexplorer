@@ -1,10 +1,10 @@
 import React from 'react'
 import datasets from '../../datasets'
-import PlaceComponent from './place-component'
+import PlaceIntro from './place-intro'
 import round from '../../lib/round'
 import getWikiEntry from '../../lib/getWikiEntry'
 import getPlaceData from '../../lib/getPlaceData'
-import MapComponent from '../home/map'
+import Map from '../home/map'
 import Navbar from '../home/navbar'
 import DataSets from './data-sets'
 
@@ -15,8 +15,8 @@ export default class extends React.Component {
 
     this.state = {
       viewport: {
-        latitude: round(lat, 6),
-        longitude: round(lng, 6),
+        latitude: round(lat, 12),
+        longitude: round(lng, 12),
         zoom: 10
       },
       placeData: {},
@@ -30,12 +30,12 @@ export default class extends React.Component {
     const { longitude, latitude } = this.state.viewport
     getPlaceData([longitude, latitude])
     .then((placeData) => {
-      this.setState(Object.assign({}, this.state, {placeData}))
+      this.setState({placeData})
       const query = placeData.place || placeData.address || placeData.postcode
       return getWikiEntry(query)
     })
     .then((wikiEntry) => {
-      this.setState(Object.assign({}, this.state, {wikiEntry}))
+      this.setState({wikiEntry})
     })
     .catch(function (err) { return console.error(err) })
   }
@@ -45,11 +45,11 @@ export default class extends React.Component {
       <div className='dark-gray helvetica'>
         <Navbar />
         <div className='fl w-100 w-50-ns'>
-          <PlaceComponent {...this.state} />
+          <PlaceIntro {...this.state} />
           <DataSets datasets={datasets} />
         </div>
         <div className='fl w-100 w-50-ns relative'>
-          <MapComponent datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
+          <Map datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
         </div>
       </div>
     )

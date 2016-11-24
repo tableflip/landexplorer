@@ -36,9 +36,7 @@ export default class extends React.Component {
 }
 
 const countMapsIn = (datasets) => {
-  return datasets.reduce((count, set) => {
-    if (!set.source || !set.source.url) return count
-    if (set.source.url.length > 0) count += 1
-    return count
-  }, 0)
+  return datasets
+    .filter((d) => d.source && d.source.url)
+    .length
 }
