@@ -1,8 +1,6 @@
 import React from 'react'
-import MapGL from 'react-map-gl'
 import { Link } from 'react-router'
-// import MapboxClient from 'mapbox'
-// import mapboxgl from 'mapbox-gl'
+import ReactMapboxGl from './mapbox-gl-map'
 import Geocoder from 'mapbox-gl-geocoder'
 import config from '../../config'
 import round from '../../lib/round'
@@ -21,9 +19,9 @@ export default class extends React.Component {
     clickData: false
   }
 
-  onMapReady = (ctx) => {
-    const map = ctx._getMap()
-
+  onMapReady = (map) => {
+    console.log('onMapReady', map)
+    window.map = map
     map.addControl(new Geocoder({
       accessToken: config.mapboxApiAccessToken,
       country: 'gb'
@@ -61,18 +59,17 @@ export default class extends React.Component {
   }
 
   render () {
-    const { onMapReady, updateViewport } = this
-    const { viewport, hoverData, showHover, hoverFeatures, clickData, showClick } = this.state
+    const { onMapReady } = this
+    const { hoverData, showHover, hoverFeatures, clickData, showClick } = this.state
     return (
       <div style={{position: 'relative', overflow: 'hidden'}}>
-        <MapGL
-          {...viewport}
-          mapStyle='mapbox://styles/mapbox/outdoors-v10'
-          height='100vh'
-          width='100%'
-          onChangeViewport={updateViewport}
-          mapboxApiAccessToken={config.mapboxApiAccessToken}
-          ref={onMapReady}
+        <ReactMapboxGl
+          containerStyle={{width: '100%', height: 'calc(100vh - 54px)'}}
+          style='mapbox://styles/mapbox/outdoors-v10'
+          minZoom={4}
+          maxBounds={[{'lng': -26.137760966121533, 'lat': 46.55787737960296}, {'lng': 10.921894927739515, 'lat': 63.92312559427779}]}
+          accessToken={config.mapboxApiAccessToken}
+          onStyleLoad={onMapReady}
         />
         <HoverInfo {...hoverData} features={hoverFeatures} open={showHover} />
         <ClickInfo {...clickData} open={showClick} />
@@ -99,8 +96,8 @@ const HoverInfo = ({lngLat, point, open, features}) => {
     <div className='pa2 br2' style={style}>
       <code style={{fontSize: '10px'}} className='db pb1 monospace bb b--white-30'>{`${round(lngLat.lng, 3)}, ${round(lngLat.lat, 3)}`}</code>
       <div style={{minHeight: '1em', fontSize: '12px'}}>
-        {features.map((f) => (
-          <label className='db pt2 ttc'>{f}</label>
+        {features.map((f, i) => (
+          <label key={i} className='db pt2 ttc'>{f}</label>
         ))}
       </div>
     </div>
@@ -117,8 +114,8 @@ const ClickInfo = ({lngLat, point, open, features}) => {
     <div className='relative pa2 br2' style={style}>
       <code style={{fontSize: '10px'}} className='db pb1 monospace bb b--white-30'>{`${round(lngLat.lng, 3)}, ${round(lngLat.lat, 3)}`}</code>
       <div style={{minHeight: '1em', fontSize: '12px'}}>
-        {features.map((f) => (
-          <label className='db pt2 ttc'>{f}</label>
+        {features.map((f, i) => (
+          <label key={i} className='db pt2 ttc'>{f}</label>
         ))}
       </div>
       <div className='absolute bottom-0 left-0 right-0 pa2'>
