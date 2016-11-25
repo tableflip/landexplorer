@@ -52,7 +52,6 @@
   "dependencies": {
     "better-react-spinkit": "^2.0.0-4",
     "classnames": "^2.2.5",
-    "encodeuricomponent-tag": "^1.0.1",
     "es6-promise": "^4.0.5",
     "fetch-jsonp": "^1.0.2",
     "inline-style-prefixer": "^2.0.4",
@@ -67,6 +66,7 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^3.0.0",
+    "react-router-scroll": "^0.4.1",
     "tachyons": "^4.5.3",
     "underscore.string": "^3.3.4",
     "whatwg-fetch": "^1.0.0"
