@@ -139,7 +139,7 @@ export default class extends React.Component {
       <div className='relative' style={{overflow: 'hidden', scroll: 'none', marginTop: '53px'}}>
         <ReactMapboxGl
           containerStyle={{width: '100%', height: 'calc(100vh - 54px)'}}
-          style='mapbox://styles/mapbox/outdoors-v10'
+          style='mapbox://styles/tableflip/cius56l0r00wn2jl8u9marbba'
           minZoom={minZoom || 4}
           maxBounds={[{'lng': -26.137760966121533, 'lat': 46.55787737960296}, {'lng': 10.921894927739515, 'lat': 63.92312559427779}]}
           accessToken={config.mapboxApiAccessToken}
@@ -169,7 +169,7 @@ const HoverInfo = ({lngLat, point, open, features}) => {
   return (
     <div className='pa2 br2' style={style}>
       <code style={{fontSize: '10px'}} className='db pb1 monospace bb b--black-30'>{`${round(lngLat.lng, 3)}, ${round(lngLat.lat, 3)}`}</code>
-      <div style={{minHeight: '1em', fontSize: '12px'}}>
+      <div style={{minHeight: '2em', fontSize: '12px'}}>
         {features.map((f, i) => (
           <div className='pa2' key={`${f}-${i}`}>
             <Icon name={f} className='dib v-mid mr2' />
@@ -190,7 +190,7 @@ const ClickInfo = ({lngLat, point, open, features}) => {
   return (
     <div className='relative pa2 br2' style={style}>
       <code style={{fontSize: '10px'}} className='db pb1 monospace bb b--white-30'>{`${round(lngLat.lng, 3)}, ${round(lngLat.lat, 3)}`}</code>
-      <div style={{minHeight: '1em', fontSize: '12px'}}>
+      <div style={{fontSize: '12px'}}>
         {features.map((f, i) => (
           <div className='pa2' key={`${f}-${i}`}>
             <Icon name={f} className='dib v-mid mr2' />
