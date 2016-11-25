@@ -5,6 +5,7 @@ import Geocoder from 'mapbox-gl-geocoder'
 import uniq from 'lodash.uniq'
 import config from '../../config'
 import round from '../../lib/round'
+import Icon from '../place/icon'
 
 export default class extends React.Component {
   static propTypes = {
@@ -82,8 +83,8 @@ export default class extends React.Component {
 
 const hoverStyle = {
   boxShadow: '1px 1px 1px 0 rgba(0,0,0,0.3)',
-  background: 'rgba(50,50,50,0.8)',
-  color: 'white',
+  background: 'rgba(255,255,255,0.9)',
+  color: 'gray',
   position: 'absolute',
   top: 0,
   left: 0,
@@ -96,10 +97,13 @@ const HoverInfo = ({lngLat, point, open, features}) => {
   const style = Object.assign({transform}, hoverStyle)
   return (
     <div className='pa2 br2' style={style}>
-      <code style={{fontSize: '10px'}} className='db pb1 monospace bb b--white-30'>{`${round(lngLat.lng, 3)}, ${round(lngLat.lat, 3)}`}</code>
+      <code style={{fontSize: '10px'}} className='db pb1 monospace bb b--black-30'>{`${round(lngLat.lng, 3)}, ${round(lngLat.lat, 3)}`}</code>
       <div style={{minHeight: '1em', fontSize: '12px'}}>
         {features.map((f, i) => (
-          <label key={i} className='db pt2 ttc'>{f}</label>
+          <div className='pa2'>
+            <Icon name={f} className='dib v-mid mr2' />
+            <label key={i} className='dib v-mid ttc'>{f}</label>
+          </div>
         ))}
       </div>
     </div>
