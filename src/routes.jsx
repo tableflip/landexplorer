@@ -11,9 +11,8 @@ const Routes = (props) => {
     <Router history={history}>
       <Route path='/' component={Layout}>
         <IndexRoute component={Home} />
-        <Route path='place/:place/data/:data' component={Data} />
         <Route path='place' component={Place} />
-        <Route path='data/:data' component={Data} />
+        <Route path='data/:category' component={Data} />
       </Route>
     </Router>
   )
