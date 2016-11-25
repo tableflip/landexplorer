@@ -13,6 +13,7 @@ export default class extends React.Component {
   static propTypes = {
     lngLat: PropTypes.object,
     zoom: PropTypes.number,
+    minZoom: PropTypes.number,
     datasets: PropTypes.array,
     selectedLayers: PropTypes.array
   }
@@ -126,12 +127,13 @@ export default class extends React.Component {
   render () {
     const { onMapReady } = this
     const { hoverData, showHover, clickData, showClick } = this.state
+    const { minZoom } = this.props
     return (
       <div className='relative' style={{overflow: 'hidden', scroll: 'none', marginTop: '53px'}}>
         <ReactMapboxGl
           containerStyle={{width: '100%', height: 'calc(100vh - 54px)'}}
           style='mapbox://styles/mapbox/outdoors-v10'
-          minZoom={4}
+          minZoom={minZoom || 4}
           maxBounds={[{'lng': -26.137760966121533, 'lat': 46.55787737960296}, {'lng': 10.921894927739515, 'lat': 63.92312559427779}]}
           accessToken={config.mapboxApiAccessToken}
           onStyleLoad={onMapReady}

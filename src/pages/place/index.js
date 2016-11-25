@@ -55,7 +55,7 @@ export default class extends React.Component {
           <DataHighlights datasets={datasets} lngLat={lngLat} />
         </div>
         <div className='fixed top-0 right-0 w-100 w-50-ns'>
-          <Map lngLat={lngLat} zoom={10} datasets={datasets} selectedLayers={this.state.selectedLayers} />
+          <Map lngLat={lngLat} zoom={10} minZoom={8} datasets={datasets} selectedLayers={this.state.selectedLayers} />
         </div>
       </div>
     )
