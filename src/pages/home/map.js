@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import ReactMapboxGl from './mapbox-gl-map'
 import Geocoder from 'mapbox-gl-geocoder'
+import MapboxGl from 'mapbox-gl'
 import uniq from 'lodash.uniq'
 import config from '../../config'
 import round from '../../lib/round'
@@ -26,10 +27,16 @@ export default class extends React.Component {
     if (lngLat) map.setCenter(lngLat)
     if (zoom) map.setZoom(zoom)
 
+    map.addControl(new MapboxGl.NavigationControl(), 'top-left')
+
     map.addControl(new Geocoder({
       accessToken: config.mapboxApiAccessToken,
-      country: 'gb',
-      position: 'top-left'
+      country: 'gb'
+    }), 'top-right')
+
+    map.addControl(new MapboxGl.ScaleControl({
+      maxWidth: 80,
+      unit: 'imperial'
     }))
 
     map.on('mousemove', (evt) => {

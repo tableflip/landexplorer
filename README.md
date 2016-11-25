@@ -6,7 +6,7 @@ Frontend for the [Shared Assets](https://github.com/tableflip/workplan/blob/mast
 * `npm i`
 * `npm run build`
 
-The static site will be output at `bin/index.html`.
+The static site will be output at `dist/index.html`.
 
 To watch for changes and rebuild:
 
