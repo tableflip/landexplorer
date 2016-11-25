@@ -61,8 +61,13 @@ export default class extends React.Component {
       'landcover_wood',
       'landcover_grass',
       'landcover_scrub',
+      'landcover_snow',
       'national_park',
-      'wetlands'
+      'wetlands',
+      'park',
+      'sand',
+      'glacier',
+      'agriculture'
     ]
     const features = map.queryRenderedFeatures(point, {layers})
     const res = features.map((f) => f.properties.class).filter((f) => !!f)
