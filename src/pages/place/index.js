@@ -6,11 +6,7 @@ import getPlaceData from '../../lib/getPlaceData'
 import Map from '../home/map'
 import Navbar from '../home/navbar'
 import DataHighlights from './data-highlights'
-
-const lngLatFromQuery = (query) => ({
-  lng: Number(query.lng),
-  lat: Number(query.lat)
-})
+import lngLatFromQuery from '../../lib/lngLatFromQuery'
 
 export default class extends React.Component {
   constructor (props) {
@@ -56,7 +52,7 @@ export default class extends React.Component {
         <Navbar />
         <div className='fl w-100 w-50-ns bg-near-white pt4' style={{marginTop: '53px'}}>
           <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} />
-          <DataHighlights datasets={datasets} />
+          <DataHighlights datasets={datasets} lngLat={lngLat} />
         </div>
         <div className='fixed top-0 right-0 w-100 w-50-ns'>
           <Map lngLat={lngLat} zoom={10} datasets={datasets} selectedLayers={this.state.selectedLayers} />
