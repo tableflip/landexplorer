@@ -15,7 +15,8 @@ export default class extends React.Component {
     zoom: PropTypes.number,
     minZoom: PropTypes.number,
     datasets: PropTypes.array,
-    selectedLayers: PropTypes.array
+    selectedLayers: PropTypes.array,
+    onMapReady: PropTypes.func
   }
 
   state = {
@@ -27,7 +28,7 @@ export default class extends React.Component {
 
   onMapReady = (map) => {
     this.map = window.map = map
-    const { lngLat, zoom, selectedLayers } = this.props
+    const { lngLat, zoom, selectedLayers, onMapReady } = this.props
     if (lngLat) map.setCenter(lngLat)
     if (zoom) map.setZoom(zoom)
 
@@ -65,6 +66,7 @@ export default class extends React.Component {
       if (selectedLayers && selectedLayers.length) {
         this.updateLayers([], selectedLayers)
       }
+      if (onMapReady) onMapReady(map)
     })
   }
 

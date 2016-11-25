@@ -18,7 +18,8 @@ export default class extends React.Component {
       placeData: {},
       wikiEntry: '',
       datasets: datasets,
-      selectedLayers: selectedLayers
+      selectedLayers: selectedLayers,
+      features: []
     }
   }
 
@@ -45,17 +46,24 @@ export default class extends React.Component {
       .catch(function (err) { return console.error(err) })
   }
 
+  onMapReady = (map) => {
+    const { lngLat } = this.state
+    const features = map.queryRenderedFeatures(lngLat)
+    this.setState({features})
+  }
+
   render () {
-    const { wikiEntry, placeData, lngLat, datasets } = this.state
+    const { onMapReady } = this
+    const { wikiEntry, placeData, lngLat, datasets, features } = this.state
     return (
       <div className='black-60 helvetica'>
         <Navbar />
         <div className='fl w-100 w-50-ns bg-near-white pt4' style={{marginTop: '53px'}}>
-          <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} />
-          <DataHighlights datasets={datasets} lngLat={lngLat} />
+          <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} features={features} />
+          <DataHighlights datasets={datasets} lngLat={lngLat} features={features} />
         </div>
         <div className='fixed top-0 right-0 w-100 w-50-ns'>
-          <Map lngLat={lngLat} zoom={10} minZoom={8} datasets={datasets} selectedLayers={this.state.selectedLayers} />
+          <Map lngLat={lngLat} zoom={10} minZoom={8} datasets={datasets} selectedLayers={this.state.selectedLayers} onMapReady={onMapReady} />
         </div>
       </div>
     )
