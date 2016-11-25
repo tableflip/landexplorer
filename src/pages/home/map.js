@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import ReactMapboxGl from './mapbox-gl-map'
 import Geocoder from 'mapbox-gl-geocoder'
@@ -7,6 +7,11 @@ import config from '../../config'
 import round from '../../lib/round'
 
 export default class extends React.Component {
+  static propTypes = {
+    lngLat: PropTypes.object,
+    zoom: PropTypes.number
+  }
+
   state = {
     showHover: false,
     hoverData: false,
@@ -15,13 +20,11 @@ export default class extends React.Component {
   }
 
   onMapReady = (map) => {
-    console.log('onMapReady', map)
-    window.map = map
-    const { center } = this.props
-    console.log('center', center)
-    if (center) {
-      map.setCenter(center)
-    }
+    window.map = map // for querying in dev.
+    const { lngLat, zoom } = this.props
+    if (lngLat) map.setCenter(lngLat)
+    if (zoom) map.setZoom(zoom)
+
     map.addControl(new Geocoder({
       accessToken: config.mapboxApiAccessToken,
       country: 'gb',
@@ -53,7 +56,6 @@ export default class extends React.Component {
 
   getFeatures (map, point) {
     const features = map.queryRenderedFeatures(point)
-    // console.log(features)
     const res = features.map((f) => f.properties.class).filter((f) => !!f)
     return uniq(res.sort())
   }

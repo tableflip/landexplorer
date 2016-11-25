@@ -3,9 +3,8 @@ import { ThreeBounce } from 'better-react-spinkit'
 import round from '../../lib/round'
 import Icon from './icon'
 
-export default ({placeData, wikiEntry, coordinates}) => {
+export default ({placeData, wikiEntry, lngLat}) => {
   const { address, postcode, place } = placeData
-  const { lng, lat } = coordinates
   return (
     <section className='mh3 bb b--black-20 pb3'>
       <div className='pv2' style={{minHeight: '4rem'}}>
@@ -15,7 +14,7 @@ export default ({placeData, wikiEntry, coordinates}) => {
       <div className='dt dt--fixed w-100 pv2 f6'>
         <div className='dtc'>
           <label className='black-40'>Location</label>
-          <div className='pt1'>{round(lng, 3)}, {round(lat, 3)}</div>
+          <div className='pt1'>{round(lngLat.lng, 3)}, {round(lngLat.lat, 3)}</div>
         </div>
         <div className='dtc'>
           {address &&
@@ -49,7 +48,7 @@ export default ({placeData, wikiEntry, coordinates}) => {
             <div className='dt dt--fixed w-100 pt2'>
               {['Pines', 'Road'].map((feature) => {
                 return (
-                  <div className='dtc pr1'>
+                  <div key={feature} className='dtc pr1'>
                     <Icon name={feature.toLowerCase()} className='mr1 v-mid' />
                     <label className='v-mid'>{feature}</label>
                   </div>
@@ -62,7 +61,7 @@ export default ({placeData, wikiEntry, coordinates}) => {
             <div className='dt dt--fixed w-100 pt2 v-mid'>
               {['Wheat', 'Plant'].map((feature) => {
                 return (
-                  <div className='dtc pr1'>
+                  <div key={feature} className='dtc pr1'>
                     <Icon name={feature.toLowerCase()} className='mr1 v-mid' />
                     <label className='v-mid'>{feature}</label>
                   </div>

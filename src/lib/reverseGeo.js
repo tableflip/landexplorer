@@ -1,15 +1,15 @@
 import MapboxClient from 'mapbox'
 import config from '../config'
 
-export default (lngLatArr) => {
-  const mapboxClient = new MapboxClient(config.mapboxApiAccessToken)
+const mapboxClient = new MapboxClient(config.mapboxApiAccessToken)
 
+export default (lngLat) => {
   return new Promise((resolve, reject) => {
-    const lngLat = {
-      longitude: Number(lngLatArr[0]),
-      latitude: Number(lngLatArr[1])
+    const location = {
+      longitude: lngLat.lng,
+      latitude: lngLat.lat
     }
-    mapboxClient.geocodeReverse(lngLat, (err, res) => {
+    mapboxClient.geocodeReverse(location, (err, res) => {
       if (err) return reject(err)
       resolve(res)
     })

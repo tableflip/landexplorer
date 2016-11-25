@@ -7,13 +7,16 @@ import Map from '../home/map'
 import Navbar from '../home/navbar'
 import DataHighlights from './data-highlights'
 
-const centerFromObj = (lngLat) => [Number(lngLat.lng), Number(lngLat.lat)]
+const lngLatFromQuery = (query) => ({
+  lng: Number(query.lng),
+  lat: Number(query.lat)
+})
 
 export default class extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      center: centerFromObj(props.location.query),
+      lngLat: lngLatFromQuery(props.location.query),
       placeData: {},
       wikiEntry: '',
       datasets: datasets,
@@ -22,42 +25,39 @@ export default class extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    const { query } = nextProps.location
-    const center = centerFromObj(query)
-    this.setState({center})
-    this.lookupPlaceInfo(center)
+    const lngLat = lngLatFromQuery(nextProps.location.query)
+    this.lookupPlaceInfo(lngLat)
+    this.setState({lngLat})
   }
 
   componentDidMount () {
-    const { query } = this.props.location
-    const center = centerFromObj(query)
-    this.lookupPlaceInfo(center)
+    const { lngLat } = this.state
+    this.lookupPlaceInfo(lngLat)
   }
 
-  lookupPlaceInfo (center) {
-    console.log(center)
-    getPlaceData(center)
+  lookupPlaceInfo (lngLat) {
+    console.log('lookupPlaceInfo', lngLat)
+    getPlaceData(lngLat)
       .then((placeData) => {
         this.setState({placeData})
-        const query = placeData.place || placeData.address || placeData.postcode
-        return getWikiEntry(query)
+        const wikiQuery = placeData.place || placeData.address || placeData.postcode
+        return getWikiEntry(wikiQuery)
       })
       .then((wikiEntry) => this.setState({wikiEntry}))
       .catch(function (err) { return console.error(err) })
   }
 
   render () {
-    const { query } = this.props.location
-    const { wikiEntry, placeData, center } = this.state
+    const { wikiEntry, placeData, lngLat } = this.state
     return (
       <div className='black-60 helvetica'>
         <Navbar />
         <div className='fl w-100 w-50-ns bg-near-white pt4' style={{marginTop: '53px'}}>
-          <PlaceIntro coordinates={query} wikiEntry={wikiEntry} placeData={placeData} />
+          <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} />
           <DataHighlights datasets={datasets} />
         </div>
         <div className='fixed top-0 right-0 w-100 w-50-ns'>
-          <Map center={center} datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
+          <Map lngLat={lngLat} zoom={12} datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
         </div>
       </div>
     )
