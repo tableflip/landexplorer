@@ -1,5 +1,5 @@
 import React from 'react'
-import datasets from '../../datasets'
+import { datasets, findDatasetById } from '../../lib/datasets'
 import PlaceIntro from './place-intro'
 import getWikiEntry from '../../lib/getWikiEntry'
 import getPlaceData from '../../lib/getPlaceData'
@@ -15,12 +15,14 @@ const lngLatFromQuery = (query) => ({
 export default class extends React.Component {
   constructor (props) {
     super(props)
+    const selectedLayers = findDatasetById('Agricultural Land Classification')
+    console.log(selectedLayers, datasets)
     this.state = {
       lngLat: lngLatFromQuery(props.location.query),
       placeData: {},
       wikiEntry: '',
       datasets: datasets,
-      selectedLayers: []
+      selectedLayers: selectedLayers
     }
   }
 
@@ -48,7 +50,7 @@ export default class extends React.Component {
   }
 
   render () {
-    const { wikiEntry, placeData, lngLat } = this.state
+    const { wikiEntry, placeData, lngLat, datasets } = this.state
     return (
       <div className='black-60 helvetica'>
         <Navbar />
@@ -57,7 +59,7 @@ export default class extends React.Component {
           <DataHighlights datasets={datasets} />
         </div>
         <div className='fixed top-0 right-0 w-100 w-50-ns'>
-          <Map lngLat={lngLat} zoom={12} datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
+          <Map lngLat={lngLat} zoom={10} datasets={datasets} selectedLayers={this.state.selectedLayers} />
         </div>
       </div>
     )
