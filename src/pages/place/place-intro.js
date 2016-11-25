@@ -3,7 +3,7 @@ import { ThreeBounce } from 'better-react-spinkit'
 import round from '../../lib/round'
 import Icon from './icon'
 
-export default ({placeData, wikiEntry, lngLat}) => {
+export default ({placeData, wikiEntry, lngLat, features}) => {
   const { address, postcode, place } = placeData
   return (
     <section className='mh3 bb b--black-20 pb3'>
