@@ -5,6 +5,7 @@ import Geocoder from 'mapbox-gl-geocoder'
 import uniq from 'lodash.uniq'
 import config from '../../config'
 import round from '../../lib/round'
+import Icon from '../place/icon'
 
 export default class extends React.Component {
   static propTypes = {
@@ -13,7 +14,7 @@ export default class extends React.Component {
   }
 
   state = {
-    showHover: false,
+    showHover: true,
     hoverData: false,
     showClick: false,
     clickData: false
@@ -32,12 +33,12 @@ export default class extends React.Component {
     }))
 
     map.on('mousemove', (evt) => {
-      const { hoverData, showHover } = this.state
-      const nuShowHover = hoverData ? showHover : true
-      const features = map.queryRenderedFeatures(evt.point)
-      let hoverFeatures = features.map((f) => f.properties.class).filter((f) => !!f)
-      hoverFeatures = uniq(hoverFeatures.sort())
-      this.setState({hoverData: evt, showHover: nuShowHover, hoverFeatures})
+      const { showHover } = this.state
+      if (!showHover) return
+      const { lngLat, point } = evt
+      const features = this.getFeatures(map, evt.point)
+      const hoverData = Object.assign({}, { lngLat, point, features })
+      this.setState({hoverData})
     })
 
     map.on('click', (evt) => {
@@ -55,14 +56,22 @@ export default class extends React.Component {
   }
 
   getFeatures (map, point) {
-    const features = map.queryRenderedFeatures(point)
+    const layers = [
+      'landcover_crop',
+      'landcover_wood',
+      'landcover_grass',
+      'landcover_scrub',
+      'national_park',
+      'wetlands'
+    ]
+    const features = map.queryRenderedFeatures(point, {layers})
     const res = features.map((f) => f.properties.class).filter((f) => !!f)
     return uniq(res.sort())
   }
 
   render () {
     const { onMapReady } = this
-    const { hoverData, showHover, hoverFeatures, clickData, showClick } = this.state
+    const { hoverData, showHover, clickData, showClick } = this.state
     return (
       <div className='relative' style={{overflow: 'hidden', scroll: 'none', marginTop: '53px'}}>
         <ReactMapboxGl
@@ -73,7 +82,7 @@ export default class extends React.Component {
           accessToken={config.mapboxApiAccessToken}
           onStyleLoad={onMapReady}
         />
-        <HoverInfo {...hoverData} features={hoverFeatures} open={showHover} />
+        <HoverInfo {...hoverData} open={showHover} />
         <ClickInfo {...clickData} open={showClick} />
       </div>
     )
@@ -82,8 +91,8 @@ export default class extends React.Component {
 
 const hoverStyle = {
   boxShadow: '1px 1px 1px 0 rgba(0,0,0,0.3)',
-  background: 'rgba(50,50,50,0.8)',
-  color: 'white',
+  background: 'rgba(255,255,255,0.9)',
+  color: 'gray',
   position: 'absolute',
   top: 0,
   left: 0,
@@ -96,10 +105,13 @@ const HoverInfo = ({lngLat, point, open, features}) => {
   const style = Object.assign({transform}, hoverStyle)
   return (
     <div className='pa2 br2' style={style}>
-      <code style={{fontSize: '10px'}} className='db pb1 monospace bb b--white-30'>{`${round(lngLat.lng, 3)}, ${round(lngLat.lat, 3)}`}</code>
+      <code style={{fontSize: '10px'}} className='db pb1 monospace bb b--black-30'>{`${round(lngLat.lng, 3)}, ${round(lngLat.lat, 3)}`}</code>
       <div style={{minHeight: '1em', fontSize: '12px'}}>
         {features.map((f, i) => (
-          <label key={i} className='db pt2 ttc'>{f}</label>
+          <div className='pa2' key={`${f}-${i}`}>
+            <Icon name={f} className='dib v-mid mr2' />
+            <label key={i} className='dib v-mid ttc'>{f}</label>
+          </div>
         ))}
       </div>
     </div>
@@ -108,7 +120,7 @@ const HoverInfo = ({lngLat, point, open, features}) => {
 
 const ClickInfo = ({lngLat, point, open, features}) => {
   if (!lngLat || !open) return null
-  const height = 160
+  const height = (40 * features.length) + 76
   const width = 250
   const transform = `translate(${point.x - 150}px, ${point.y - (height + 20)}px)`
   const style = Object.assign({}, hoverStyle, {transform, height, width})
@@ -117,11 +129,14 @@ const ClickInfo = ({lngLat, point, open, features}) => {
       <code style={{fontSize: '10px'}} className='db pb1 monospace bb b--white-30'>{`${round(lngLat.lng, 3)}, ${round(lngLat.lat, 3)}`}</code>
       <div style={{minHeight: '1em', fontSize: '12px'}}>
         {features.map((f, i) => (
-          <label key={i} className='db pt2 ttc'>{f}</label>
+          <div className='pa2' key={`${f}-${i}`}>
+            <Icon name={f} className='dib v-mid mr2' />
+            <label key={i} className='dib v-mid ttc'>{f}</label>
+          </div>
         ))}
       </div>
-      <div className='absolute bottom-0 left-0 right-0 pa2'>
-        <Link className='db tc br2 ph3 pv2 bg-gold white' to={{pathname: '/place', query: lngLat}}>Explore the area</Link>
+      <div className='pa2'>
+        <Link className='db ph3 pv2 f6 tc no-underline br2 ba b--green green' to={{pathname: '/place', query: lngLat}} style={{backgroundColor: '#CFF09E'}}>Explore the area</Link>
       </div>
     </div>
   )
