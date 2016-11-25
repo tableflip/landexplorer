@@ -6,17 +6,21 @@ const LayerKey = ({ dataset }) => {
   const layers = dataset.layers || [dataset.style]
 
   return (
-    <ul>
+    <ul className='list pl0'>
       {layers.map((layer) => {
         const style = {
-          display: 'inline-block',
           width: '25px',
           height: '25px',
           backgroundColor: layer.paint['fill-color'],
           opacity: layer.paint['fill-opacity'] || 1
         }
+        const name = layer.id || layer.source
 
-        return <li><span style={style} /> {layer.id || layer.source}</li>
+        return (
+          <li className='mb1'>
+            <span className='dib v-mid mr1' style={style} /> {name}
+          </li>
+        )
       })}
     </ul>
   )

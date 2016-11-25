@@ -5,32 +5,32 @@ const CategoryIntro = ({ category, lngLat, placeData }) => {
   const { address, postcode, place } = placeData || {}
 
   return (
-    <div>
-      <h1>{category.category}</h1>
-      <div>
-        {category.description.split('\n').map((txt) => (
-          <div key={txt}>{txt}</div>
-        ))}
+    <div className='cf'>
+      <h1 className='f3 black-40 ttu tracked'>{category.category}</h1>
+      <div className='fl w-60-ns'>
+        <div className='mb3'>
+          {category.description.split('\n').map((txt) => (
+            <div key={txt} className='lh-copy'>{txt}</div>
+          ))}
+        </div>
       </div>
-      <div>
-        <ul>
-          <li>
-            <span>Title of address</span>
-            {address || 'Unknown location'}{postcode && `, ${postcode}`}
-          </li>
-          <li>
-            <span>Location</span>
-            {round(lngLat.lng, 3)}, {round(lngLat.lat, 3)}
-          </li>
-          <li>
-            <span>County</span>
-            {place || 'Unknown'}
-          </li>
-          <li>
-            <span>Elevation</span>
-            [20ft]
-          </li>
-        </ul>
+      <div className='fl w-40-ns pl3-ns'>
+        <div className='mb3'>
+          <span className='f6 mb1 black-40 db'>Title of address</span>
+          <span className='f4'>{address || 'Unknown location'}{postcode && `, ${postcode}`}</span>
+        </div>
+        <div className='mb3'>
+          <span className='f6 mb1 black-40 db'>Location</span>
+          <span>{round(lngLat.lng, 3)}, {round(lngLat.lat, 3)}</span>
+        </div>
+        <div className='mb3'>
+          <span className='f6 mb1 black-40 db'>County</span>
+          <span>{place || 'Unknown'}</span>
+        </div>
+        <div className='mb3'>
+          <span className='f6 mb1 black-40 db'>Elevation</span>
+          <span>[20ft]</span>
+        </div>
       </div>
     </div>
   )

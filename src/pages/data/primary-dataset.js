@@ -8,15 +8,17 @@ const PrimaryDataset = ({ dataset, lngLat }) => {
   const { name, provider, description, url } = dataset
 
   return (
-    <article>
-      <div>
-        <h1>{name}</h1>
-        <p>{provider}</p>
-        <p>{description}</p>
-        <p><a href={url} target='_blank'>Find out more</a></p>
+    <article className='cf'>
+      <div className='fl w-40-ns'>
+        <h1 className='f6 black-40 ttu tracked'>{name}</h1>
+        <p className='f6 black-40 ttu tracked'>{provider}</p>
+        <p className='lh-copy'>{description}</p>
+        <p className='mb4'>
+          <a href={url} target='_blank' className='green'>Find out more</a>
+        </p>
         <LayerKey dataset={dataset} />
       </div>
-      <div>
+      <div className='fl w-60-ns pl3'>
         <Map lngLat={lngLat} zoom={14} />
       </div>
     </article>

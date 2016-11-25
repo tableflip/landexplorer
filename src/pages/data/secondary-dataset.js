@@ -7,12 +7,12 @@ const SecondaryDataset = ({ dataset }) => {
 
   return (
     <article>
-      <div>
-        <h1>{name}</h1>
-        <p>{provider}</p>
-        <p>{description}</p>
-        <p><a href={url} target='_blank'>Find out more</a></p>
-      </div>
+      <h1 className='f6 black-40 ttu tracked'>{name}</h1>
+      <p className='f6 black-40 ttu tracked'>{provider}</p>
+      <p className='lh-copy'>{description}</p>
+      <p>
+        <a href={url} target='_blank' className='green'>Find out more</a>
+      </p>
     </article>
   )
 }

@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { Link } from 'react-router'
+import chunk from 'lodash.chunk'
 import Navbar from '../home/navbar'
 import lngLatFromQuery from '../../lib/lngLatFromQuery'
 import slugify from '../../lib/slugify'
@@ -58,11 +59,26 @@ export default class Data extends Component {
 
     return (
       <Layout>
-        <CategoryIntro category={category} lngLat={lngLat} placeData={placeData} />
-        <PrimaryDataset dataset={datasets[0]} lngLat={lngLat} />
-        {datasets.slice(1).map((dataset) => (
-          <SecondaryDataset dataset={dataset} />
-        ))}
+        <div className='pb4 mb4 bb b--black-20'>
+          <CategoryIntro category={category} lngLat={lngLat} placeData={placeData} />
+        </div>
+        <div className='pb4 mb2 bb b--black-20'>
+          <PrimaryDataset dataset={datasets[0]} lngLat={lngLat} />
+        </div>
+        <div className='dt-ns mb4'>
+          {chunk(datasets.slice(1), 3).map((chunk, i) => (
+            <div className='dtr-ns'>
+              {chunk.map((dataset, i) => {
+                const ph = ['pr3-ns', 'ph1-ns', 'pl3-ns']
+                return (
+                  <div className={`dtc-ns pv4 ${ph[i]} bb b--black-20 w-third-ns`}>
+                    <SecondaryDataset dataset={dataset} />
+                  </div>
+                )
+              })}
+            </div>
+          ))}
+        </div>
       </Layout>
     )
   }
@@ -72,7 +88,9 @@ const Layout = ({ children }) => (
   <div className='black-60 helvetica'>
     <Navbar />
     <div className='fl w-100 bg-near-white pt4' style={{marginTop: '53px'}}>
-      {children}
+      <div className='mw8 center ph3'>
+        {children}
+      </div>
     </div>
   </div>
 )
