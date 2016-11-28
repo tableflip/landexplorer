@@ -18,7 +18,7 @@ const PrimaryDataset = ({ dataset, lngLat }) => {
         <LayerKey dataset={dataset} />
       </div>
       <div className='fl w-60-ns pl3'>
-        <Map datasets={selectedLayers} selectedLayers={selectedLayers} lngLat={lngLat} zoom={10} minZoom={8} />
+        <Map datasets={selectedLayers} selectedLayers={selectedLayers} lngLat={lngLat} zoom={11} minZoom={8} />
       </div>
     </article>
   )
