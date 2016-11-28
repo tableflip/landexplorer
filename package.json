@@ -23,7 +23,7 @@
     "watch:js": "watchify src/index.js -o dist/bundle.js",
     "watch:html": "nodemon --quiet --exec 'npm run build:html' --watch src/index.html",
     "watch:svg": "nodemon --quiet --exec 'npm run build:svg' --watch src/svg --ext svg",
-    "serve": "browser-sync start --port 3000 --no-open --server 'dist' --files 'dist'",
+    "serve": "node dev.js",
     "deploy:next": "npm run build && surge -p ./dist -d sharedassets.tableflip.io",
     "clean": "rm -rf dist/*"
   },

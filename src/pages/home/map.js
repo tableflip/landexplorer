@@ -74,7 +74,6 @@ export default class extends React.Component {
     const { datasets } = this.props
     // only use layers that have a source prop
     const sources = datasets.filter((d) => !!d.source)
-    console.log('addSources', sources)
     map.on('load', () => {
       sources.forEach((l) => map.addSource(l.id, l.source))
       cb()
