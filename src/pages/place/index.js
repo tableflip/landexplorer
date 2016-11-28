@@ -26,6 +26,7 @@ export default class extends React.Component {
   componentWillReceiveProps (nextProps) {
     const lngLat = lngLatFromQuery(nextProps.location.query)
     this.lookupPlaceInfo(lngLat)
+    this.queryRenderedFeatures(lngLat)
     this.setState({lngLat})
   }
 
@@ -45,10 +46,17 @@ export default class extends React.Component {
       .catch(function (err) { return console.error(err) })
   }
 
-  onMapReady = (map) => {
-    const { lngLat } = this.state
+  queryRenderedFeatures (lngLat) {
+    const { map } = this
+    if (!map) return
     const features = map.queryRenderedFeatures(map.project(lngLat))
     this.setState({features})
+  }
+
+  onMapReady = (map) => {
+    this.map = map
+    const { lngLat } = this.state
+    this.queryRenderedFeatures(lngLat)
   }
 
   render () {
