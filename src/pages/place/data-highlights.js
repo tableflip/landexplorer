@@ -14,7 +14,7 @@ export default class extends React.Component {
         {datasetsWithMapLayers.map((datum) => {
           const { category, datasets } = datum
           return (
-            <div className='pv4 mb2 bb b--black-20' key={category}>
+            <div className='pl3 pv4 mb2 bb b--black-20' key={category}>
               <div className='w-two-thirds dib'>
                 <lable className='f6 black-40 ttu tracked'>{category}</lable>
                 <div className='pt2 pb4 pr4 f6 lh-copy'>{datasets[0].description}</div>
