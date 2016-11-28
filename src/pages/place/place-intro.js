@@ -5,6 +5,7 @@ import Icon from './icon'
 
 export default ({placeData, wikiEntry, lngLat, features}) => {
   const { address, postcode, place } = placeData
+  const { landcover, landuse, landuse_overlay, contour } = filterFeatures(features)
   return (
     <section className='mh3 bb b--black-20 pb3'>
       <div className='pv2' style={{minHeight: '4rem'}}>
@@ -27,7 +28,7 @@ export default ({placeData, wikiEntry, lngLat, features}) => {
         <div className='dtc'>
           <span>
             <label className='black-40'>Elevation</label>
-            <div className='pt1'>57.7m 87ft</div>
+            <div className='pt1'>{contour[0] ? `${contour[0]}m` : <ThreeBounce color='lightgray' size={12} />}</div>
           </span>
         </div>
       </div>
@@ -46,11 +47,11 @@ export default ({placeData, wikiEntry, lngLat, features}) => {
           <div className='dtc'>
             <label className='db f6 black-40'>Land use</label>
             <div className='dt dt--fixed w-100 pt2'>
-              {['Pines', 'Road'].map((feature) => {
+              {landuse.concat(landuse_overlay).map((feature) => {
                 return (
                   <div key={feature} className='dtc pr1'>
                     <Icon name={feature.toLowerCase()} className='mr1 v-mid' />
-                    <label className='v-mid'>{feature}</label>
+                    <label className='f6 v-mid'>{feature}</label>
                   </div>
                 )
               })}
@@ -59,11 +60,11 @@ export default ({placeData, wikiEntry, lngLat, features}) => {
           <div className='dtc'>
             <label className='db f6 black-40'>Land cover</label>
             <div className='dt dt--fixed w-100 pt2 v-mid'>
-              {['Wheat', 'Plant'].map((feature) => {
+              {landcover.map((feature) => {
                 return (
                   <div key={feature} className='dtc pr1'>
                     <Icon name={feature.toLowerCase()} className='mr1 v-mid' />
-                    <label className='v-mid'>{feature}</label>
+                    <label className='f6 v-mid'>{feature}</label>
                   </div>
                 )
               })}
@@ -73,4 +74,16 @@ export default ({placeData, wikiEntry, lngLat, features}) => {
       </div>
     </section>
   )
+}
+
+function filterFeatures (features) {
+  const sources = { landcover: [], landuse: [], landuse_overlay: [], contour: [] }
+  return features.filter((f) => {
+    return Object.keys(sources).some((source) => source === f.layer['source-layer'])
+  }).reduce((sources, f) => {
+    const source = f.layer['source-layer']
+    const label = f.properties.class || f.properties.ele
+    if (sources[source].indexOf(label) < 0) sources[source].push(label)
+    return sources
+  }, sources)
 }
