@@ -4,9 +4,8 @@ import LayerKey from './layer-key'
 
 const PrimaryDataset = ({ dataset, lngLat }) => {
   if (!dataset) return null
-
   const { name, provider, description, url } = dataset
-
+  const selectedLayers = [dataset]
   return (
     <article className='cf'>
       <div className='fl w-40-ns'>
@@ -19,7 +18,7 @@ const PrimaryDataset = ({ dataset, lngLat }) => {
         <LayerKey dataset={dataset} />
       </div>
       <div className='fl w-60-ns pl3'>
-        <Map lngLat={lngLat} zoom={14} />
+        <Map datasets={selectedLayers} selectedLayers={selectedLayers} lngLat={lngLat} zoom={10} minZoom={8} />
       </div>
     </article>
   )

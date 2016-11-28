@@ -10,7 +10,7 @@ export default ({placeData, wikiEntry, lngLat, features}) => {
     <section className='ph4 pb3 bb b--black-20 '>
       <div className='pv2' style={{minHeight: '4rem'}}>
         <label className='f6 black-40'>Title of address</label>
-        <div className='f4 mt1 black-40'>{address || 'Unknown location'} {postcode && `, ${postcode}`}</div>
+        <div className='f4 mt1 black-70'>{address || place || 'Unknown'}{postcode && `, ${postcode}`}</div>
       </div>
       <div className='dt dt--fixed w-100 pv2 f6'>
         <div className='dtc'>

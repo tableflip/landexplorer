@@ -24,7 +24,6 @@ export default class Data extends Component {
     super(props)
     const lngLat = lngLatFromQuery(props.location.query)
     const category = categoryFromSlug(props.params.category)
-
     this.state = { lngLat, category }
 
     getPlaceData(lngLat)

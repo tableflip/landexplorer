@@ -1,5 +1,5 @@
 import React from 'react'
-import { datasets, findDatasetById } from '../../lib/datasets'
+import { datasets } from '../../lib/datasets'
 import PlaceIntro from './place-intro'
 import getWikiEntry from '../../lib/getWikiEntry'
 import getPlaceData from '../../lib/getPlaceData'
@@ -11,14 +11,12 @@ import lngLatFromQuery from '../../lib/lngLatFromQuery'
 export default class extends React.Component {
   constructor (props) {
     super(props)
-    const selectedLayers = findDatasetById('Agricultural Land Classification')
-    console.log(selectedLayers, datasets)
     this.state = {
       lngLat: lngLatFromQuery(props.location.query),
       placeData: {},
       wikiEntry: '',
       datasets: datasets,
-      selectedLayers: selectedLayers,
+      selectedLayers: [],
       features: []
     }
   }
@@ -61,13 +59,13 @@ export default class extends React.Component {
 
   render () {
     const { onMapReady } = this
-    const { wikiEntry, placeData, lngLat, datasets, features } = this.state
+    const { wikiEntry, placeData, lngLat, datasets, features, selectedLayers } = this.state
     return (
       <div className='black-60 helvetica'>
         <Navbar />
         <div className='fl w-100 w-50-ns bg-near-white pt4' style={{marginTop: '53px'}}>
           <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} features={features} />
-          <DataHighlights datasets={datasets} lngLat={lngLat} features={features} />
+          <DataHighlights selectedLayers={selectedLayers} datasets={datasets} lngLat={lngLat} features={features} />
         </div>
         <div className='fixed top-0 right-0 w-100 w-50-ns'>
           <Map lngLat={lngLat} zoom={13} minZoom={8} datasets={datasets} selectedLayers={this.state.selectedLayers} onMapReady={onMapReady} />

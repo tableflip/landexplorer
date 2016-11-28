@@ -15,20 +15,20 @@ export default class extends React.Component {
           const { category, datasets } = datum
           return (
             <div className='pl3 pv4 mb2 bb b--black-20' key={category}>
-              <div className='w-two-thirds dib'>
+              <div className='w-two-thirds dib pr4'>
                 <lable className='f6 black-40 ttu tracked'>{category}</lable>
-                <div className='pt2 pb4 pr4 f6 lh-copy'>{datasets[0].description}</div>
-                <button className='mv2 pv2 ph4 br2 ba b--white bg-white f6 tc black-40'>View on Map</button>
-                <Link to={{ pathname: `/data/${slugify(category)}`, query: lngLat }} className='mv2 ml3 pv2 ph4 br2 ba b--light-green bg-light-green f6 tc black-40'>Find out more</Link>
+                <div className='pt2 pb4 f6 lh-copy'>{datasets[0].description}</div>
               </div>
               <div className='w-third dib v-top'>
-                <div className='f6 black-40 mb2 ttu tracked'>Highlights</div>
-                <div className='f6'>{category}</div>
-                <div className='mv1 b f3 green'>5 Data here</div>
+                <div className='f6 b'>{datasets[0].name}</div>
+                <div className='mv1 b f3 green'>2 Good</div>
                 <div className='f6'>
                   <small>
-                    Based on <a className='dib black-40' href={`${datasets[0].url}`} target='_Blank'>{datasets[0].provider}</a>
+                    Source <a className='dib black-40' href={`${datasets[0].url}`} target='_Blank'>{datasets[0].provider}</a>
                   </small>
+                </div>
+                <div className='tl pt4'>
+                  <Link to={{ pathname: `/data/${slugify(category)}`, query: lngLat }} className='pv2 ph4 br2 ba b--light-green bg-light-green f6 tc black-40 no-underline'>Find out more</Link>
                 </div>
               </div>
             </div>

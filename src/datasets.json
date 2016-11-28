@@ -6,7 +6,7 @@
 	    "name": "Agricultural Land Classification",
       "provider": "Natural England",
       "id": "Agricultural Land Classification",
-      "description": "Provisional Agricultural Land Classification Grade. Agricultural land classified into five grades. Grade one is best quality and grade five is poorest quality. A number of consistent criteria used for assessment which include climate (temperature, rainfall, aspect, exposure, frost risk), site (gradient, micro-relief, flood risk) and soil (depth, structure, texture, chemicals, stoniness).",
+      "description": "Agricultural land classified into five grades. Grade one is best quality and grade five is poorest quality. A number of consistent criteria used for assessment which include climate (temperature, rainfall, aspect, exposure, frost risk), site (gradient, micro-relief, flood risk) and soil (depth, structure, texture, chemicals, stoniness).",
       "url": "https://data.gov.uk/dataset/provisional-agricultural-land-classification-alc",
       "source": {
         "type": "vector",
