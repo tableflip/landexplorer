@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import uri from 'encodeuricomponent-tag'
+import slugify from '../../lib/slugify'
 import datasets from '../../datasets'
 
 const datasetsWithMapLayers = getDatasetsWithMapLayers(datasets)
@@ -19,7 +19,7 @@ export default class extends React.Component {
                 <lable className='f6 black-40 ttu tracked'>{category}</lable>
                 <div className='pt2 pb4 pr4 f6 lh-copy'>{datasets[0].description}</div>
                 <button className='mv2 pv2 ph4 br2 ba b--white bg-white f6 tc black-40'>View on Map</button>
-                <Link to={{ pathname: uri`/data/${category}`, query: lngLat }} className='mv2 ml3 pv2 ph4 br2 ba b--light-green bg-light-green f6 tc black-40'>Find out more</Link>
+                <Link to={{ pathname: `/data/${slugify(category)}`, query: lngLat }} className='mv2 ml3 pv2 ph4 br2 ba b--light-green bg-light-green f6 tc black-40'>Find out more</Link>
               </div>
               <div className='w-third dib v-top'>
                 <div className='f6 black-40 mb2 ttu tracked'>Highlights</div>
