@@ -27,10 +27,6 @@ const CategoryIntro = ({ category, lngLat, placeData }) => {
           <span className='f6 mb1 black-40 db'>County</span>
           <span>{place || 'Unknown'}</span>
         </div>
-        <div className='mb3'>
-          <span className='f6 mb1 black-40 db'>Elevation</span>
-          <span>[20ft]</span>
-        </div>
       </div>
     </div>
   )

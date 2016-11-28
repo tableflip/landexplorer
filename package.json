@@ -14,7 +14,7 @@
     "lint:fix": "standard --fix",
     "build": "npm-run-all --parallel build:*",
     "build:js": "browserify src/index.js -o dist/bundle.js",
-    "build:html": "rsync -a src/index.html dist/index.html",
+    "build:html": "rsync -a src/index.html dist/index.html && cp dist/index.html dist/200.html",
     "build:css": "rsync -a node_modules/tachyons/css/tachyons.min.css ./dist",
     "build:mapbox-gl": "rsync -a node_modules/mapbox-gl/dist/* ./dist/mapbox-gl",
     "build:mapbox-gl-geocoder": "rsync -a node_modules/mapbox-gl-geocoder/dist/* ./dist/mapbox-gl-geocoder",
