@@ -1,5 +1,5 @@
 [{
-  "category": "Soil quality",
+  "category": "Potential for agriculture",
   "description": "Soil quality (e.g. compaction, chemical analysis, agricultural grade). \nPossible uses include:\n- identifying suitable land for food growing, forestry, horticulture etc.\n- understanding how to make the most out of a site",
   "datasets": [
     {
@@ -522,7 +522,7 @@
   ]
 },
 {
-  "category": "Flooding",
+  "category": "Flood risk",
   "description": "Potential uses include:\n- Finding suitable sites\n- Planning development of sites",
   "datasets": [
     {
@@ -569,7 +569,7 @@
   ]
 },
 {
-  "category": "Planning process",
+  "category": "Planning Restrictions",
   "description": "Designated areas, current developments, historical planning decisions, guidance on building. \nPossible uses include: \n- Identifying areas where certain developments are likely to be rejected (e.g. living on the land, building polytunnels, building visitor or education centres)\n- Identifying competition for land\n- Identifying planning authority cultures towards community projects",
   "datasets": [
     {

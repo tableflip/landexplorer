@@ -55,17 +55,20 @@ export default class Data extends Component {
     }
 
     const datasets = category.datasets || []
-
+    const primaries = datasets.filter((d) => !!d.source)
+    const others = datasets.filter((d) => !d.source)
     return (
       <Layout>
         <div className='pb4 mb4 bb b--black-20'>
           <CategoryIntro category={category} lngLat={lngLat} placeData={placeData} />
         </div>
-        <div className='pb4 mb2 bb b--black-20'>
-          <PrimaryDataset dataset={datasets[0]} lngLat={lngLat} />
-        </div>
+        { primaries.map((dataset) => (
+          <div key={dataset.id} className='pb4 mb2 bb b--black-20'>
+            <PrimaryDataset dataset={dataset} lngLat={lngLat} />
+          </div>
+        ))}
         <div className='dt-ns mb4'>
-          {chunk(datasets.slice(1), 3).map((chunk, i) => (
+          {chunk(others.slice(1), 3).map((chunk, i) => (
             <div className='dtr-ns'>
               {chunk.map((dataset, i) => {
                 const ph = ['pr3-ns', 'ph1-ns', 'pl3-ns']
