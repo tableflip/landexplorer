@@ -2,9 +2,7 @@ import React, { PropTypes } from 'react'
 import Map from '../home/map'
 import LayerKey from './layer-key'
 
-const PrimaryDataset = ({ category, lngLat }) => {
-  if (!category) return null
-  const dataset = category.datasets[0]
+const PrimaryDataset = ({ dataset, lngLat }) => {
   if (!dataset) return null
   const { name, provider, description, url } = dataset
   const selectedLayers = [dataset]
@@ -20,7 +18,7 @@ const PrimaryDataset = ({ category, lngLat }) => {
         <LayerKey dataset={dataset} />
       </div>
       <div className='fl w-60-ns pl3'>
-        <Map datasets={category} selectedLayers={selectedLayers} lngLat={lngLat} zoom={11} minZoom={8} />
+        <Map datasets={selectedLayers} selectedLayers={selectedLayers} lngLat={lngLat} zoom={11} minZoom={8} />
       </div>
     </article>
   )

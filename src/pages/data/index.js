@@ -62,7 +62,7 @@ export default class Data extends Component {
           <CategoryIntro category={category} lngLat={lngLat} placeData={placeData} />
         </div>
         <div className='pb4 mb2 bb b--black-20'>
-          <PrimaryDataset category={category} lngLat={lngLat} />
+          <PrimaryDataset dataset={datasets[0]} lngLat={lngLat} />
         </div>
         <div className='dt-ns mb4'>
           {chunk(datasets.slice(1), 3).map((chunk, i) => (

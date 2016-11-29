@@ -14,14 +14,12 @@ const labelLookup = {
 }
 
 export default function ({ lngLat, features }) {
-  console.log('features', features.map((f) => f.layer.id))
   return (
     <section className='ph3'>
       {datasetsWithMapLayers.map((datum) => {
         const { category, datasets } = datum
         const dataset = datasets[0]
         const interstingFeature = features.find((f) => f.layer.source === dataset.id)
-        console.log('interstingFeatures', dataset.id, interstingFeature)
         const lookup = labelLookup[dataset.id]
         const interestingValue = lookup && lookup(interstingFeature)
         return (

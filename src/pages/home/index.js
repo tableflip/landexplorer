@@ -25,7 +25,6 @@ export default class extends React.Component {
 
   render () {
     const { datasets, selectedLayers } = this.state
-    console.log('datasets', datasets)
     return (
       <div className='dark-gray helvetica'>
         <Navbar />
@@ -33,7 +32,7 @@ export default class extends React.Component {
           <InfoPanel />
         </div>
         <div className='fixed top-0 right-0 w-100 w-50-ns'>
-          <Map datasets={this.state.datasets} selectedLayers={this.state.selectedLayers} />
+          <Map datasets={datasets} selectedLayers={selectedLayers} />
         </div>
       </div>
     )

@@ -4,7 +4,7 @@ import ReactMapboxGl from './mapbox-gl-map'
 import Geocoder from 'mapbox-gl-geocoder'
 import MapboxGl from 'mapbox-gl'
 import uniq from 'lodash.uniq'
-import flatMap from 'lodash.flatmap'
+import cloneDeep from 'lodash.clonedeep'
 import config from '../../config'
 import round from '../../lib/round'
 import Icon from '../place/icon'
@@ -70,23 +70,19 @@ export default class extends React.Component {
 
   addSources = (map, selectedLayers) => {
     const { datasets } = this.props
-    const unrwap = flatMap(datasets.map((c) => c.datasets))
-        // only use layers that have a source prop
-    const sources = unrwap.filter((d) => !!d.source)
-    console.log('addSources', sources)
+    // only use layers that have a source prop
+    const sources = datasets.filter((d) => !!d.source)
+    const selectedIds = selectedLayers.map((s) => s.id)
     sources.forEach((s) => {
       map.addSource(s.id, s.source)
       if (!s.layers) return console.log('no layers on source', s.id)
       s.layers.forEach((l) => {
-        l.layout.visibility = 'visible'
-        l.paint['fill-opacity'] = 0
-        if (selectedLayers.some((selected) => selected.id === l.id)) {
-          // set visibility if  layer selected.
-          l.paint['fill-opacity'] = 0.4
-          console.log(`${l.id} should be visible`)
+        const layer = cloneDeep(l)
+        layer.layout.visibility = 'visible'
+        if (selectedIds.indexOf(layer.source) === -1) {
+          layer.paint['fill-opacity'] = 0
         }
-        console.log(`Adding layer ${l.id}: ${l.layout.visibility}`)
-        this.map.addLayer(l)
+        this.map.addLayer(layer)
       })
     })
   }

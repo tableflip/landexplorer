@@ -15,8 +15,8 @@ export default class extends React.Component {
       lngLat: lngLatFromQuery(props.location.query),
       placeData: {},
       wikiEntry: '',
-      datasets: highlights,
-      selectedLayers: findDatasetById(['Historic Flood Map', 'Sites of Specific Scientific Interest']),
+      datasets: highlights.map((c) => c.datasets[0]),
+      selectedLayers: findDatasetById(['Historic Flood Map']),
       features: []
     }
   }
@@ -65,10 +65,10 @@ export default class extends React.Component {
         <Navbar />
         <div className='fl w-100 w-50-ns bg-near-white pt4' style={{marginTop: '53px'}}>
           <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} features={features} />
-          <DataHighlights selectedLayers={selectedLayers} datasets={datasets} lngLat={lngLat} features={features} />
+          <DataHighlights selectedLayers={selectedLayers} datasets={highlights} lngLat={lngLat} features={features} />
         </div>
         <div className='fixed top-0 right-0 w-100 w-50-ns'>
-          <Map lngLat={lngLat} zoom={13.5} minZoom={8} datasets={datasets} selectedLayers={this.state.selectedLayers} onMapReady={onMapReady} />
+          <Map lngLat={lngLat} zoom={13.5} minZoom={8} datasets={datasets} selectedLayers={selectedLayers} onMapReady={onMapReady} />
         </div>
       </div>
     )
