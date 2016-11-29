@@ -26,7 +26,7 @@
                 "Grade 1"
             ],
             "layout": {
-                "visibility": "visible"
+                "visibility": "none"
             },
             "paint": {
                 "fill-color": "#3980D0", "fill-opacity": 0.4
@@ -45,7 +45,7 @@
                 "Grade 2"
             ],
             "layout": {
-                "visibility": "visible"
+                "visibility": "none"
             },
             "paint": {
                 "fill-color": "#10C3EF", "fill-opacity": 0.4
@@ -64,7 +64,7 @@
                 "Grade 3"
             ],
             "layout": {
-                "visibility": "visible"
+                "visibility": "none"
             },
             "paint": {
                 "fill-color": "#0FB08F", "fill-opacity": 0.4
@@ -83,7 +83,7 @@
                 "Grade 4"
             ],
             "layout": {
-                "visibility": "visible"
+                "visibility": "none"
             },
             "paint": {
                 "fill-color": "#F9F90D", "fill-opacity": 0.4
@@ -102,7 +102,7 @@
                 "Grade 5"
             ],
             "layout": {
-                "visibility": "visible"
+                "visibility": "none"
             },
             "paint": {
                 "fill-color": "#C9748E", "fill-opacity": 0.4
@@ -121,7 +121,7 @@
                 "Exclusion"
             ],
             "layout": {
-                "visibility": "visible"
+                "visibility": "none"
             },
             "paint": {
                 "fill-color": "#b2b2b2", "fill-opacity": 0.1
@@ -140,7 +140,7 @@
                 "Non Agricultural"
             ],
             "layout": {
-                "visibility": "visible"
+                "visibility": "none"
             },
             "paint": {
                 "fill-color": "#b2b2b2", "fill-opacity": 0.1
@@ -159,7 +159,7 @@
                 "Urban"
             ],
             "layout": {
-                "visibility": "visible"
+                "visibility": "none"
             },
             "paint": {
                 "fill-color": "#b2b2b2", "fill-opacity": 0.4
@@ -184,14 +184,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Basin Bog"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#b2b2b2", "fill-opacity": 0.4
@@ -203,14 +203,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Brown Earth"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#895c44", "fill-opacity": 0.4
@@ -222,14 +222,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Calcareous Soil"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#4de600", "fill-opacity": 0.4
@@ -241,14 +241,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Eroded Bog"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#9c9c9c", "fill-opacity": 0.4
@@ -260,14 +260,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Flat or Raised Bogs"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#686868", "fill-opacity": 0.4
@@ -279,14 +279,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Flushed Blanket Bog"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#333333", "fill-opacity": 0.4
@@ -298,14 +298,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Ground-water Gley"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#014ea6", "fill-opacity": 0.4
@@ -317,14 +317,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Ironpan Soil"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#fc5601", "fill-opacity": 0.4
@@ -336,14 +336,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Littoral Soil"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#fefe67", "fill-opacity": 0.4
@@ -355,14 +355,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Man-made Soil"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#ab00e5", "fill-opacity": 0.4
@@ -374,14 +374,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Peaty Surface-water Gley"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#0085a8", "fill-opacity": 0.4
@@ -393,14 +393,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Podzol"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#e60002", "fill-opacity": 0.4
@@ -412,14 +412,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Skeletal Soil"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#e7e600", "fill-opacity": 0.4
@@ -431,14 +431,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Surface-water Gley"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#00a8e7", "fill-opacity": 0.4
@@ -450,14 +450,14 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Unflushed Blanket Bog"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#010101", "fill-opacity": 0.4
@@ -469,20 +469,20 @@
               "source": "NATIONAL_FOREST_ESTATE_SOIL",
               "source-layer": "NATIONAL_FOREST_ESTATE_SOIL_G-9fn9pb",
               "minzoom": 8,
-              "interactive": true,
+
               "filter": [
                   "==",
                   "S1_Group",
                   "Valley Complex"
               ],
               "layout": {
-                  "visibility": "visible"
+                  "visibility": "none"
               },
               "paint": {
                   "fill-color": "#8d8ead", "fill-opacity": 0.4
               }
           }
-      ],
+      ]
     },
     {
       "name": "Long term monitoring data",
@@ -535,14 +535,22 @@
         "type": "vector",
         "url": "mapbox://tableflip.4mqghkn4"
       },
-      "style" :{
-        "type": "fill",
-        "source": "Historic Flood Map",
-        "source-layer": "Historic_Flood_Map-2j3hj8",
-        "paint": {
-          "fill-color": "rgb(117,207,240)", "fill-opacity": 0.4
+      "layers": [
+        {
+          "id": "Historic Flood Map",
+          "type": "fill",
+          "source": "Historic Flood Map",
+          "source-layer": "Historic_Flood_Map-2j3hj8",
+          "minzoom": 8,
+
+          "layout": {
+              "visibility": "visible"
+          },
+          "paint": {
+            "fill-color": "rgb(117,207,240)", "fill-opacity": 0.4
+          }
         }
-      },
+      ]
     },
     {
       "id": "102",
@@ -574,14 +582,20 @@
         "type": "vector",
         "url": "mapbox://tableflip.bu0wectl"
       },
-      "style" :{
+      "layers" : [{
+        "id": "Sites of Specific Scientific Interest",
         "type": "fill",
         "source": "Sites of Specific Scientific Interest",
         "source-layer": "SSSI_England-8hdj4d",
+        "minzoom": 8,
+
+        "layout": {
+            "visibility": "none"
+        },
         "paint": {
           "fill-color": "hsl(1,30%,40%)", "fill-opacity": 0.4
         }
-      },
+      }],
     },
     {
       "id": "Special Protection Areas",
@@ -593,14 +607,20 @@
         "type": "vector",
         "url": "mapbox://tableflip.0nonip5u"
       },
-      "style" :{
+      "layers" : [{
+        "id": "Special Protection Areas",
         "type": "fill",
         "source": "Special Protection Areas",
         "source-layer": "Special_Protection_Areas_Engl-a0660y",
+        "minzoom": 8,
+
+        "layout": {
+            "visibility": "none"
+        },
         "paint": {
           "fill-color": "hsl(51,30%,40%)", "fill-opacity": 0.4
         }
-      },
+      }],
     },
     {
       "id": "Special Areas of Conservation",
@@ -612,14 +632,20 @@
         "type": "vector",
         "url": "mapbox://tableflip.1cqp36zp"
       },
-      "style" :{
+      "layers": [{
+        "id": "Special Areas of Conservation",
         "type": "fill",
         "source": "Special Areas of Conservation",
         "source-layer": "Special_Areas_of_Conservation-ajyywf",
+        "minzoom": 8,
+
+        "layout": {
+            "visibility": "none"
+        },
         "paint": {
           "fill-color": "hsl(101,30%,40%)", "fill-opacity": 0.4
         }
-      },
+      }]
     }
   ]
 },
@@ -638,17 +664,22 @@
         "type": "vector",
         "url": "mapbox://tableflip.ax6ghaey"
       },
-      "style" :{
+      "layers" : [{
+        "id": "INSPIRE Index Polygons",
         "type": "fill",
         "source": "INSPIRE Index Polygons",
         "source-layer": "inspirelandregistryoxforshire",
+        "minzoom": 8,
+        "layout": {
+            "visibility": "none"
+        },
         "paint": {
           "fill-color": "#D6E739",
           "fill-antialias": true,
           "fill-outline-color": "#A4B601",
           "fill-opacity": 0.4
         }
-      },
+      }],
     },
     {
       "name": "Rural Land Register",

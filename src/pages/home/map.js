@@ -4,7 +4,7 @@ import ReactMapboxGl from './mapbox-gl-map'
 import Geocoder from 'mapbox-gl-geocoder'
 import MapboxGl from 'mapbox-gl'
 import uniq from 'lodash.uniq'
-import difference from 'lodash.difference'
+import flatMap from 'lodash.flatmap'
 import config from '../../config'
 import round from '../../lib/round'
 import Icon from '../place/icon'
@@ -62,43 +62,33 @@ export default class extends React.Component {
       this.setState({showHover, showClick, clickData})
     })
 
-    this.addSources(map, () => {
-      if (selectedLayers && selectedLayers.length) {
-        this.updateLayers([], selectedLayers)
-      }
-      if (onMapReady) onMapReady(map)
-    })
+    this.addSources(map, selectedLayers)
+    if (onMapReady) {
+      setTimeout(() => onMapReady(map), 3000)
+    }
   }
 
-  addSources = (map, cb) => {
+  addSources = (map, selectedLayers) => {
     const { datasets } = this.props
-    // only use layers that have a source prop
-    const sources = datasets.filter((d) => !!d.source)
-    map.on('load', () => {
-      sources.forEach((l) => map.addSource(l.id, l.source))
-      cb()
+    const unrwap = flatMap(datasets.map((c) => c.datasets))
+        // only use layers that have a source prop
+    const sources = unrwap.filter((d) => !!d.source)
+    console.log('addSources', sources)
+    sources.forEach((s) => {
+      map.addSource(s.id, s.source)
+      if (!s.layers) return console.log('no layers on source', s.id)
+      s.layers.forEach((l) => {
+        l.layout.visibility = 'visible'
+        l.paint['fill-opacity'] = 0
+        if (selectedLayers.some((selected) => selected.id === l.id)) {
+          // set visibility if  layer selected.
+          l.paint['fill-opacity'] = 0.4
+          console.log(`${l.id} should be visible`)
+        }
+        console.log(`Adding layer ${l.id}: ${l.layout.visibility}`)
+        this.map.addLayer(l)
+      })
     })
-  }
-
-  addLayer = (l) => {
-    // Our custom layer for NATIONAL_FOREST_ESTATE_SOIL is made up of many sub layers, 1 per soil group
-    if (l.layers) return l.layers.forEach((l) => this.map.addLayer(l))
-    this.map.addLayer(Object.assign(
-      {'id': l.id, 'source': l.id},
-      l.style
-    ))
-  }
-
-  updateLayers = (layers, nextLayers) => {
-    const toAdd = difference(nextLayers, layers)
-    const toRemove = difference(layers, nextLayers)
-    toAdd.forEach(this.addLayer.bind(this))
-    toRemove.forEach(this.removeLayer.bind(this))
-  }
-
-  removeLayer = (l) => {
-    if (l.layers) return l.layers.forEach((l) => this.map.removeLayer(l.id))
-    this.map.removeLayer(l.id)
   }
 
   updateViewport = (viewport) => {
@@ -122,12 +112,6 @@ export default class extends React.Component {
     const features = map.queryRenderedFeatures(point, {layers})
     const res = features.map((f) => f.properties.class).filter((f) => !!f)
     return uniq(res.sort())
-  }
-
-  componentWillReceiveProps (nextProps) {
-    const layers = this.props.selectedLayers
-    const nextLayers = nextProps.selectedLayers
-    this.updateLayers(layers, nextLayers)
   }
 
   render () {

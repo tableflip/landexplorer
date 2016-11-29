@@ -1,12 +1,12 @@
 import React from 'react'
 import Map from './map'
-import datasets from '../../datasets'
+import { highlights } from '../../lib/datasets'
 import InfoPanel from './info-panel'
 import Navbar from './navbar'
 
 export default class extends React.Component {
   state = {
-    datasets: datasets,
+    datasets: highlights,
     selectedLayers: []
   }
 
@@ -24,6 +24,8 @@ export default class extends React.Component {
   }
 
   render () {
+    const { datasets, selectedLayers } = this.state
+    console.log('datasets', datasets)
     return (
       <div className='dark-gray helvetica'>
         <Navbar />

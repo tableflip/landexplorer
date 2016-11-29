@@ -1,5 +1,5 @@
 import React from 'react'
-import { datasets } from '../../lib/datasets'
+import { highlights, findDatasetById } from '../../lib/datasets'
 import PlaceIntro from './place-intro'
 import getWikiEntry from '../../lib/getWikiEntry'
 import getPlaceData from '../../lib/getPlaceData'
@@ -15,8 +15,8 @@ export default class extends React.Component {
       lngLat: lngLatFromQuery(props.location.query),
       placeData: {},
       wikiEntry: '',
-      datasets: datasets,
-      selectedLayers: [],
+      datasets: highlights,
+      selectedLayers: findDatasetById(['Historic Flood Map', 'Sites of Specific Scientific Interest']),
       features: []
     }
   }
@@ -68,7 +68,7 @@ export default class extends React.Component {
           <DataHighlights selectedLayers={selectedLayers} datasets={datasets} lngLat={lngLat} features={features} />
         </div>
         <div className='fixed top-0 right-0 w-100 w-50-ns'>
-          <Map lngLat={lngLat} zoom={11} minZoom={8} datasets={datasets} selectedLayers={this.state.selectedLayers} onMapReady={onMapReady} />
+          <Map lngLat={lngLat} zoom={13.5} minZoom={8} datasets={datasets} selectedLayers={this.state.selectedLayers} onMapReady={onMapReady} />
         </div>
       </div>
     )
