@@ -2,3 +2,6 @@
 @import 'mapbox-gl/dist/mapbox-gl.css';
 @import 'tachyons';
 
+a {
+  color: #19a974;
+}

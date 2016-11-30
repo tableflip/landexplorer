@@ -26,7 +26,7 @@ export default function ({ lngLat, features }) {
           <div className='pl3 pv4 mb2 bb b--black-20' key={category}>
             <div className='w-two-thirds dib pr4'>
               <lable className='f6 black-40 ttu tracked'>{category}</lable>
-              <div className='pt2 pb4 f6 lh-copy'>{datasets[0].description}</div>
+              <div className='pt2 pb4 f6 lh-copy' dangerouslySetInnerHTML={{ __html: datasets[0].description }} />
             </div>
             <div className='w-third dib v-top'>
               <div className='f6 b'>{datasets[0].name}</div>

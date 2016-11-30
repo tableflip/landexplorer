@@ -11,7 +11,7 @@ const PrimaryDataset = ({ dataset, lngLat }) => {
       <div className='fl w-40-ns'>
         <h1 className='f6 black-40 ttu tracked'>{name}</h1>
         <p className='f6 black-40 ttu tracked'>{provider}</p>
-        <p className='lh-copy'>{description}</p>
+        <p className='lh-copy' dangerouslySetInnerHTML={{ __html: description }} />
         <p className='mb4'>
           <a href={url} target='_blank' className='green'>Find out more</a>
         </p>

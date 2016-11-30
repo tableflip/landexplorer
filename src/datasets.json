@@ -657,7 +657,7 @@
       "name": "INSPIRE Index Polygons",
       "provider": "Land Registry",
       "id": "INSPIRE Index Polygons",
-      "description": "This dataset enables you to see the boundaries of land ownership. There is a great guide on using this data in a blog by Anna Powell-Smith (see notes).",
+      "description": "The INSPIRE ID can be used to look up who owns land on the Land Registry's website (for a fee). Just copy and paste the INSPIRE ID for this area, and paste it into the search box on <a href='https://eservices.landregistry.gov.uk/www/wps/portal/!ut/p/b1/hc7LDoJADAXQb_EL2nkA43IQQaKI6KAwG4MvAlFkQTD69aI7NWp3Tc69LWhIQFdZW-RZU5yr7PjYtblmVHBCOB0JZlroG67HiDIYctaB9AfwyL_8ChLk60Up6uDaJJPboFXlLbo2pbwEKsCps8Vgp2a75Ty2pRNbm7wPi33V5fRbdehK9Jkdjj0WUUTzA7zeFvQPePz-BPhlJMJ0dD7tIe2Y9a1HLDnUp7gt5sPDQPZ6dx9vogE!/dl4/d5/L0lDU0lKSmdwcGlRb0tVUW9LVVEhL29Gb2dBRUlRaGpFQ1VJZ0FJQUl5RkFNaHdVaFM0SldsYTRvIS80RzNhRDJnanZ5aERVd3BNaFFqVW81Q2pHcHhBL1o3XzMyODQxMTQySDgzNjcwSTVGRzMxVDUzOFY0LzAvMzQxMDU3OTQ1ODc3L3NwZl9BY3Rpb25OYW1lL3NwZl9BY3Rpb25MaXN0ZW5lci9zcGZfc3RydXRzQWN0aW9uLyEyZkxySW5zcGlyZUlkSW5pdC5kbw!!/'>this website</a>",
       "notes": "http://anna.ps/blog/how-to-use-land-registry-data-to-explore-land-ownership-near-you",
       "url": "https://www.gov.uk/guidance/inspire-index-polygons-spatial-data",
       "source": {

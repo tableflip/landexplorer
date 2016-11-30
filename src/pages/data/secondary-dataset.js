@@ -9,7 +9,7 @@ const SecondaryDataset = ({ dataset }) => {
     <article>
       <h1 className='f6 black-40 ttu tracked'>{name}</h1>
       <p className='f6 black-40 ttu tracked'>{provider}</p>
-      <p className='lh-copy'>{description}</p>
+      <p className='lh-copy' dangerouslySetInnerHTML={{ __html: description }} />
       <p>
         <a href={url} target='_blank' className='green'>Find out more</a>
       </p>
