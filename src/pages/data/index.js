@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import { Link } from 'react-router'
 import chunk from 'lodash.chunk'
-import Navbar from '../home/navbar'
+import LogoLink from '../home/logo-link'
 import lngLatFromQuery from '../../lib/lngLatFromQuery'
 import slugify from '../../lib/slugify'
 import getPlaceData from '../../lib/getPlaceData'
@@ -88,9 +88,9 @@ export default class Data extends Component {
 
 const Layout = ({ children }) => (
   <div className='black-60 helvetica'>
-    <Navbar />
-    <div className='fl w-100 bg-near-white pt4' style={{marginTop: '53px'}}>
-      <div className='mw8 center ph3'>
+    <div className='fl w-100 bg-near-white'>
+      <LogoLink />
+      <div className='ph3'>
         {children}
       </div>
     </div>

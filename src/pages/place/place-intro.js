@@ -7,7 +7,7 @@ export default ({placeData, wikiEntry, lngLat, features}) => {
   const { address, postcode, place } = placeData
   const { landcover, landuse, landuse_overlay, contour } = filterFeatures(features)
   return (
-    <section className='ph4 pb3 bb b--black-20 '>
+    <section className='pa3 bb b--black-20 '>
       <div className='pv2' style={{minHeight: '4rem'}}>
         <label className='f6 black-40'>Title of address</label>
         <div className='f4 mt1 black-70'>{address || place || 'Unknown'}{postcode && `, ${postcode}`}</div>

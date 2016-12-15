@@ -5,3 +5,23 @@
 a {
   color: #19a974;
 }
+
+@media(min-width:1020px) {
+  .layout-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .content-column {
+    max-width: 100%;
+    width: 540px;
+    flex: none;
+    overflow-y: auto;
+  }
+
+  .map-column {
+    flex: auto;
+    height: 100%;
+  }
+}

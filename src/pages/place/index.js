@@ -4,7 +4,7 @@ import PlaceIntro from './place-intro'
 import getWikiEntry from '../../lib/getWikiEntry'
 import getPlaceData from '../../lib/getPlaceData'
 import Map from '../home/map'
-import Navbar from '../home/navbar'
+import LogoLink from '../home/logo-link'
 import DataHighlights from './data-highlights'
 import lngLatFromQuery from '../../lib/lngLatFromQuery'
 
@@ -61,14 +61,14 @@ export default class extends React.Component {
     const { onMapReady } = this
     const { wikiEntry, placeData, lngLat, datasets, features, selectedLayers } = this.state
     return (
-      <div className='black-60 helvetica'>
-        <Navbar />
-        <div className='fl w-100 w-50-ns bg-near-white pt4' style={{marginTop: '53px'}}>
+      <div className='black-60 helvetica layout-container'>
+        <div className='map-column'>
+          <Map lngLat={lngLat} zoom={13.5} minZoom={8} datasets={datasets} selectedLayers={selectedLayers} onMapReady={onMapReady} />
+        </div>
+        <div className='bg-near-white content-column'>
+          <LogoLink />
           <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} features={features} />
           <DataHighlights selectedLayers={selectedLayers} datasets={highlights} lngLat={lngLat} features={features} />
-        </div>
-        <div className='fixed top-0 right-0 w-100 w-50-ns'>
-          <Map lngLat={lngLat} zoom={13.5} minZoom={8} datasets={datasets} selectedLayers={selectedLayers} onMapReady={onMapReady} />
         </div>
       </div>
     )

@@ -116,11 +116,12 @@ export default class extends React.Component {
     const { hoverData, showHover, clickData, showClick } = this.state
     const { minZoom } = this.props
     return (
-      <div className='relative' style={{overflow: 'hidden', scroll: 'none', marginTop: '53px'}}>
+      <div className='relative' style={{overflow: 'hidden', scroll: 'none', height: '100%'}}>
         <ReactMapboxGl
-          containerStyle={{width: '100%', height: 'calc(100vh - 54px)'}}
+          containerStyle={{width: '100%', height: '100%'}}
           style='mapbox://styles/tableflip/cius56l0r00wn2jl8u9marbba'
           minZoom={minZoom || 4}
+          pitch={45}
           maxBounds={[{'lng': -26.137760966121533, 'lat': 46.55787737960296}, {'lng': 10.921894927739515, 'lat': 63.92312559427779}]}
           accessToken={config.mapboxApiAccessToken}
           onStyleLoad={onMapReady}

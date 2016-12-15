@@ -15,7 +15,7 @@ const labelLookup = {
 
 export default function ({ lngLat, features }) {
   return (
-    <section className='ph3'>
+    <section>
       {datasetsWithMapLayers.map((datum) => {
         const { category, datasets } = datum
         const dataset = datasets[0]

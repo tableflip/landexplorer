@@ -2,7 +2,7 @@ import React from 'react'
 import Map from './map'
 import { highlights } from '../../lib/datasets'
 import InfoPanel from './info-panel'
-import Navbar from './navbar'
+import LogoLink from './logo-link'
 
 export default class extends React.Component {
   state = {
@@ -26,13 +26,13 @@ export default class extends React.Component {
   render () {
     const { datasets, selectedLayers } = this.state
     return (
-      <div className='dark-gray helvetica'>
-        <Navbar />
-        <div className='fl w-100 w-50-ns' style={{marginTop: '53px'}}>
-          <InfoPanel />
-        </div>
-        <div className='fixed top-0 right-0 w-100 w-50-ns'>
+      <div className='layout-container bg-near-white dark-gray helvetica'>
+        <div className='map-column'>
           <Map datasets={datasets} selectedLayers={selectedLayers} />
+        </div>
+        <div className='content-column'>
+          <LogoLink />
+          <InfoPanel />
         </div>
       </div>
     )
