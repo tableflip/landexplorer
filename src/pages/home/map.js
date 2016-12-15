@@ -36,7 +36,8 @@ export default class extends React.Component {
 
     map.addControl(new Geocoder({
       accessToken: config.mapboxApiAccessToken,
-      country: 'gb'
+      country: 'gb',
+      zoom: 13
     }), 'top-right')
 
     map.addControl(new MapboxGl.ScaleControl({
