@@ -24,11 +24,11 @@ export default function ({ lngLat, features }) {
         const interestingValue = lookup && lookup(interstingFeature)
         return (
           <div className='pl3 pv4 mb2 bb b--black-20' key={category}>
-            <div className='w-two-thirds dib pr4'>
+            <div className='dn w-two-thirds-ns dib-ns pr4'>
               <lable className='f6 black-40 ttu tracked'>{category}</lable>
               <div className='pt2 pb4 f6 lh-copy' dangerouslySetInnerHTML={{ __html: datasets[0].description }} />
             </div>
-            <div className='w-third dib v-top'>
+            <div className='db w-third-ns dib-ns v-top'>
               <div className='f6 b'>{datasets[0].name}</div>
               <div className='mv1 b f3 green'>
                 {(features.length && interestingValue) || <ThreeBounce color='lightgray' size={12} />}

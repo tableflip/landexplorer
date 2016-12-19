@@ -8,7 +8,7 @@ const PrimaryDataset = ({ dataset, lngLat }) => {
   const selectedLayers = [dataset]
   return (
     <article className='cf'>
-      <div className='fl w-40-ns'>
+      <div className='fl w-100 w-40-ns'>
         <h1 className='f6 black-40 ttu tracked'>{name}</h1>
         <p className='f6 black-40 ttu tracked'>{provider}</p>
         <p className='lh-copy' dangerouslySetInnerHTML={{ __html: description }} />
@@ -17,7 +17,7 @@ const PrimaryDataset = ({ dataset, lngLat }) => {
         </p>
         <LayerKey dataset={dataset} />
       </div>
-      <div className='fl w-60-ns pl3'>
+      <div className='fl w-100 w-60-ns pl3-ns' style={{height: 600}}>
         <Map datasets={selectedLayers} selectedLayers={selectedLayers} lngLat={lngLat} zoom={11} minZoom={8} />
       </div>
     </article>

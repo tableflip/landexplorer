@@ -20,7 +20,7 @@ export default class extends React.Component {
   }
 
   state = {
-    showHover: true,
+    showHover: false,
     hoverData: false,
     showClick: false,
     clickData: false
@@ -29,7 +29,18 @@ export default class extends React.Component {
   onMapReady = (map) => {
     this.map = window.map = map
     const { lngLat, zoom, selectedLayers, onMapReady } = this.props
-    if (lngLat) map.setCenter(lngLat)
+    if (lngLat) {
+      map.setCenter(lngLat)
+      const w = 18
+      const h = 50
+      const el = document.createElement('img')
+      el.className = 'pin'
+      el.style.width = `${w}px`
+      el.style.height = `${h}px`
+      el.src = '/svg/pin.svg'
+      const marker = new MapboxGl.Marker(el, {offset: [-(w / 2), -h]})
+      marker.setLngLat(lngLat).addTo(map)
+    }
     if (zoom) map.setZoom(zoom)
 
     map.addControl(new MapboxGl.NavigationControl(), 'top-left')

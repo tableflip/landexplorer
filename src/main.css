@@ -6,6 +6,14 @@ a {
   color: #19a974;
 }
 
+.map-column {
+  height: 100%;
+}
+
+.layout-container {
+  height: 90vh;
+}
+
 @media(min-width:1020px) {
   .layout-container {
     height: 100vh;

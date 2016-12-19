@@ -66,7 +66,9 @@ export default class extends React.Component {
           <Map lngLat={lngLat} zoom={13.5} minZoom={8} datasets={datasets} selectedLayers={selectedLayers} onMapReady={onMapReady} />
         </div>
         <div className='bg-near-white content-column'>
-          <LogoLink />
+          <div className='dn db-ns'>
+            <LogoLink/>
+          </div>
           <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} features={features} />
           <DataHighlights selectedLayers={selectedLayers} datasets={highlights} lngLat={lngLat} features={features} />
         </div>
