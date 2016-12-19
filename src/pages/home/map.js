@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
+import { render } from 'react-dom'
+import { withRouter } from 'react-router'
 import ReactMapboxGl from './mapbox-gl-map'
 import Geocoder from 'mapbox-gl-geocoder'
 import MapboxGl from 'mapbox-gl'
@@ -9,21 +10,33 @@ import config from '../../config'
 import round from '../../lib/round'
 import Icon from '../place/icon'
 
-export default class extends React.Component {
+const Map = class extends React.Component {
   static propTypes = {
     lngLat: PropTypes.object,
     zoom: PropTypes.number,
     minZoom: PropTypes.number,
     datasets: PropTypes.array,
     selectedLayers: PropTypes.array,
-    onMapReady: PropTypes.func
+    onMapReady: PropTypes.func,
+    router: PropTypes.object
   }
 
   state = {
-    showHover: false,
+    pins: [],
+    showHover: true,
     hoverData: false,
     showClick: false,
     clickData: false
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { lngLat } = nextProps
+    const { map } = this
+    const pins = Array.from(this.state.pins)
+    pins.forEach((pin) => pin.remove())
+    pins.push(this.addMarker(map, lngLat))
+    this.setState({pins})
+    // map.flyTo({ speed: 0.1, center: lngLat, zoom: Math.max(8, map.getZoom()) })
   }
 
   onMapReady = (map) => {
@@ -31,15 +44,9 @@ export default class extends React.Component {
     const { lngLat, zoom, selectedLayers, onMapReady } = this.props
     if (lngLat) {
       map.setCenter(lngLat)
-      const w = 18
-      const h = 50
-      const el = document.createElement('img')
-      el.className = 'pin'
-      el.style.width = `${w}px`
-      el.style.height = `${h}px`
-      el.src = '/svg/pin.svg'
-      const marker = new MapboxGl.Marker(el, {offset: [-(w / 2), -h]})
-      marker.setLngLat(lngLat).addTo(map)
+      const pins = Array.from(this.state.pins)
+      pins.push(this.addMarker(map, lngLat))
+      this.setState({pins})
     }
     if (zoom) map.setZoom(zoom)
 
@@ -66,18 +73,51 @@ export default class extends React.Component {
     })
 
     map.on('click', (evt) => {
-      const showHover = !this.state.showHover
-      const showClick = !this.state.showClick
       const { lngLat, point } = evt
       const features = this.getFeatures(map, point)
       const clickData = Object.assign({features}, { lngLat, point })
-      this.setState({showHover, showClick, clickData})
+      this.setState({clickData})
+      this.props.router.push({
+        pathname: '/place',
+        search: `?lng=${lngLat.lng}&lat=${lngLat.lat}`
+      })
+      // const marker = this.addMarker(map, lngLat)
+      // marker.setPopup(this.makePopup(clickData, lngLat, this.props.router))
+      // marker.togglePopup()
+      // map.flyTo({ center: lngLat, zoom: Math.max(8, map.getZoom()) })
     })
 
     this.addSources(map, selectedLayers)
     if (onMapReady) {
       setTimeout(() => onMapReady(map), 3000)
     }
+  }
+
+  makePopup = (clickData, lngLat, router) => {
+    const popup = new MapboxGl.Popup({offset: [0, -55]})
+    const el = document.createElement('div')
+    const onClick = () => {
+      router.push({
+        pathname: '/place',
+        search: `?lng=${lngLat.lng}&lat=${lngLat.lat}`
+      })
+    }
+    render((<ClickInfo {...clickData} open onClick={onClick} />), el)
+    popup.setDOMContent(el)
+    return popup
+  }
+
+  addMarker = (map, lngLat) => {
+    const w = 18
+    const h = 50
+    const el = document.createElement('img')
+    el.className = 'pin'
+    el.style.width = `${w}px`
+    el.style.height = `${h}px`
+    el.src = '/svg/pin.svg'
+    const marker = new MapboxGl.Marker(el, {offset: [-(w / 2), -h]})
+    marker.setLngLat(lngLat).addTo(map)
+    return marker
   }
 
   addSources = (map, selectedLayers) => {
@@ -137,12 +177,36 @@ export default class extends React.Component {
           accessToken={config.mapboxApiAccessToken}
           onStyleLoad={onMapReady}
         />
-        <HoverInfo {...hoverData} open={showHover} />
-        <ClickInfo {...clickData} open={showClick} />
+        { /*<HoverInfo {...hoverData} open={showHover} />*/ }
       </div>
     )
   }
 }
+
+const ExploreButton = () => {
+  const size = 80
+  return (
+    <button style={{
+      position: 'absolute',
+      bottom: 40,
+      right: 20,
+      width: size,
+      height: size,
+      borderRadius: (size / 2),
+      background: 'rgba(229,229,229,0.95)',
+      boxShadow: '0 1px 4px rgba(0,0,0,0.50)',
+      border: '1px solid white',
+      color: 'white',
+      fontSize: '12px',
+      fontWeight: 'bold',
+      letterSpacing: '1px',
+      outline:'none'
+    }}>
+      Explore
+    </button>
+  )
+}
+
 
 const hoverStyle = {
   boxShadow: '1px 1px 1px 0 rgba(0,0,0,0.3)',
@@ -173,12 +237,13 @@ const HoverInfo = ({lngLat, point, open, features}) => {
   )
 }
 
-const ClickInfo = ({lngLat, point, open, features}) => {
+const ClickInfo = ({lngLat, point, open, features, onClick}) => {
   if (!lngLat || !open) return null
   const height = (40 * features.length) + 76
   const width = 250
   const transform = `translate(${point.x - 150}px, ${point.y - (height + 20)}px)`
-  const style = Object.assign({}, hoverStyle, {transform, height, width})
+  // const style = Object.assign({}, hoverStyle, {height, width})
+  const style = {}
   return (
     <div className='relative pa2 br2' style={style}>
       <code style={{fontSize: '10px'}} className='db pb1 monospace bb b--white-30'>{`${round(lngLat.lng, 3)}, ${round(lngLat.lat, 3)}`}</code>
@@ -191,8 +256,10 @@ const ClickInfo = ({lngLat, point, open, features}) => {
         ))}
       </div>
       <div className='pa2'>
-        <Link className='db ph3 pv2 f6 tc no-underline br2 ba b--green green' to={{pathname: '/place', query: lngLat}} style={{backgroundColor: '#CFF09E'}}>Explore the area</Link>
+        <button onClick={onClick} className='db ph3 pv2 f6 tc no-underline br2 ba b--green green' style={{backgroundColor: '#CFF09E'}}>Explore the area</button>
       </div>
     </div>
   )
 }
+
+export default withRouter(Map)

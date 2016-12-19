@@ -2,15 +2,20 @@ import React from 'react'
 import { ThreeBounce } from 'better-react-spinkit'
 import round from '../../lib/round'
 import Icon from './icon'
+import uniq from 'lodash.uniq'
 
 export default ({placeData, wikiEntry, lngLat, features}) => {
   const { address, postcode, place } = placeData
   const { landcover, landuse, landuse_overlay, contour } = filterFeatures(features)
+  const uniqueLandFeatures = uniq(landuse.concat(landuse_overlay).concat(landcover))
   return (
-    <section className='pb3 ph3 bb b--black-20 '>
+    <section className='pb3 ph3 bb b--black-20'>
       <div className='pv2' style={{minHeight: '4rem'}}>
         <label className='f6 black-40'>Title of address</label>
-        <div className='f4 mt1 black-70'>{address || place || 'Unknown'}{postcode && `, ${postcode}`}</div>
+        <div className='f4 mt1 black-70'>
+          <img src='/svg/pin.svg' className='mr2' style={{height: '1rem'}} />
+          {address || place || 'Unknown'}{postcode && `, ${postcode}`}
+        </div>
       </div>
       <div className='dt dt--fixed w-100 pv2 f6'>
         <div className='dtc'>
@@ -39,38 +44,23 @@ export default ({placeData, wikiEntry, lngLat, features}) => {
 </div>
       */}
       <div className='pv2'>
-        <div className='dib w-70'>
+        <div>
           <label className='f6 black-40'>About this land</label>
-          <div>
-            {wikiEntry ? <p className='mt1 measure-wide lh-copy'>{wikiEntry}</p> : <span className='dib mt4'><ThreeBounce color='lightgray' size={30} duration='3s' /></span>}
+          <div className='pt1 pb2'>
+            {wikiEntry ? <p className='ma0 measure-wide lh-copy'>{wikiEntry}</p> : <ThreeBounce color='lightgray' size={14} duration='3s' />}
           </div>
         </div>
-        <div className='dt dt--fixed w-100 pv2'>
-          <div className='dtc'>
-            <label className='db f6 black-40'>Land use</label>
-            <div className='dt dt--fixed w-100 pt2'>
-              {landuse.concat(landuse_overlay).map((feature) => {
-                return (
-                  <div key={feature} className='dtc pr1'>
-                    <Icon name={feature.toLowerCase()} className='mr1 v-mid' />
-                    <label className='f6 v-mid'>{feature}</label>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-          <div className='dtc'>
-            <label className='db f6 black-40'>Land cover</label>
-            <div className='dt dt--fixed w-100 pt2 v-mid'>
-              {landcover.map((feature) => {
-                return (
-                  <div key={feature} className='dtc pr1'>
-                    <Icon name={feature.toLowerCase()} className='mr1 v-mid' />
-                    <label className='f6 v-mid'>{feature}</label>
-                  </div>
-                )
-              })}
-            </div>
+        <div className='pv2'>
+          <label className='db f6 black-40'>Land type</label>
+          <div style={{minHeight: 32}}>
+            {uniqueLandFeatures.map((feature) => {
+              return (
+                <div key={feature} className='dib pr3 pt2'>
+                  <Icon name={feature.toLowerCase()} className='mr1 v-mid' />
+                  <label className='f6 v-mid'>{feature}</label>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>

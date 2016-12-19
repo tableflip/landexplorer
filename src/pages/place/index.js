@@ -71,6 +71,9 @@ export default class extends React.Component {
           </div>
           <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} features={features} />
           <DataHighlights selectedLayers={selectedLayers} datasets={highlights} lngLat={lngLat} features={features} />
+          <div class='bg-white'>
+            <LogoLink/>
+          </div>
         </div>
       </div>
     )
