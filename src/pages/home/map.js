@@ -10,6 +10,9 @@ import config from '../../config'
 import round from '../../lib/round'
 import Icon from '../place/icon'
 
+const minZoomforData = 8
+const niceZoom = 11
+
 const Map = class extends React.Component {
   static propTypes = {
     lngLat: PropTypes.object,
@@ -42,16 +45,26 @@ const Map = class extends React.Component {
     if (lngLat) {
       map.setCenter(lngLat)
       this.addMarker(map, lngLat)
+      map.flyTo({ center: lngLat, zoom: niceZoom })
     }
     if (zoom) map.setZoom(zoom)
 
     map.addControl(new MapboxGl.NavigationControl(), 'top-left')
 
-    map.addControl(new Geocoder({
+    const geocoder = new Geocoder({
       accessToken: config.mapboxApiAccessToken,
       country: 'gb',
-      zoom: 12
-    }), 'top-right')
+      zoom: niceZoom
+    })
+
+    geocoder.on('result', (e) => {
+      const { center } = e.result
+      const lngLat = MapboxGl.LngLat.convert(center)
+      this.addMarker(this.map, lngLat)
+      map.once('moveend', () => this.navigateTo(lngLat))
+    })
+
+    map.addControl(geocoder, 'top-right')
 
     map.addControl(new MapboxGl.ScaleControl({
       maxWidth: 80,
@@ -74,8 +87,8 @@ const Map = class extends React.Component {
       this.setState({clickData})
 
       this.addMarker(map, lngLat)
-      if (map.getZoom() < 8) {
-        map.flyTo({ speed: 1, center: lngLat, zoom: 8 })
+      if (map.getZoom() < minZoomforData) {
+        map.flyTo({ speed: 1, center: lngLat, zoom: niceZoom })
         map.once('moveend', () => this.navigateTo(lngLat))
       } else {
         this.navigateTo(lngLat)

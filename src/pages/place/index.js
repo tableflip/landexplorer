@@ -71,7 +71,7 @@ export default class extends React.Component {
         </div>
         <div className='bg-near-white content-column'>
         { lngLat ? (
-          <div>
+          <div style={{height: '100%'}}>
             <div className='dn db-ns'>
               <LogoLink />
             </div>

@@ -2,7 +2,7 @@ import React from 'react'
 
 export default (props) => {
   return (
-    <section className='ph2 dark-gray'>
+    <section className='ph2 dark-gray relative'>
       <div className='pt6 f4 f3-ns lh-copy center tc'>
         <strong>Land Explorer</strong> helps you find<br />information on land in the UK.
       </div>
@@ -12,10 +12,14 @@ export default (props) => {
       </p>
       </div>
       <div className='pt5 tc'>
-        <img src='/svg/sharedassets-logo-black.svg' style={{width: 220, maxWidth: '100%'}} />
+        <a href='http://www.sharedassets.org.uk/' target='_blank'>
+          <img src='/svg/sharedassets-logo-black.svg' style={{width: 220, maxWidth: '100%'}} />
+        </a>
       </div>
-      <div className='pt4 f6 f5-ns lh-copy center tc'>We curate open data from public sources <br />and display them in one handy map.</div>
-      <div className='pv4 tc'><img src='/svg/supporter-logos.svg' /></div>
+      <div className='pv4 f6 f5-ns lh-copy center tc'>
+        We curate open data from public sources <br />and display them in one handy map.
+      </div>
+      { /*<div className='pv4 tc'><img src='/svg/supporter-logos.svg' /></div> */ }
     </section>
   )
 }

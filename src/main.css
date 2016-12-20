@@ -2,26 +2,31 @@
 @import 'mapbox-gl/dist/mapbox-gl.css';
 @import 'tachyons';
 
+html, body, #react-root, #react-root > div, .layout-container {
+  height: 100%;
+}
+
 a {
   color: #19a974;
 }
 
 .map-column {
-  height: 100%;
+  height: calc(100% - 60px);
 }
 
-.layout-container {
-  height: 89vh;
+.content-column {
+  min-height: 100%;
 }
 
 @media(min-width:1020px) {
   .layout-container {
-    height: 100vh;
+    /*height: 100vh;*/
     display: flex;
     flex-direction: row;
   }
 
   .content-column {
+    min-height: 100%;
     max-width: 100%;
     width: 540px;
     flex: none;
