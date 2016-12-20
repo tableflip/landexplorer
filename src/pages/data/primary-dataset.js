@@ -9,7 +9,7 @@ const PrimaryDataset = ({ dataset, lngLat }) => {
   return (
     <article className='cf'>
       <div className='fl w-100 w-40-ns'>
-        <h1 className='f6 black-40 ttu tracked'>{name}</h1>
+        <h1 className='f4 black-40'>{name}</h1>
         <p className='f6 black-40 ttu tracked'>{provider}</p>
         <p className='lh-copy' dangerouslySetInnerHTML={{ __html: description }} />
         <p className='mb4'>

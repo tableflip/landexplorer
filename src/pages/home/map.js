@@ -29,14 +29,11 @@ const Map = class extends React.Component {
     clickData: false
   }
 
-  componentWillReceiveProps (nextProps) {
-    const { lngLat } = nextProps
-    const { map } = this
-    const pins = Array.from(this.state.pins)
-    pins.forEach((pin) => pin.remove())
-    pins.push(this.addMarker(map, lngLat))
-    this.setState({pins})
-    // map.flyTo({ speed: 0.1, center: lngLat, zoom: Math.max(8, map.getZoom()) })
+  navigateTo = (lngLat) => {
+    this.props.router.push({
+      pathname: '/',
+      search: `?lng=${lngLat.lng}&lat=${lngLat.lat}`
+    })
   }
 
   onMapReady = (map) => {
@@ -44,9 +41,7 @@ const Map = class extends React.Component {
     const { lngLat, zoom, selectedLayers, onMapReady } = this.props
     if (lngLat) {
       map.setCenter(lngLat)
-      const pins = Array.from(this.state.pins)
-      pins.push(this.addMarker(map, lngLat))
-      this.setState({pins})
+      this.addMarker(map, lngLat)
     }
     if (zoom) map.setZoom(zoom)
 
@@ -55,7 +50,7 @@ const Map = class extends React.Component {
     map.addControl(new Geocoder({
       accessToken: config.mapboxApiAccessToken,
       country: 'gb',
-      zoom: 13
+      zoom: 12
     }), 'top-right')
 
     map.addControl(new MapboxGl.ScaleControl({
@@ -77,10 +72,15 @@ const Map = class extends React.Component {
       const features = this.getFeatures(map, point)
       const clickData = Object.assign({features}, { lngLat, point })
       this.setState({clickData})
-      this.props.router.push({
-        pathname: '/place',
-        search: `?lng=${lngLat.lng}&lat=${lngLat.lat}`
-      })
+
+      this.addMarker(map, lngLat)
+      if (map.getZoom() < 8) {
+        map.flyTo({ speed: 1, center: lngLat, zoom: 8 })
+        map.once('moveend', () => this.navigateTo(lngLat))
+      } else {
+        this.navigateTo(lngLat)
+      }
+
       // const marker = this.addMarker(map, lngLat)
       // marker.setPopup(this.makePopup(clickData, lngLat, this.props.router))
       // marker.togglePopup()
@@ -98,7 +98,7 @@ const Map = class extends React.Component {
     const el = document.createElement('div')
     const onClick = () => {
       router.push({
-        pathname: '/place',
+        pathname: '/',
         search: `?lng=${lngLat.lng}&lat=${lngLat.lat}`
       })
     }
@@ -108,6 +108,9 @@ const Map = class extends React.Component {
   }
 
   addMarker = (map, lngLat) => {
+    const pins = Array.from(this.state.pins)
+    pins.forEach((pin) => pin.remove())
+
     const w = 18
     const h = 50
     const el = document.createElement('img')
@@ -117,6 +120,10 @@ const Map = class extends React.Component {
     el.src = '/svg/pin.svg'
     const marker = new MapboxGl.Marker(el, {offset: [-(w / 2), -h]})
     marker.setLngLat(lngLat).addTo(map)
+
+    pins.push(marker)
+    this.setState({pins})
+
     return marker
   }
 
@@ -187,6 +194,7 @@ const ExploreButton = () => {
   const size = 80
   return (
     <button style={{
+      cursor: 'pointer',
       position: 'absolute',
       bottom: 40,
       right: 20,
@@ -197,7 +205,7 @@ const ExploreButton = () => {
       boxShadow: '0 1px 4px rgba(0,0,0,0.50)',
       border: '1px solid white',
       color: 'white',
-      fontSize: '12px',
+      fontSize: '13px',
       fontWeight: 'bold',
       letterSpacing: '1px',
       outline:'none'

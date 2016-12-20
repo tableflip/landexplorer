@@ -5,6 +5,7 @@ import getWikiEntry from '../../lib/getWikiEntry'
 import getPlaceData from '../../lib/getPlaceData'
 import Map from '../home/map'
 import LogoLink from '../home/logo-link'
+import InfoPanel from '../home/info-panel'
 import DataHighlights from './data-highlights'
 import lngLatFromQuery from '../../lib/lngLatFromQuery'
 
@@ -23,13 +24,15 @@ export default class extends React.Component {
 
   componentWillReceiveProps (nextProps) {
     const lngLat = lngLatFromQuery(nextProps.location.query)
+    this.setState({lngLat})
+    if (!lngLat) return
     this.lookupPlaceInfo(lngLat)
     this.queryRenderedFeatures(lngLat)
-    this.setState({lngLat})
   }
 
   componentDidMount () {
     const { lngLat } = this.state
+    if (!lngLat) return
     this.lookupPlaceInfo(lngLat)
   }
 
@@ -54,6 +57,7 @@ export default class extends React.Component {
   onMapReady = (map) => {
     this.map = map
     const { lngLat } = this.state
+    if (!lngLat) return
     this.queryRenderedFeatures(lngLat)
   }
 
@@ -63,17 +67,24 @@ export default class extends React.Component {
     return (
       <div className='black-60 helvetica layout-container'>
         <div className='map-column'>
-          <Map lngLat={lngLat} zoom={13.5} minZoom={8} datasets={datasets} selectedLayers={selectedLayers} onMapReady={onMapReady} />
+          <Map lngLat={lngLat} datasets={datasets} selectedLayers={selectedLayers} onMapReady={onMapReady} />
         </div>
         <div className='bg-near-white content-column'>
-          <div className='dn db-ns'>
-            <LogoLink/>
+        { lngLat ? (
+          <div>
+            <div className='dn db-ns'>
+              <LogoLink />
+            </div>
+            <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} features={features} />
+            <DataHighlights selectedLayers={selectedLayers} datasets={highlights} lngLat={lngLat} features={features} />
+            <LogoLink />
           </div>
-          <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} features={features} />
-          <DataHighlights selectedLayers={selectedLayers} datasets={highlights} lngLat={lngLat} features={features} />
-          <div class='bg-white'>
-            <LogoLink/>
+        ) : (
+          <div>
+            <LogoLink />
+            <InfoPanel />
           </div>
+        )}
         </div>
       </div>
     )

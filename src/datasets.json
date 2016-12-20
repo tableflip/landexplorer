@@ -1,6 +1,6 @@
 [{
   "category": "Potential for agriculture",
-  "description": "Soil quality (e.g. compaction, chemical analysis, agricultural grade). \nPossible uses include:\n- identifying suitable land for food growing, forestry, horticulture etc.\n- understanding how to make the most out of a site",
+  "description": "Knowing the potential of the land is crucial to determining what you can grow, and where. The datasets in this section were chosen to provide insight into the soil and potential for agriculture. This information can be used to identify suitable land for food growing, forestry and horticulture, among others. We aim to add further information about soil and other key characteristics in the future.",
   "datasets": [
     {
 	    "name": "Agricultural Land Classification",

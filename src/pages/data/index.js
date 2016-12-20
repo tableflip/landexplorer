@@ -59,7 +59,7 @@ export default class Data extends Component {
     const others = datasets.filter((d) => !d.source)
     return (
       <Layout>
-        <div className='pb4 mb4 bb b--black-20'>
+        <div className='pb4 mb4 '>
           <CategoryIntro category={category} lngLat={lngLat} placeData={placeData} />
         </div>
         { primaries.map((dataset) => (

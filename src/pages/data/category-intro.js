@@ -6,8 +6,8 @@ const CategoryIntro = ({ category, lngLat, placeData }) => {
 
   return (
     <div className='cf'>
-      <h1 className='f3 black-40 ttu tracked'>{category.category}</h1>
       <div className='fl w-60-ns'>
+        <h1 className='f3 black-40 ttu tracked fw2'>{category.category}</h1>
         <div className='mb3'>
           {category.description.split('\n').map((txt) => (
             <div key={txt} className='lh-copy'>{txt}</div>
