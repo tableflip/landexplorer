@@ -33,7 +33,7 @@ export default ({placeData, wikiEntry, lngLat, features}) => {
         <div className='dtc'>
           <span>
             <label className='black-40'>Elevation</label>
-            <div className='pt1'>{contour[0] ? `${contour[0]}m` : <ThreeBounce color='lightgray' size={12} />}</div>
+            <div className='pt1'>{contour[0] || contour[0] === 0 ? `${contour[0]}m` : <ThreeBounce color='lightgray' size={12} />}</div>
           </span>
         </div>
       </div>
