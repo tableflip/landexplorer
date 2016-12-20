@@ -11,11 +11,11 @@ export default (props) => {
         <br/>or click on the map to explore.
       </p>
       </div>
-      <div className='pt6 tc'>
+      <div className='pt5 tc'>
         <img src='/svg/sharedassets-logo-black.svg' style={{width: 220, maxWidth: '100%'}} />
       </div>
       <div className='pt4 f6 f5-ns lh-copy center tc'>We curate open data from public sources <br />and display them in one handy map.</div>
-      <div className='pt2 tc'><img src='/svg/supporter-logos.svg' /></div>
+      <div className='pv4 tc'><img src='/svg/supporter-logos.svg' /></div>
     </section>
   )
 }

@@ -14,7 +14,7 @@ const CategoryIntro = ({ category, lngLat, placeData }) => {
           ))}
         </div>
       </div>
-      <div className='fl w-40-ns pl3-ns'>
+      <div className='fl w-40-ns pl4-ns'>
         <div className='mb3'>
           <span className='f6 mb1 black-40 db'>Title of address</span>
           <span className='f4'>{address || 'Unknown location'}{postcode && `, ${postcode}`}</span>
