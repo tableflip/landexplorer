@@ -63,6 +63,7 @@ export default class extends React.Component {
 
   render () {
     const { onMapReady } = this
+    const { location } = this.props
     const { wikiEntry, placeData, lngLat, datasets, features, selectedLayers } = this.state
     return (
       <div className='black-60 helvetica layout-container'>
@@ -75,7 +76,7 @@ export default class extends React.Component {
             <div className='dn db-ns'>
               <LogoLink />
             </div>
-            <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} features={features} />
+            <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} features={features} location={location} />
             <DataHighlights selectedLayers={selectedLayers} datasets={highlights} lngLat={lngLat} features={features} />
             <LogoLink />
           </div>

@@ -1,10 +1,12 @@
 import React from 'react'
 import { ThreeBounce } from 'better-react-spinkit'
-import round from '../../lib/round'
-import Icon from './icon'
 import uniq from 'lodash.uniq'
+import round from '../../lib/round'
+import canonicalUrl from '../../lib/canonicalUrl'
+import Icon from './icon'
+import Share from './share'
 
-export default ({placeData, wikiEntry, lngLat, features}) => {
+export default ({placeData, wikiEntry, lngLat, features, location}) => {
   const { address, postcode, place } = placeData
   const { landcover, landuse, landuse_overlay, contour } = filterFeatures(features)
   const uniqueLandFeatures = uniq(landuse.concat(landuse_overlay).concat(landcover))
@@ -14,7 +16,7 @@ export default ({placeData, wikiEntry, lngLat, features}) => {
         <label className='f6 black-40'>Title of address</label>
         <div className='f4 mt1 black-70'>
           <img src='/svg/pin.svg' className='mr2' style={{height: '1rem'}} />
-          {address || place || 'Unknown'}{postcode && `, ${postcode}`}
+          {address || place}{postcode && `, ${postcode}`}
         </div>
       </div>
       <div className='dt dt--fixed w-100 pv2 f6'>
@@ -61,6 +63,12 @@ export default ({placeData, wikiEntry, lngLat, features}) => {
                 </div>
               )
             })}
+          </div>
+        </div>
+        <div className='pv2'>
+          <label className='db f6 black-40'>Share</label>
+          <div style={{fontSize: 11}}>
+            <Share url={canonicalUrl(location)} text={`Explore ${address || place || ''}`} />
           </div>
         </div>
       </div>
