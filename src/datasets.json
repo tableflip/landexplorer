@@ -1,6 +1,7 @@
 [{
   "category": "Potential for agriculture",
   "description": "Knowing the potential of the land is crucial to determining what you can grow, and where. The datasets in this section were chosen to provide insight into the soil and potential for agriculture. This information can be used to identify suitable land for food growing, forestry and horticulture, among others. We aim to add further information about soil and other key characteristics in the future.",
+  "footer": "Still haven’t found what you’re looking for? We plan to integrate more soil information in future versions, along with information on historic productivity. If you have other ideas on what we should include, please fill in <a href='https://goo.gl/forms/kOpCcFbgD7Prc5lC3'>this short form</a>.",
   "datasets": [
     {
 	    "name": "Agricultural Land Classification",
@@ -171,7 +172,7 @@
       "id": "NATIONAL_FOREST_ESTATE_SOIL",
       "name": "National Forest Estate soils",
       "provider": "Forestry Commission",
-      "description": "This vector dataset provides detailed (1:10,000) soil information for approximately half the Public Forest Estate.",
+      "description": "This <a href='http://www.forestry.gov.uk/forestry/infd-8g5bya' target='_blank'>Forestry Commission</a> dataset provides detailed soil information for the Public Forest Estate within all of Scotland and parts of England and Wales. This soil classification system was created by foresters specifically to serve silviculture, and thus distinguishes soil on the basis of drainage and nutrition. It only covers land owned by the Forestry Commission.",
       "url": "http://www.forestry.gov.uk/forestry/infd-8g5bya",
       "source": {
         "type": "vector",
@@ -485,39 +486,46 @@
       ]
     },
     {
-      "name": "Long term monitoring data",
-      "provider": "Natural England",
-      "id": 2,
-      "description": "This is vegetation and soil surveys over time. Coverage is limited (37 sites - primarily nature reserves)",
-      "url": "https://data.gov.uk/data/search?publisher=natural-england&q=long+term+monitoring+network"
-    },
-    {
-      "name": "Advanced soil geochemical atlas of England and Wales",
-      "provider": "British Geological Survey",
-      "id": 4,
-      "description": "5700 surface soil samples, collected across England and Wales, analysed for 52 major and trace elements. Downloadable as interpolated concentrations.",
-      "url": "http://www.bgs.ac.uk/downloads/start.cfm?id=2898"
-    },
-    {
-      "name": "Web Map Service for model estimates of topsoil properties [Countryside Survey]",
-      "provider": "Centre for Ecology and Hydrology",
-      "id": 5,
-      "description": "This web map service (WMS) depicts estimates of mean values of soil bacteria, invertebrates, carbon, nutrients and pH within selected habitats and parent material characteristics across GB.",
-      "url": "https://data.gov.uk/dataset/web-map-service-for-model-estimates-of-topsoil-properties-countryside-survey"
-    },
-    {
-      "name": "Soils Map Viewer (platform)",
-      "provider": "UKSO/ various others",
-      "id": 6,
-      "description": "The UKSO soils map viewer/ resource combines loads of different soil quality datasets, some of which are downloadable.",
-      "url": "http://mapapps2.bgs.ac.uk/ukso/home.html?"
+      "name": "Exploring Land Data",
+      "provider": "Shared Assets",
+      "id": 1,
+      "description": "<a href='http://www.sharedassets.org.uk'>Shared Assets</a> believes that quality information on land can help people make better decisions about how to use land for the common good. For some in the sector, access to good, open data could mean the difference between success and failure. This report outlines where land data is currently collated and kept, why it is inaccessible to common good land users, and how to change this for the better.",
+      "url": "http://www.sharedassets.org.uk/wp-content/uploads/2016/09/Exploring_Land_Data.pdf"
     },
     {
       "name": "Soilscapes (platform)",
-      "provider": "Cranfield Uni",
-      "id": 7,
+      "provider": "Cranfield University",
+      "id": 2,
       "description": "Soilscapes is a 1:250,000 scale, simplified soils dataset covering England and Wales. It was created from the more detailed National Soil Map (NATMAPvector) with the purpose of effectively communicating a general understanding of the variations which occur between soil types, and how soils affect the environment.",
       "url": "http://www.landis.org.uk/soilscapes/"
+    },
+    {
+      "name": "MySoil",
+      "provider": "British Geological Survey",
+      "id": 3,
+      "description": "MySoil gives you access to a comprehensive European soil properties map within a single app. Discover what lies beneath your feet and help us to build a community dataset by submitting your own soil information.",
+      "url": "http://www.bgs.ac.uk/mysoil/"
+    },
+    {
+      "name": "UKSO Soils Map Viewer",
+      "provider": "UKSO / various others",
+      "id": 4,
+      "description": "The UKSO soils map viewer/ resource combines loads of different soil quality datasets, some of which are downloadable.",
+      "url": "http://mapapps2.bgs.ac.uk/ukso/home.html"
+    },
+    {
+      "name": "Farming Futures Interactive Map",
+      "provider": "Farming Futures",
+      "id": 5,
+      "description": "Use the interactive map to discover case studies, factsheets and events relating to farming in your region.",
+      "url": "http://www.farmingfutures.org.uk/resources/interactive-map"
+    },
+    {
+      "name": "The Food Assembly",
+      "provider": "The Food Assembly",
+      "id": 6,
+      "description": "The Food Assembly brings together people to buy fresh food directly from local farmers and foodmakers. If you are interested in growing or producing food for market, their map allows you to check your proximity to a food assembly, and get involved as a producer.",
+      "url": "https://thefoodassembly.com/en"
     }
   ]
 },
@@ -653,34 +661,6 @@
   "category": "Ownership info",
   "description": "Ownership info (owner contact details, type of owner, owners ambition for site). \nPossible uses include:\n- Contacting owners about land purchase or sharing.\n- Identifying owners who might be open to collaboration (e.g. local authorities, utilities, national trust, RSPB, Wildlife Trust, Woodland Trust)\n- Identifying boundaries",
   "datasets": [
-    {
-      "name": "INSPIRE Index Polygons",
-      "provider": "Land Registry",
-      "id": "INSPIRE Index Polygons",
-      "description": "The INSPIRE ID can be used to look up who owns land on the Land Registry's website (for a fee). Just copy and paste the INSPIRE ID for this area, and paste it into the search box on <a href='https://eservices.landregistry.gov.uk/www/wps/portal/!ut/p/b1/hc7LDoJADAXQb_EL2nkA43IQQaKI6KAwG4MvAlFkQTD69aI7NWp3Tc69LWhIQFdZW-RZU5yr7PjYtblmVHBCOB0JZlroG67HiDIYctaB9AfwyL_8ChLk60Up6uDaJJPboFXlLbo2pbwEKsCps8Vgp2a75Ty2pRNbm7wPi33V5fRbdehK9Jkdjj0WUUTzA7zeFvQPePz-BPhlJMJ0dD7tIe2Y9a1HLDnUp7gt5sPDQPZ6dx9vogE!/dl4/d5/L0lDU0lKSmdwcGlRb0tVUW9LVVEhL29Gb2dBRUlRaGpFQ1VJZ0FJQUl5RkFNaHdVaFM0SldsYTRvIS80RzNhRDJnanZ5aERVd3BNaFFqVW81Q2pHcHhBL1o3XzMyODQxMTQySDgzNjcwSTVGRzMxVDUzOFY0LzAvMzQxMDU3OTQ1ODc3L3NwZl9BY3Rpb25OYW1lL3NwZl9BY3Rpb25MaXN0ZW5lci9zcGZfc3RydXRzQWN0aW9uLyEyZkxySW5zcGlyZUlkSW5pdC5kbw!!/'>this website</a>",
-      "notes": "http://anna.ps/blog/how-to-use-land-registry-data-to-explore-land-ownership-near-you",
-      "url": "https://www.gov.uk/guidance/inspire-index-polygons-spatial-data",
-      "source": {
-        "type": "vector",
-        "url": "mapbox://tableflip.ax6ghaey"
-      },
-      "layers" : [{
-        "id": "INSPIRE Index Polygons",
-        "type": "fill",
-        "source": "INSPIRE Index Polygons",
-        "source-layer": "inspirelandregistryoxforshire",
-        "minzoom": 8,
-        "layout": {
-            "visibility": "none"
-        },
-        "paint": {
-          "fill-color": "#D6E739",
-          "fill-antialias": true,
-          "fill-outline-color": "#A4B601",
-          "fill-opacity": 0.4
-        }
-      }],
-    },
     {
       "name": "Rural Land Register",
       "provider": "Rural Payments Agency",

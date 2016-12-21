@@ -59,7 +59,7 @@ export default class Data extends Component {
     const others = datasets.filter((d) => !d.source)
     return (
       <Layout>
-        <div className='pb4 mb4 '>
+        <div className='pb4 mb4'>
           <CategoryIntro category={category} lngLat={lngLat} placeData={placeData} />
         </div>
         { primaries.map((dataset) => (
@@ -81,6 +81,11 @@ export default class Data extends Component {
             </div>
           ))}
         </div>
+        { category.footer && (
+          <footer className='pb4 mb4 '>
+            <p className='measure-wide center lh-copy' dangerouslySetInnerHTML={{ __html: category.footer }} />
+          </footer>
+        )}
       </Layout>
     )
   }

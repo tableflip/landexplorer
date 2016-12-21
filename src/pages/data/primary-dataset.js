@@ -4,7 +4,8 @@ import LayerKey from './layer-key'
 
 const PrimaryDataset = ({ dataset, lngLat }) => {
   if (!dataset) return null
-  const { name, provider, description, url } = dataset
+  const { name, provider, description } = dataset
+  const slug = name.toLowerCase().replace(/ /g, '-')
   const selectedLayers = [dataset]
   return (
     <article className='cf'>
@@ -13,7 +14,7 @@ const PrimaryDataset = ({ dataset, lngLat }) => {
         <p className='f6 black-40 ttu tracked'>{provider}</p>
         <p className='lh-copy' dangerouslySetInnerHTML={{ __html: description }} />
         <p className='mb4'>
-          <a href={url} target='_blank' className='green'>Find out more</a>
+          <a href={`http://www.sharedassets.org.uk/landexplorer/${slug}/`} target='_blank' className='green'>Find out more</a>
         </p>
         <LayerKey dataset={dataset} />
       </div>
