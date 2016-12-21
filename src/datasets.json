@@ -1,7 +1,8 @@
 [{
   "category": "Potential for agriculture",
-  "description": "Knowing the potential of the land is crucial to determining what you can grow, and where. The datasets in this section were chosen to provide insight into the soil and potential for agriculture. This information can be used to identify suitable land for food growing, forestry and horticulture, among others. We aim to add further information about soil and other key characteristics in the future.",
-  "footer": "Still haven’t found what you’re looking for? We plan to integrate more soil information in future versions, along with information on historic productivity. If you have other ideas on what we should include, please fill in <a href='https://goo.gl/forms/kOpCcFbgD7Prc5lC3'>this short form</a>.",
+  "description": "How suitable is a particular area or piece of land for farming? This category helps users understand this. In particular it displays the ‘Agricultural Land Classification’ - a determination of the suitability of the land for agriculture. The five grades are assessed by a consistent set of criteria which include climate, site-specific information and soil quality. Grade 1 is classed as the best quality land, grade 5 being the poorest.",
+  "intro": "Knowing the potential of the land is crucial to determining what you can grow, and where. The datasets in this section were chosen to provide insight into the soil and potential for agriculture. This information can be used to identify suitable land for food growing, forestry and horticulture, among others. We aim to add further information about soil and other key characteristics in the future.",
+  "outro": "Still haven’t found what you’re looking for? We plan to integrate more soil information in future versions, along with information on historic productivity. If you have other ideas on what we should include, please fill in <a href='https://goo.gl/forms/kOpCcFbgD7Prc5lC3'>this short form</a>.",
   "datasets": [
     {
 	    "name": "Agricultural Land Classification",
@@ -531,13 +532,14 @@
 },
 {
   "category": "Flood risk",
-  "description": "Potential uses include:\n- Finding suitable sites\n- Planning development of sites",
+  "description": "Knowing the likelihood of flooding is crucial to developing projects. This category displays flood risk data from the Environment Agency. It shows you the likelihood of flooding in a given area by taking into account historic instances of flooding and current flood defences, as well as proximity to rivers, groundwater springs and the sea.",
+  "intro": "Understanding flood risk is crucial to finding a site, identifying where to develop infrastructure, and knowing what to prepare for. It is also a key feature of local environments that people should know about. There is a lot of excellent data about flooding openly available, and this page hosts some of the best data.",
   "datasets": [
     {
       "id": "Historic Flood Map",
       "name": "Historic Flood Map",
       "provider": "Environment Agency",
-      "description": "Historic Flood Map is a GIS layer showing the maximum extent of all individual Recorded Flood Outlines from river, the sea and groundwater springs and shows areas of land that have previously been subject to flooding in England.",
+      "description": "Historic Flood Map is a map layer showing land that has flooded in the past. It displays the maximum extent of all individual Recorded Flood Outlines from river, the sea and groundwater springs and shows areas of land that have previously been subject to flooding in England.",
       "url": "https://data.gov.uk/dataset/historic-flood-map1",
       "source": {
         "type": "vector",
@@ -562,38 +564,73 @@
     },
     {
       "id": "102",
-      "name": "UK Flood Risk and Flood Management",
-      "provider": "Owen Boswarva",
-      "description": "Guide to open data on UK flooding",
-      "url": "http://www.owenboswarva.com/opendata/Open%20Data%20Discovery%20Guide%20-%20UK%20Flood%20Data.pdf",
+      "name": "Risk of Flooding from Rivers and Sea",
+      "provider": "Environment Agency",
+      "description": "This is a national assessment of flood risk for England produced using local expertise. The dataset shows the chance of flooding from rivers and/or the sea. Each cell is allocated one of four flood risk categories, taking into account flood defences and their condition.",
+      "url": "https://data.gov.uk/dataset/risk-of-flooding-from-rivers-and-sea1",
     },
     {
       "id": "101",
-      "name": "Realtime Flood Data Groundwater Levels",
+      "name": "Flood Map for Planning",
       "provider": "Environment Agency",
-      "description": "Realtime Flood Data Groundwater Levels, this dataset covers monitoring data that is only updated on our systems on a daily update cycle. This is usually increased during times of flooding etc. Readings are transferred via telemetry to internal and external systems in or close to real time.",
-      "url": "https://data.gov.uk/dataset/realtime-flood-data-groundwater-levels1",
+      "description": "This website maps flood data. Click on the map to see what Flood Zone (National Planning Policy Guidance definitions) a proposed development is in.",
+      "url": "http://maps.environment-agency.gov.uk/wiyby/wiybyController?x=357683.0&y=355134.0&scale=1&layerGroups=default&ep=map&textonly=off&lang=_e&topic=floodmap",
+    },
+    {
+      "id": "103",
+      "name": "UK Flood Risk and Flood Management: Open Data Discovery Guide",
+      "provider": "Owen Boswarva",
+      "description": "This guide is intended to help potential data users find public datasets about flood risk and flood management.",
+      "url": "http://www.owenboswarva.com/opendata/Open%20Data%20Discovery%20Guide%20-%20UK%20Flood%20Data.pdf",
+    },
+    {
+      "id": "104",
+      "name": "Check my Flood Risk",
+      "provider": "Shoothill",
+      "description": "This website uses Environment Agency data to highlight likelihood of flooding from rivers and sea",
+      "url": "http://www.checkmyfloodrisk.co.uk/",
+    },
+    {
+      "id": "105",
+      "name": "Flood risk assessment and advice",
+      "provider": "Environment Agency",
+      "description": "This tool shows how likely flooding is for a particular area, describes factors that influence the likelihood, and gives information about managing flood risk.",
+      "url": "https://flood-warning-information.service.gov.uk/long-term-flood-risk/#x=357683&y=355134&scale=2",
+    },
+    {
+      "id": "106",
+      "name": "UK Rainfall App",
+      "provider": "Centre for Ecology and Hydrology",
+      "description": "These applications allow users to create interactive maps of gridded monthly and daily rainfall, showing the variation of rainfall across the country and through time. ",
+      "url": "https://eip.ceh.ac.uk/rainfall",
+    },
+    {
+      "id": "107",
+      "name": "Open spreadsheet matching information needs to available land data",
+      "provider": "Shared Assets",
+      "description": "This google sheet matches the needs of land users to available data. Land Explorer has been developed using this resource and the research that went into it. Visitors can contribute new datasets and platforms for viewing them.",
+      "url": "https://docs.google.com/spreadsheets/d/1TuywMaFP1TjF0RgccEaDeUJDWTUUZfyk8oDHgZpKm1E/edit#gid=1100552611",
     }
   ]
 },
 {
   "category": "Planning Restrictions",
-  "description": "Designated areas, current developments, historical planning decisions, guidance on building. \nPossible uses include: \n- Identifying areas where certain developments are likely to be rejected (e.g. living on the land, building polytunnels, building visitor or education centres)\n- Identifying competition for land\n- Identifying planning authority cultures towards community projects",
+  "description": "Planning restrictions are designed to prevent damage to valuable land. Each restriction is associated with different limitations, including conservation of natural resources, historical planning decisions and guidance on building. Many of these will have a bearing on how land-based projects can develop, and we’ve included what we consider the most useful datasets in this regard. This information can be used to identify areas where certain developments are likely to be rejected and to identify planning authority cultures towards community projects. It can also be used to find areas of natural beauty which are likely to attract visitors.",
   "datasets": [
     {
-      "id": "Sites of Specific Scientific Interest",
-      "name": "Sites of Specific Scientific Interest",
+      "id": "Sites of Special Scientific Interest",
+      "name": "Sites of Special Scientific Interest",
       "provider": "Natural England",
-      "description": "SSSI are the finest sites for wildlife and natural features in England, supporting many characteristic, rare and endangered species, habitats and natural features.",
-      "url": "https://data.gov.uk/dataset/historic-flood-map1",
+      "description": "Sites of Special Scientific Interest (SSSIs) are areas protected under UK law for their biological and/or geological significance. SSSIs support rare and endangered species, habitats and natural features in the UK.",
+      "url": "https://data.gov.uk/dataset/sites-of-special-scientific-interest-england1",
       "source": {
         "type": "vector",
         "url": "mapbox://tableflip.bu0wectl"
       },
       "layers" : [{
-        "id": "Sites of Specific Scientific Interest",
+        "id": "Sites of Special Scientific Interest",
         "type": "fill",
-        "source": "Sites of Specific Scientific Interest",
+        "source": "Sites of Special Scientific Interest",
         "source-layer": "SSSI_England-8hdj4d",
         "minzoom": 8,
 
@@ -601,7 +638,7 @@
             "visibility": "none"
         },
         "paint": {
-          "fill-color": "hsl(1,30%,40%)", "fill-opacity": 0.4
+          "fill-color": "hsl(1,40%,40%)", "fill-opacity": 0.4
         }
       }],
     },
@@ -609,7 +646,7 @@
       "id": "Special Protection Areas",
       "name": "Special Protection Areas",
       "provider": "Natural England",
-      "description": "Special Protection Areas (SPAs) are strictly protected sites classified in accordance with Article 4 of the EC Birds Directive, which came into force in April 1979. They are classified for rare and vulnerable birds and for regularly occurring migratory species.",
+      "description": "Special Protection Areas (SPAs) are sites protected under EU law, designated for rare and vulnerable birds and for regularly occurring migratory species.",
       "url": "https://data.gov.uk/dataset/special-protection-areas-england",
       "source": {
         "type": "vector",
@@ -621,12 +658,11 @@
         "source": "Special Protection Areas",
         "source-layer": "Special_Protection_Areas_Engl-a0660y",
         "minzoom": 8,
-
         "layout": {
             "visibility": "none"
         },
         "paint": {
-          "fill-color": "hsl(51,30%,40%)", "fill-opacity": 0.4
+          "fill-color": "hsl(51,40%,40%)", "fill-opacity": 0.4
         }
       }],
     },
@@ -634,7 +670,7 @@
       "id": "Special Areas of Conservation",
       "name": "Special Areas of Conservation",
       "provider": "Natural England",
-      "description": "A Special Area of Conservation (SAC) is the land designated under Directive 92/43/EEC on the Conservation of Natural Habitats and of Wild Fauna and Flora.",
+      "description": "Special Areas of Conservation (SACs) are sites protected under EU law, designated as part of a network of high-quality sites contributing to the conservation of natural habitats and of wild fauna and flora.",
       "url": "https://data.gov.uk/dataset/special-areas-of-conservation-england",
       "source": {
         "type": "vector",
@@ -651,15 +687,57 @@
             "visibility": "none"
         },
         "paint": {
-          "fill-color": "hsl(101,30%,40%)", "fill-opacity": 0.4
+          "fill-color": "hsl(101,40%,40%)", "fill-opacity": 0.4
         }
       }]
+    },
+    {
+      "id": "202",
+      "name": "Planning for the Common Good",
+      "provider": "Shared Assets",
+      "description": "This report considers issues land-based social enterprises have in the planning system. It talks about ways in which things could be improved in the current system, and highlights areas to policy change.",
+      "url": "http://www.sharedassets.org.uk/wp-content/uploads/2016/12/Final-Planning-Report.pdf",
+    },
+    {
+      "id": "203",
+      "name": "Planning guidance",
+      "provider": "Community Land Advisory Service",
+      "description": "This collects guidance for communities engaging with the planning system around land use.",
+      "url": "http://www.communitylandadvice.org.uk/planning",
+    },
+    {
+      "id": "204",
+      "name": "MAGIC Map",
+      "provider": "Natural England",
+      "description": "This is the most comprehensive platform displaying land data in the UK. It contains most of the data related to areas with planning restrictions (e.g. National Parks, SSSIs)",
+      "url": "http://magic.defra.gov.uk/magicmap.aspx",
+    },
+    {
+      "id": "205",
+      "name": "Planning Applications API",
+      "provider": "Land Insight",
+      "description": "The Land Insight API has data from local planning authorities across England in a standard format. Use this API in your own software applications. Lookup planning applications by location or keywords.",
+      "url": "http://www.landinsight.io/api",
+    },
+    {
+      "id": "206",
+      "name": "Planning Aid",
+      "provider": "RTPI/ Planning Aid",
+      "description": "Planning Aid offers free, independent advice on planning issues",
+      "url": "http://www.rtpi.org.uk/planning-aid/",
+    },
+    {
+      "id": "207",
+      "name": "Chapter 7",
+      "provider": "This Land is Our Land",
+      "description": "Chapter 7, the Planning Office of TLIO, campaigns for a planning system which actively encourages sustainable, low impact and affordable homes. They also give planning advice to people seeking to/or already embarking upon living on the land, engaged in land-based livelihoods.",
+      "url": "http://tlio.org.uk/chapter7",
     }
   ]
 },
 {
   "category": "Ownership info",
-  "description": "Ownership info (owner contact details, type of owner, owners ambition for site). \nPossible uses include:\n- Contacting owners about land purchase or sharing.\n- Identifying owners who might be open to collaboration (e.g. local authorities, utilities, national trust, RSPB, Wildlife Trust, Woodland Trust)\n- Identifying boundaries",
+  "description": "Knowing who owns land is crucial to being able to engage with it. Information on who owns land, and how much that land was sold for, is collected by the Land Registry. We think this information should be free and open access. However for now the data can be accessed on their website by using the INSPIRE ID of a given area and paying a small fee (£3.00 - £6.00). To do so, copy the INSPIRE ID for this area, and paste it into the search box <a href='https://eservices.landregistry.gov.uk/www/wps/portal/!ut/p/b1/hc7LDoJADAXQb_EL2nkA43IQQaKI6KAwG4MvAlFkQTD69aI7NWp3Tc69LWhIQFdZW-RZU5yr7PjYtblmVHBCOB0JZlroG67HiDIYctaB9AfwyL_8ChLk60Up6uDaJJPboFXlLbo2pbwEKsCps8Vgp2a75Ty2pRNbm7wPi33V5fRbdehK9Jkdjj0WUUTzA7zeFvQPePz-BPhlJMJ0dD7tIe2Y9a1HLDnUp7gt5sPDQPZ6dx9vogE!/dl4/d5/L0lDU0lKSmdwcGlRb0tVUW9LVVEhL29Gb2dBRUlRaGpFQ1VJZ0FJQUl5RkFNaHdVaFM0SldsYTRvIS80RzNhRDJnanZ5aERVd3BNaFFqVW81Q2pHcHhBL1o3XzMyODQxMTQySDgzNjcwSTVGRzMxVDUzOFY0LzAvMzQxMDU3OTQ1ODc3L3NwZl9BY3Rpb25OYW1lL3NwZl9BY3Rpb25MaXN0ZW5lci9zcGZfc3RydXRzQWN0aW9uLyEyZkxySW5zcGlyZUlkSW5pdC5kbw!!/' target='_blank'>here</a>.",
   "datasets": [
     {
       "name": "Rural Land Register",

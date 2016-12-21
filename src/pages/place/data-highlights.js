@@ -17,7 +17,7 @@ export default function ({ lngLat, features }) {
   return (
     <section>
       {datasetsWithMapLayers.map((datum) => {
-        const { category, datasets } = datum
+        const { category, description, datasets } = datum
         const dataset = datasets[0]
         const interstingFeature = features.find((f) => f.layer.source === dataset.id)
         const lookup = labelLookup[dataset.id]
@@ -26,7 +26,7 @@ export default function ({ lngLat, features }) {
           <div className='pl3 pv4 mb2 bb b--black-20' key={category}>
             <div className='dn w-two-thirds-ns dib-ns pr4'>
               <lable className='f6 black-40 ttu tracked'>{category}</lable>
-              <div className='pt2 pb4 f6 lh-copy' dangerouslySetInnerHTML={{ __html: datasets[0].description }} />
+              <div className='pt2 pb4 f6 lh-copy' dangerouslySetInnerHTML={{ __html: description }} />
             </div>
             <div className='db w-third-ns dib-ns v-top'>
               <div className='f6 b'>{datasets[0].name}</div>

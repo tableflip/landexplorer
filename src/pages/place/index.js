@@ -1,5 +1,5 @@
 import React from 'react'
-import { highlights, findDatasetById } from '../../lib/datasets'
+import { highlights } from '../../lib/datasets'
 import PlaceIntro from './place-intro'
 import getWikiEntry from '../../lib/getWikiEntry'
 import getPlaceData from '../../lib/getPlaceData'
@@ -17,7 +17,7 @@ export default class extends React.Component {
       placeData: {},
       wikiEntry: '',
       datasets: highlights.map((c) => c.datasets[0]),
-      selectedLayers: findDatasetById(['Historic Flood Map']),
+      selectedLayers: [],
       features: []
     }
   }

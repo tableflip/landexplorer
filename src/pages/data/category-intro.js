@@ -3,12 +3,12 @@ import round from '../../lib/round'
 
 const CategoryIntro = ({ category, lngLat, placeData }) => {
   const { address, postcode, place } = placeData || {}
-
+  const intro = category.intro || category.description
   return (
     <div className='cf'>
       <h1 className='f3 black-40 ttu tracked fw2'>{category.category}</h1>
       <div className='fl w-50-ns'>
-        {category.description.split('\n').map((txt) => (
+        {intro.split('\n').map((txt) => (
           <div key={txt} className='lh-copy'>{txt}</div>
         ))}
       </div>
