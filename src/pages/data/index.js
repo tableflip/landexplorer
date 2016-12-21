@@ -73,7 +73,7 @@ export default class Data extends Component {
               {chunk.map((dataset, i) => {
                 const ph = ['pr3-ns', 'ph1-ns', 'pl3-ns']
                 return (
-                  <div className={`dtc-ns pv4 ${ph[i]} bb b--black-20 w-third`}>
+                  <div className={`dtc-ns pv4 ${ph[i]} bb b--black-20 w-third-ns`}>
                     <SecondaryDataset dataset={dataset} />
                   </div>
                 )
@@ -83,11 +83,11 @@ export default class Data extends Component {
         </div>
 
         <footer className='pb4 mb4 '>
-        { category.outro ? (
-          <p className='measure-wide center lh-copy' dangerouslySetInnerHTML={{ __html: category.outro }} />
-        ) : (
-          <p className='measure-wide center lh-copy'>Still haven’t found what you’re looking for? We plan to integrate more information in future versions of Land Explorer. If you have any ideas on what we should include, please fill in <a href='https://goo.gl/forms/kOpCcFbgD7Prc5lC3' target='_blank'>this short form</a>.</p>
-        )}
+          { category.outro ? (
+            <p className='measure-wide center lh-copy' dangerouslySetInnerHTML={{ __html: category.outro }} />
+          ) : (
+            <p className='measure-wide center lh-copy'>Still haven’t found what you’re looking for? We plan to integrate more information in future versions of Land Explorer. If you have any ideas on what we should include, please fill in <a href='https://goo.gl/forms/kOpCcFbgD7Prc5lC3' target='_blank'>this short form</a>.</p>
+          )}
         </footer>
       </Layout>
     )
