@@ -11,7 +11,7 @@ const Routes = (props) => {
     <Router history={history} render={applyRouterMiddleware(useScroll())}>
       <Route path='/' component={Layout}>
         <IndexRoute component={Place} />
-        <Route path='data/:category' component={Data} />
+        <Route path='/:category' component={Data} />
       </Route>
     </Router>
   )

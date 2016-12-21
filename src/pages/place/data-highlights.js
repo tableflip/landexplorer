@@ -39,7 +39,7 @@ export default function ({ lngLat, features }) {
                 </small>
               </div>
               <div className='tl pt4'>
-                <Link to={{ pathname: `/data/${slugify(category)}`, query: lngLat }} className='pv2 ph4 br2 ba b--light-green bg-light-green f6 tc black-40 no-underline'>Find out more</Link>
+                <Link to={{ pathname: `/${slugify(category)}`, query: lngLat }} className='pv2 ph4 br2 ba b--light-green bg-light-green f6 tc black-40 no-underline'>Find out more</Link>
               </div>
             </div>
           </div>
