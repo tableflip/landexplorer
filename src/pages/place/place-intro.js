@@ -6,7 +6,8 @@ import canonicalUrl from '../../lib/canonicalUrl'
 import Icon from './icon'
 import Share from './share'
 
-export default ({placeData, wikiEntry, lngLat, features, location}) => {
+export default ({placeData, wikiEntry, lngLat, features, location, data}) => {
+  console.log('data', data)
   const { address, postcode, place } = placeData
   const { landcover, landuse, landuse_overlay, contour } = filterFeatures(features)
   const uniqueLandFeatures = uniq(landuse.concat(landuse_overlay).concat(landcover))
@@ -39,12 +40,22 @@ export default ({placeData, wikiEntry, lngLat, features, location}) => {
           </span>
         </div>
       </div>
-      { /*
-<div className='pv2'>
-  <label className='f6 black-40'>Land owner</label>
-  <div className='mt1'>According to <a className='black-60' href='https://eservices.landregistry.gov.uk/www/wps/portal/!ut/p/b1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNjSxMDA1NjDwsjM3MDTxN3dyNDUNMjQ1MjIEKIvEocDckpD84NU8_XD8KTZm_m6OBp7GTv7e7caCRgYEZhgJUcyyMCCgAuQOswAAHcDTQ9_PIz03VL8iNqPDMDEgHAAblRA0!/dl4/d5/L0lDU0lKSmdrS0NsRUpDZ3BSQ2dwUkNTQS9ZSVVJQUFJSUlJTU1JS0VFQUFDR09HT0NHSUJKRkpGQkpORE5EQk5ISUVBTExBISEvNEczYUQyZ2p2eWhDa3lGTU5RaWt5RktOUmprS2NhZ21Rb2dnL1o3XzMyODQxMTQySDgzNjcwSTVGRzMxVDUzOFY0LzAvaWJtLmludi8zNDEyMzMwNTA1MDcvc3BmX0FjdGlvbk5hbWUvc3BmX0FjdGlvbkxpc3RlbmVyL3NwZl9zdHJ1dHNBY3Rpb24vITJmTHJJbnNwaXJlSWRJbml0LmRv/' target='_Blank'>Land Registry</a> the owner ID for this location is ID 2934692389</div>
-</div>
-      */}
+      <div className='pv2'>
+        <label className='f6 black-40'>Land Registry INSPIRE ID</label>
+        <div className='mt1 pt1'>
+          {data.loading && <ThreeBounce color='lightgray' size={12} />}
+          {data.inspireId && (
+            <form target='_blank' method='post' action='https://eservices.landregistry.gov.uk/www/wps/portal/!ut/p/b1/hc7bCoJAEAbgZ_EBYsbd1bZLKzyQJqaU7o0ImWgeosIOT592V2HO3cD3_zMgIFIYMk5VOoMQRJ20eZZc86ZOyn4XakwJZ7LMiNmhKVqKblA5UCgy2oHoDzDksfwOQmSxX_CT87iG9nPRBsXTI85y97hovl9mopqcKzdvGm112Ld3T5LAT-suJ76qXV1Di87dlUE9gqj-gM_bnIyA_vc3wIHRENZmU6UQdWw61MO3DCpR2uy4MW-ZJL0A0_XqsQ!!/dl4/d5/L0lDU0lKSmdwcGlRb0tVUW9LVVEhL29Gb2dBRUlRaGpFQ1VJZ0FJQUl5RkFNaHdVaFM0SldsYTRvIS80RzNhRDJnanZ5aERVd3BNaFFqVW81Q2pHcHhBL1o3XzMyODQxMTQySDgzNjcwSTVGRzMxVDUzOFY0LzAvMzQ0NjE5NjQzNDkxL3NwZl9BY3Rpb25OYW1lL3NwZl9BY3Rpb25MaXN0ZW5lci9zcGZfc3RydXRzQWN0aW9uLyEyZlFEU2VhcmNoLmRv/'>
+              <input type='hidden' name='polygonId' value={data.inspireId} />
+              <button title='Click to look it up on landregistry.gov.uk. Opens in a new window.' className='pl0' style={{cursor: 'pointer', border: 'none', background: 'transparent'}}>
+                <span className='black-60 f5 underline'>{data.inspireId}</span>
+                <small className='f6 black-40'> 🔗 Find it on landregistry.gov.uk </small>
+              </button>
+            </form>
+          )}
+          {!data.loading && !data.inspireId && <div className='black-40 f5'>Not available</div>}
+        </div>
+      </div>
       <div className='pv2'>
         <div>
           <label className='f6 black-40'>About this land</label>

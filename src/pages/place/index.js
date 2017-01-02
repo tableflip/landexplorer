@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
+import gql from 'graphql-tag'
+import { graphql } from 'react-apollo'
 import { highlights } from '../../lib/datasets'
 import PlaceIntro from './place-intro'
 import getWikiEntry from '../../lib/getWikiEntry'
@@ -14,8 +16,6 @@ export default class extends React.Component {
     super(props)
     this.state = {
       lngLat: lngLatFromQuery(props.location.query),
-      placeData: {},
-      wikiEntry: '',
       datasets: highlights.map((c) => c.datasets[0]),
       selectedLayers: [],
       features: []
@@ -26,25 +26,7 @@ export default class extends React.Component {
     const lngLat = lngLatFromQuery(nextProps.location.query)
     this.setState({lngLat})
     if (!lngLat) return
-    this.lookupPlaceInfo(lngLat)
     this.queryRenderedFeatures(lngLat)
-  }
-
-  componentDidMount () {
-    const { lngLat } = this.state
-    if (!lngLat) return
-    this.lookupPlaceInfo(lngLat)
-  }
-
-  lookupPlaceInfo (lngLat) {
-    getPlaceData(lngLat)
-      .then((placeData) => {
-        this.setState({placeData})
-        const wikiQuery = placeData.place || placeData.address || placeData.postcode
-        return getWikiEntry(wikiQuery)
-      })
-      .then((wikiEntry) => this.setState({wikiEntry}))
-      .catch(function (err) { return console.error(err) })
   }
 
   queryRenderedFeatures (lngLat) {
@@ -64,7 +46,7 @@ export default class extends React.Component {
   render () {
     const { onMapReady } = this
     const { location } = this.props
-    const { wikiEntry, placeData, lngLat, datasets, features, selectedLayers } = this.state
+    const { lngLat, datasets, features, selectedLayers } = this.state
     return (
       <div className='black-60 helvetica layout-container'>
         <div className='map-column'>
@@ -76,7 +58,7 @@ export default class extends React.Component {
             <div className='dn db-ns'>
               <LogoLink />
             </div>
-            <PlaceIntro lngLat={lngLat} wikiEntry={wikiEntry} placeData={placeData} features={features} location={location} />
+            <PlaceIntroContainer lngLat={lngLat} features={features} location={location} />
             <DataHighlights selectedLayers={selectedLayers} datasets={highlights} lngLat={lngLat} features={features} />
             <LogoLink />
           </div>
@@ -90,4 +72,61 @@ export default class extends React.Component {
       </div>
     )
   }
+}
+
+const inspireIdQuery = gql`
+  query InspireId($lng: Float!, $lat: Float!) {
+    inspireId(lng: $lng, lat: $lat)
+  }
+`
+
+const PlaceIntroContainer = graphql(inspireIdQuery, {
+  options: ({ lngLat }) => ({ variables: lngLat })
+})(class extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      placeData: {},
+      wikiEntry: ''
+    }
+  }
+
+  componentDidMount () {
+    const { lngLat } = this.props
+    this.lookupPlaceInfo(lngLat)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { lngLat } = nextProps
+    this.lookupPlaceInfo(lngLat)
+  }
+
+  lookupPlaceInfo (lngLat) {
+    if (!lngLat) return
+    getPlaceData(lngLat)
+      .then((placeData) => {
+        this.setState({placeData})
+        const wikiQuery = placeData.place || placeData.address || placeData.postcode
+        return getWikiEntry(wikiQuery)
+      })
+      .then((wikiEntry) => this.setState({wikiEntry}))
+      .catch(function (err) { return console.error(err) })
+  }
+
+  render () {
+    return <PlaceIntro {...this.props} {...this.state} />
+  }
+})
+
+PlaceIntroContainer.propTypes = {
+  lngLat: PropTypes.shape({
+    lng: PropTypes.number.isRequired,
+    lat: PropTypes.number.isRequired
+  }).isRequired,
+  features: PropTypes.array,
+  location: PropTypes.object,
+  data: PropTypes.shape({
+    loading: PropTypes.bool.isRequired,
+    inspireId: PropTypes.number
+  })
 }
