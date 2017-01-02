@@ -102,6 +102,7 @@
     "browserify": "^13.1.0",
     "cssnano": "^3.9.1",
     "npm-run-all": "^3.1.0",
+    "pre-commit": "^1.2.2",
     "standard": "^8.4.0",
     "uglify-js": "^2.7.5",
     "watchify": "^3.7.0"
