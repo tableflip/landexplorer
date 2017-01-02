@@ -1,8 +1,8 @@
 {
-  "name": "shared-assets-frontend",
+  "name": "landexplorer",
   "private": true,
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Frontend for landexplorer.uk",
   "main": "src/index.js",
   "keywords": [
     "Land Explorer"
