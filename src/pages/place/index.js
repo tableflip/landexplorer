@@ -53,15 +53,15 @@ export default class extends React.Component {
           <Map lngLat={lngLat} datasets={datasets} selectedLayers={selectedLayers} onMapReady={onMapReady} />
         </div>
         <div className='bg-near-white content-column'>
-        { lngLat ? (
-          <div style={{height: '100%'}}>
-            <div className='dn db-ns'>
+          { lngLat ? (
+            <div style={{height: '100%'}}>
+              <div className='dn db-ns'>
+                <LogoLink />
+              </div>
+              <PlaceIntroContainer lngLat={lngLat} features={features} location={location} />
+              <DataHighlights selectedLayers={selectedLayers} datasets={highlights} lngLat={lngLat} features={features} />
               <LogoLink />
             </div>
-            <PlaceIntroContainer lngLat={lngLat} features={features} location={location} />
-            <DataHighlights selectedLayers={selectedLayers} datasets={highlights} lngLat={lngLat} features={features} />
-            <LogoLink />
-          </div>
         ) : (
           <div>
             <LogoLink />

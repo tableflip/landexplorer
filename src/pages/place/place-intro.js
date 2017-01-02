@@ -11,10 +11,14 @@ export default ({placeData, wikiEntry, lngLat, features, location, data}) => {
   const { landcover, landuse, landuse_overlay, contour } = filterFeatures(features)
   const uniqueLandFeatures = uniq(landuse.concat(landuse_overlay).concat(landcover))
 
-  // Sorry. To allow the user to click through to the results the land registry
+  // Sorry. To allow the user to click through to the results of the land registry
   // search, we have to ensure that their browser just visited the page on the
-  // eservices.landregistry.gov.uk that shows the INSPIRE form.
-  // I do admit that I take gross pleasure in the fact that hideous dance works.
+  // eservices.landregistry.gov.uk site that shows the INSPIRE form... so.
+
+  // The form targets the 'landregistry' window. We catch and stifle the submit,
+  // open the page we need and then trigger the submit later.
+
+  // I do admit that I take gross pleasure in the fact that this hideous dance works.
   const LAND_REGISTRY_WINDOW = 'landregistry'
   const preWarmLandRegistry = (e) => {
     window.open(

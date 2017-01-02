@@ -7,8 +7,8 @@ export default (props) => {
         <strong>Land Explorer</strong> helps you find<br />information on land in the UK.
       </div>
       <div>
-      <p className='pt4 center f5 f4-ns tc lh-copy'>Search for a place you're intested in,
-        <br/>or click on the map to explore.
+        <p className='pt4 center f5 f4-ns tc lh-copy'>Search for a place you're intested in,
+        <br />or click on the map to explore.
       </p>
       </div>
       <div className='pt5 tc'>
@@ -19,7 +19,7 @@ export default (props) => {
       <div className='pv4 f6 f5-ns lh-copy center tc'>
         We curate open data from public sources <br />and display them in one handy map.
       </div>
-      { /*<div className='pv4 tc'><img src='/svg/supporter-logos.svg' /></div> */ }
+      { /* <div className='pv4 tc'><img src='/svg/supporter-logos.svg' /></div> */ }
     </section>
   )
 }

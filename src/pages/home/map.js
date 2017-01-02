@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-import { render } from 'react-dom'
 import { withRouter } from 'react-router'
 import ReactMapboxGl from './mapbox-gl-map'
 import Geocoder from 'mapbox-gl-geocoder'
@@ -7,8 +6,6 @@ import MapboxGl from 'mapbox-gl'
 import uniq from 'lodash.uniq'
 import cloneDeep from 'lodash.clonedeep'
 import config from '../../config'
-import round from '../../lib/round'
-import Icon from '../place/icon'
 
 const minZoomforData = 8
 const niceZoom = 11
@@ -93,31 +90,12 @@ const Map = class extends React.Component {
       } else {
         this.navigateTo(lngLat)
       }
-
-      // const marker = this.addMarker(map, lngLat)
-      // marker.setPopup(this.makePopup(clickData, lngLat, this.props.router))
-      // marker.togglePopup()
-      // map.flyTo({ center: lngLat, zoom: Math.max(8, map.getZoom()) })
     })
 
     this.addSources(map, selectedLayers)
     if (onMapReady) {
       setTimeout(() => onMapReady(map), 3000)
     }
-  }
-
-  makePopup = (clickData, lngLat, router) => {
-    const popup = new MapboxGl.Popup({offset: [0, -55]})
-    const el = document.createElement('div')
-    const onClick = () => {
-      router.push({
-        pathname: '/',
-        search: `?lng=${lngLat.lng}&lat=${lngLat.lat}`
-      })
-    }
-    render((<ClickInfo {...clickData} open onClick={onClick} />), el)
-    popup.setDOMContent(el)
-    return popup
   }
 
   addMarker = (map, lngLat) => {
@@ -184,7 +162,6 @@ const Map = class extends React.Component {
 
   render () {
     const { onMapReady } = this
-    const { hoverData, showHover, clickData, showClick } = this.state
     const { minZoom } = this.props
     return (
       <div className='relative' style={{overflow: 'hidden', scroll: 'none', height: '100%'}}>
@@ -197,90 +174,9 @@ const Map = class extends React.Component {
           accessToken={config.mapboxApiAccessToken}
           onStyleLoad={onMapReady}
         />
-        { /*<HoverInfo {...hoverData} open={showHover} />*/ }
       </div>
     )
   }
-}
-
-const ExploreButton = () => {
-  const size = 80
-  return (
-    <button style={{
-      cursor: 'pointer',
-      position: 'absolute',
-      bottom: 40,
-      right: 20,
-      width: size,
-      height: size,
-      borderRadius: (size / 2),
-      background: 'rgba(229,229,229,0.95)',
-      boxShadow: '0 1px 4px rgba(0,0,0,0.50)',
-      border: '1px solid white',
-      color: 'white',
-      fontSize: '13px',
-      fontWeight: 'bold',
-      letterSpacing: '1px',
-      outline:'none'
-    }}>
-      Explore
-    </button>
-  )
-}
-
-
-const hoverStyle = {
-  boxShadow: '1px 1px 1px 0 rgba(0,0,0,0.3)',
-  background: 'rgba(255,255,255,0.9)',
-  color: 'gray',
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  width: 150
-}
-
-const HoverInfo = ({lngLat, point, open, features}) => {
-  if (!lngLat || !open) return null
-  const transform = `translate(${point.x + 20}px, ${point.y + 10}px)`
-  const style = Object.assign({transform}, hoverStyle)
-  return (
-    <div className='pa2 br2' style={style}>
-      <code style={{fontSize: '10px'}} className='db pb1 monospace bb b--black-30'>{`${round(lngLat.lng, 3)}, ${round(lngLat.lat, 3)}`}</code>
-      <div style={{minHeight: '2em', fontSize: '12px'}}>
-        {features.map((f, i) => (
-          <div className='pa2' key={`${f}-${i}`}>
-            <Icon name={f} className='dib v-mid mr2' />
-            <label key={i} className='dib v-mid ttc'>{f}</label>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-const ClickInfo = ({lngLat, point, open, features, onClick}) => {
-  if (!lngLat || !open) return null
-  const height = (40 * features.length) + 76
-  const width = 250
-  const transform = `translate(${point.x - 150}px, ${point.y - (height + 20)}px)`
-  // const style = Object.assign({}, hoverStyle, {height, width})
-  const style = {}
-  return (
-    <div className='relative pa2 br2' style={style}>
-      <code style={{fontSize: '10px'}} className='db pb1 monospace bb b--white-30'>{`${round(lngLat.lng, 3)}, ${round(lngLat.lat, 3)}`}</code>
-      <div style={{fontSize: '12px'}}>
-        {features.map((f, i) => (
-          <div className='pa2' key={`${f}-${i}`}>
-            <Icon name={f} className='dib v-mid mr2' />
-            <label key={i} className='dib v-mid ttc'>{f}</label>
-          </div>
-        ))}
-      </div>
-      <div className='pa2'>
-        <button onClick={onClick} className='db ph3 pv2 f6 tc no-underline br2 ba b--green green' style={{backgroundColor: '#CFF09E'}}>Explore the area</button>
-      </div>
-    </div>
-  )
 }
 
 export default withRouter(Map)

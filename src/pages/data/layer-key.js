@@ -18,7 +18,7 @@ const LayerKey = ({ dataset }) => {
 
         return (
           <li className='mb1 tr'>
-            {name} <span className='dib v-mid ml1' style={style} /> 
+            {name} <span className='dib v-mid ml1' style={style} />
           </li>
         )
       })}
