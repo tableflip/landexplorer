@@ -1,16 +1,23 @@
-# Shared Assets frontend
+# landexplorer frontend
 
-Frontend for the [Shared Assets](https://github.com/tableflip/workplan/blob/master/shared-assets/tableflip-shared-assets-workplan-001.md) project, to display geographical data in a map interface.
+Web frontend for landexplorer.uk - Helping surface open data about land in the UK.
 
-* Clone this repo.
-* `npm i`
-* `npm run build`
+## Getting started
 
-The static site will be output at `dist/index.html`.
+With `node` > 6.0 and `npm` > 3.0 installed, run:
 
-To watch for changes and rebuild:
+- Clone this repo.
+- `npm install`
+- `npm run watch`
 
-`npm run watch`
+That'll serve up the site at http://localhost:3000 in dev mode with hot-reloading goodness.
+
+The site is built from code in the `src` directory and output as a static website to `dist`.
+
+## Related projects
+
+- [landexplorer-api](https://github.com/tableflip/landexplorer-api) - Graphql api for the data
+- [landexplorer-infrastructure](https://github.com/tableflip/landexplorer-infrastructure) - Ansible deploy playbook for getting live.
 
 ## Datasets
 
