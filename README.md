@@ -1,8 +1,8 @@
-<img src="http://landexplorer.uk/svg/land-explorer-logo.svg" width="202" height="34" />
-
 # Shared Assets - Land Explorer
 
 Web frontend for http://landexplorer.uk - Helping surface open data about land in the UK.
+
+<img src="http://landexplorer.uk/svg/land-explorer-logo.svg" width="202" height="34" />
 
 ## Getting started
 
