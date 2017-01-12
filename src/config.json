@@ -1,5 +1,5 @@
 {
   "googleTrackingId": "UA-25676336-2",
-  "landexplorerApiUrl": "http://api.landexplorer.uk/graphql",
+  "landexplorerApiUrl": "https://api.landexplorer.uk/graphql",
   "mapboxApiAccessToken": "pk.eyJ1IjoidGFibGVmbGlwIiwiYSI6ImNpdTg4Z3I4bzAwMDYyb3A4bXI1eDhnd2QifQ.U4CQwnVOEF4FChkJh7wM1Q"
 }
