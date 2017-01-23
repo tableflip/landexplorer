@@ -25,7 +25,7 @@ export default function ({ lngLat, features }) {
         return (
           <div className='pl3 pv4 mb2 bb b--black-20' key={category}>
             <div className='dn w-two-thirds-ns dib-ns pr4'>
-              <lable className='f6 black-40 ttu tracked'>{category}</lable>
+              <label className='f6 black-40 ttu tracked'>{category}</label>
               <div className='pt2 pb4 f6 lh-copy' dangerouslySetInnerHTML={{ __html: description }} />
             </div>
             <div className='db w-third-ns dib-ns v-top'>
