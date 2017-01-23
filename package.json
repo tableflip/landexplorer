@@ -29,8 +29,6 @@
     "serve": "node dev.js",
     "deploy": "run-s build deploy:next",
     "deploy:next": "surge -p ./dist -d sharedassets.tableflip.io",
-    "deploy:prod": "surge -p ./dist -d landexplorer.uk",
-    "shipit": "run-s build deploy:prod",
     "clean": "rm -rf dist/*"
   },
   "standard": {
