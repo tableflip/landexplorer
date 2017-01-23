@@ -91,7 +91,7 @@ export default ({placeData, wikiEntry, lngLat, features, location, data}) => {
           </div>
         </div>
         <div className='pv2'>
-          <label className='db f6 black-40'>Share</label>
+          <label className='db f6 black-40'>Share this location</label>
           <div style={{fontSize: 11}}>
             <Share url={canonicalUrl(location)} text={`Explore ${address || place || ''}`} />
           </div>
