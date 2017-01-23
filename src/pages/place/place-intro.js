@@ -5,32 +5,12 @@ import round from '../../lib/round'
 import canonicalUrl from '../../lib/canonicalUrl'
 import Icon from './icon'
 import Share from './share'
+import LandRegistryButton from './land-registry-btn'
 
 export default ({placeData, wikiEntry, lngLat, features, location, data}) => {
   const { address, postcode, place } = placeData
   const { landcover, landuse, landuse_overlay, contour } = filterFeatures(features)
   const uniqueLandFeatures = uniq(landuse.concat(landuse_overlay).concat(landcover))
-
-  // Sorry. To allow the user to click through to the results of the land registry
-  // search, we have to ensure that their browser just visited the page on the
-  // eservices.landregistry.gov.uk site that shows the INSPIRE form... so.
-
-  // The form targets the 'landregistry' window. We catch and stifle the submit,
-  // open the page we need and then trigger the submit later.
-
-  // I do admit that I take gross pleasure in the fact that this hideous dance works.
-  const LAND_REGISTRY_WINDOW = 'landregistry'
-  const preWarmLandRegistry = (e) => {
-    window.open(
-      'https://eservices.landregistry.gov.uk/www/wps/portal/!ut/p/b1/hc7NCoJAFAXgR7q_jrO1heMQJGFQziZmIWHouAmf32xXUd7dge8cLgRojZBVZsrhAiHFub_FRz-lOKw5mKuwVSLlyorJ0WelEzplgipP0P4Bjrb6TZfgDOGD1WWBXnb13smREc0XeN-xvAHWP14Af1yBcKimsYMxDLbxd10AehjogQ!!/dl4/d5/L0lDU0lKSmdrS0NsRUpDZ3BSQ2dwUkNTQS9ZSVVJQUFJSUlJTU1JS0VFQUFDR09HT0NHSUJKRkpGQkpORE5EQk5ISUVBTExBISEvNEczYUQyZ2p2eWhDa3lGTU5RaWt5RktOUmprS2NhZ21Rb2dnL1o3XzMyODQxMTQySDgzNjcwSTVGRzMxVDUzOFY0LzAvaWJtLmludi8zNDQ2Mzc4Mjc2MTYvc3BmX0FjdGlvbk5hbWUvc3BmX0FjdGlvbkxpc3RlbmVyL3NwZl9zdHJ1dHNBY3Rpb24vITJmTHJJbnNwaXJlSWRJbml0LmRv/',
-      LAND_REGISTRY_WINDOW
-    )
-    e.preventDefault()
-    const form = e.target
-    setTimeout(() => {
-      form.submit()
-    }, 100)
-  }
 
   return (
     <section className='pb3 ph3 bb b--black-20'>
@@ -64,17 +44,30 @@ export default ({placeData, wikiEntry, lngLat, features, location, data}) => {
       <div className='pv2'>
         <label className='f6 black-40'>Land Registry INSPIRE ID</label>
         <div className='mt1 pt1'>
-          {data.loading && <ThreeBounce color='lightgray' size={12} />}
-          {data.inspireId && (
-            <form onSubmit={preWarmLandRegistry} target={LAND_REGISTRY_WINDOW} method='post' action='https://eservices.landregistry.gov.uk/www/wps/portal/!ut/p/b1/hc7bCoJAEAbgZ_EBYsbd1bZLKzyQJqaU7o0ImWgeosIOT592V2HO3cD3_zMgIFIYMk5VOoMQRJ20eZZc86ZOyn4XakwJZ7LMiNmhKVqKblA5UCgy2oHoDzDksfwOQmSxX_CT87iG9nPRBsXTI85y97hovl9mopqcKzdvGm112Ld3T5LAT-suJ76qXV1Di87dlUE9gqj-gM_bnIyA_vc3wIHRENZmU6UQdWw61MO3DCpR2uy4MW-ZJL0A0_XqsQ!!/dl4/d5/L0lDU0lKSmdwcGlRb0tVUW9LVVEhL29Gb2dBRUlRaGpFQ1VJZ0FJQUl5RkFNaHdVaFM0SldsYTRvIS80RzNhRDJnanZ5aERVd3BNaFFqVW81Q2pHcHhBL1o3XzMyODQxMTQySDgzNjcwSTVGRzMxVDUzOFY0LzAvMzQ0NjE5NjQzNDkxL3NwZl9BY3Rpb25OYW1lL3NwZl9BY3Rpb25MaXN0ZW5lci9zcGZfc3RydXRzQWN0aW9uLyEyZlFEU2VhcmNoLmRv/'>
-              <input type='hidden' name='polygonId' value={data.inspireId} />
-              <button title='Click to look it up on landregistry.gov.uk. Opens in a new window.' className='pl0' style={{cursor: 'pointer', border: 'none', background: 'transparent'}}>
-                <span className='black-60 f5 underline'>{data.inspireId}</span>
-                <small className='f6 black-40'> 🔗 Find it on landregistry.gov.uk</small>
-              </button>
-            </form>
-          )}
-          {!data.loading && !data.inspireId && <div className='black-40 f5'>Not available</div>}
+          <div>
+            <div className='w-two-thirds-ns dib-ns'>
+              {data.loading && <ThreeBounce color='lightgray' size={12} />}
+              {data.inspireId && (
+                <LandRegistryButton
+                  inspireId={data.inspireId}
+                  className='pl0'
+                  style={{cursor: 'pointer', border: 'none', background: 'transparent'}}
+                  title='Click to look the id up on landregistry.gov.uk. Opens in a new window.' >
+                  <span className='black-60 f5 underline'>{data.inspireId}</span>
+                  <small className='f6 black-40 no-underline'> 🔗 Find it on landregistry.gov.uk</small>
+                </LandRegistryButton>
+              )}
+              {!data.loading && !data.inspireId && <div className='black-40 f5'>Not available</div>}
+            </div>
+            <div className='w-third-ns dib-ns'>
+              <a
+                className='mv2 ml2 pv2 ph4 br2 ba b--light-green bg-light-green f6 tc black-40 no-underline'
+                href='http://www.sharedassets.org.uk/landexplorer/land-registry-inspire-id/'
+                target='_blank'>
+                Find out more
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div className='pv2'>
@@ -98,7 +91,7 @@ export default ({placeData, wikiEntry, lngLat, features, location, data}) => {
           </div>
         </div>
         <div className='pv2'>
-          <label className='db f6 black-40'>Share</label>
+          <label className='db f6 black-40'>Share this location</label>
           <div style={{fontSize: 11}}>
             <Share url={canonicalUrl(location)} text={`Explore ${address || place || ''}`} />
           </div>
