@@ -93,7 +93,7 @@
     "react-apollo": "^0.7.1",
     "react-dom": "^15.3.2",
     "react-ga": "^2.1.2",
-    "react-responsive-embed": "^1.0.1",
+    "react-responsive-embed": "^2.0.0",
     "react-router": "^3.0.0",
     "react-router-scroll": "^0.4.1",
     "tachyons": "4.5.3",
