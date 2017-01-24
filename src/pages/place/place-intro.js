@@ -61,7 +61,7 @@ export default ({placeData, wikiEntry, lngLat, features, location, data}) => {
             </div>
             <div className='w-third-ns dib-ns'>
               <a
-                className='mv2 ml2 pv2 ph4 br2 ba b--light-green bg-light-green f6 tc black-40 no-underline'
+                className='dib mv2 mv0-ns pv2 ph4 br2 ba b--light-green bg-light-green f6 tc black-40 no-underline'
                 href='http://www.sharedassets.org.uk/landexplorer/land-registry-inspire-id/'
                 target='_blank'>
                 Find out more

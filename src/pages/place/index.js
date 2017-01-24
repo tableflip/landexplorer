@@ -10,6 +10,7 @@ import LogoLink from '../home/logo-link'
 import InfoPanel from '../home/info-panel'
 import DataHighlights from './data-highlights'
 import lngLatFromQuery from '../../lib/lngLatFromQuery'
+import Icon from './icon'
 
 export default class extends React.Component {
   constructor (props) {
@@ -54,7 +55,11 @@ export default class extends React.Component {
         </div>
         <div className='bg-near-white content-column'>
           { lngLat ? (
-            <div style={{height: '100%'}}>
+            <div style={{height: '100%'}} className='relative'>
+              <div className='scroll-encouragement absolute tr' style={{right: 16, top: 10}}>
+                <div className='f6 pb1'>Scroll for more</div>
+                <Icon name='triangle' width='14' height='11' />
+              </div>
               <div className='dn db-ns'>
                 <LogoLink />
               </div>

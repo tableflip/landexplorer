@@ -11,7 +11,7 @@ a {
 }
 
 .map-column {
-  height: calc(100% - 60px);
+  height: calc(100% - 64px);
 }
 
 .content-column {
@@ -36,6 +36,10 @@ a {
   .map-column {
     flex: auto;
     height: 100%;
+  }
+
+  .scroll-encouragement {
+    display: none;
   }
 }
 
