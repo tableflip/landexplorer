@@ -11,24 +11,24 @@ export default (props) => {
         <p className='pt3 center f5 f4-ns lh-copy tc'>
           <strong>Search for a place you're interested in,<br />or click on the map to explore.</strong>
         </p>
+
         <h2 className='mt5 mb4 f4 fw2 black-40 ttu tracked'>Getting started</h2>
         <p className='lh-copy'>
-          <strong>Step 1: Find the area you are interested in.</strong> You can find the area manually by zooming in and dragging the map. Or use the search bar in the top right hand corner of the map to find a particular location, address, or post code. Next click on the bit of the map you are interested in and you will be taken to a new screen with lots of information about that area.
+          <strong>Step 1: Find the area you are interested in. </strong>
+          You can find the area manually by zooming in and dragging the map. Or use the search bar in the top right hand corner of the map to find a particular location, address, or post code.
         </p>
         <p className='lh-copy'>
-          <strong>Step 2: Explore an area.</strong> Once you click on the map you will be taken to a page offering you headline information for the point you chose. From there you can click on individual categories of information to find out more about them. You can also click on the Land Registry INSPIRE ID to look up ownership information. If you need to get back to this page just use the back button in your browser. You can also share the area using the social media buttons, or by copy and pasting the url.
+          <strong>Step 2: Explore an area. </strong>
+          Once you click on the map you will be taken to a page offering you headline information for the point you chose. From there you can (i) click on individual categories of information to find out more about them, (ii) click on the Land Registry INSPIRE ID to look up ownership information, or (iii) share the area using the social media buttons.
         </p>
         <p className='lh-copy'>
-          <strong>Step 3: Dig deeper</strong>. If you click through to one of the individual pages you will be shown (i) an introduction to this category of information explaining why we think it is useful, (ii) all the data available for that category, complete with explanations and visual maps, (iii) more information for particular dataset, and (iv) other interesting links relating to this category (found by scrolling down).
+          <strong>Step 3: Dig deeper</strong>. If you click through to one of the individual pages you will be shown (i) why we think this information is useful, (ii) all the data, complete with explanations and visual maps, and (iii) other interesting links.
         </p>
         <p className='lh-copy'>
           Land Explorer is designed to engage anyone who is interested in learning more about the land around them. We’ve suggested some ways people might use the platform on our <a href='http://www.sharedassets.org.uk/landexplorer/uses-for-land-explorer/' target='_blank'>website</a>.
         </p>
-        <p className='lh-copy'>
-          Do you have another reason for using Land Explorer? We’re keen to identify everyone who can benefit from this tool, and what kind of features would make it most useful for them.
-        </p>
         <p>
-          <strong> If you have any ideas please share them with us by filling in this short form: <a href='https://goo.gl/forms/9M4LxYAqvF8sOexu2' target='_blank'>https://goo.gl/forms/9M4LxYAqvF8sOexu2</a></strong>
+          <strong>If you have any ideas for improving land explorer please share them with us by filling in this short form: <a href='https://goo.gl/forms/9M4LxYAqvF8sOexu2' target='_blank'>https://goo.gl/forms/9M4LxYAqvF8sOexu2</a></strong>
         </p>
 
         <h2 className='mt5 mb4 f4 fw2 black-40 ttu tracked'>How did we get here</h2>
@@ -47,12 +47,13 @@ export default (props) => {
         </p>
         <h2 className='mt5 mb4 f4 fw2 black-40 ttu tracked'>Next steps and feedback</h2>
         <p className='lh-copy'>
-          However it is still a work in progress. Currently, some of the data is only relevant to England, and most of the data is more useful for rural areas. We have also yet to build many of the features we have planned - in particular allowing users to upload comments, photos and other media. There are also a number of other key datasets that we would like to integrate.
+          However it is still a work in progress. Currently, some of the data is only relevant to England, and most of the data is more useful for rural areas. We have also yet to build in many of the datasets and features we have planned - in particular allowing users to upload comments, photos and other media.
         </p>
         <p className='lh-copy'>
           We also want the addition of new features and data to be guided by users. If you have any feedback on Land Explorer and would like to help guide its development,
-          <br /><strong>please fill in this short form:
-          <a className='db mt2' href='https://goo.gl/forms/7mPMZFW6ffYhjPEF3' target='_blank'>https://goo.gl/forms/7mPMZFW6ffYhjPEF3</a></strong>
+          <strong> please fill in this short form:
+            <a className='db mt2' href='https://goo.gl/forms/7mPMZFW6ffYhjPEF3' target='_blank'>https://goo.gl/forms/7mPMZFW6ffYhjPEF3</a>
+          </strong>
         </p>
         <div className='pv4 tc'>
           <img src='/svg/land-explorer-logo.svg' width='202' height='34' />
