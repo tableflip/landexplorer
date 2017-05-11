@@ -1,0 +1,5 @@
+{
+  "landexplorerApiUrl": "https://api.landexplorer.uk/graphql",
+  "googleTrackingId": "{{secrets.gaTrackingId}}",
+  "mapboxApiAccessToken": "{{secrets.mapboxApiAccessToken}}"
+}

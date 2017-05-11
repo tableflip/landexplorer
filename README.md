@@ -7,6 +7,8 @@ Web frontend for http://landexplorer.uk - Helping surface open data about land i
 With `node` > 6.0 and `npm` > 3.0 installed:
 
 - Clone this repo.
+- Create a mapbox account and grab an [api access key](https://www.mapbox.com/studio/account/tokens/).
+- Copy `src/config.tpl.json` to `src/config.json` and add your api key.
 - `npm install`
 - `npm run watch`
 

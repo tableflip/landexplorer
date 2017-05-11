@@ -2,3 +2,4 @@ npm-debug.*
 node_modules
 .node_repl_history
 dist/**/*
+src/config.json
